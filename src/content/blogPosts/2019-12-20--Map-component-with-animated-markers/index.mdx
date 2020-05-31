@@ -1,0 +1,37 @@
+---
+title: React Native Map Component Based on Leaflet JS
+date: '2018-12-20T03:46:37.121Z'
+layout: post
+draft: false
+path: '/posts/map-component-with-animated-markers/'
+category: 'Open Source'
+tags:
+  - 'Programming'
+  - 'React Native'
+  - 'Expo'
+  - 'Open Source'
+description: 'The react-native-webview-leaflet package leverages the Leaflet.js library and React to create a map component for React Native applications that does not rely on Google Maps.  Additionally, since Leaflet.js is a pure JavaScript component, developers can implement CSS animations on map markers for a more engaging user experience.'
+---
+
+Click below to see a demo of the component in action.
+[![YouTube Demo Video](https://img.youtube.com/vi/IurE-a9P3tY/0.jpg)](https://www.youtube.com/watch?v=IurE-a9P3tY)
+The video demonstrates the various types of maps that can be displayed, animated markers, marker and map click-ability, and map centering.  
+
+__Quiz__: Can you figure out what the three different buttons at the bottom are for?  The answer is at the end of this post.
+
+So far, react-native-webview-leaflet (RNWL) has been my favorite open source creation.  I built it because I wanted a React Native  map component that would let me animate markers.  This was a capability that the [react-native-maps](https://github.com/react-native-community/react-native-maps/issues) component did not have at the time I created RNWL.  
+
+The Leaflet.js library, the React-Leaflet component, and the techniques I wrote about in my Medium blog post titled [Sharing Code Between React Web and React Native Applications](https://medium.com/react-native-training/sharing-code-between-react-web-and-react-native-applications-7f451af26378) provided the foundations for bulding this component.  The great thing about using Leaflet was that it provides a pure CSS, HTML, JavaScript solution.  This means that HTML elements like markers can be animated using standard CSS techniques.
+
+The GitHub repo for the project can be found here:
+[Github Repo](https://github.com/reggie3/react-native-webview-leaflet)
+
+
+You can test the component by scanning this QR code with the Expo application on your Android device.
+![Scan this code to play the app in Expo](./QR-code.png)
+
+__SPOILERS BELOW__:
+The three buttons center the maps on three different theme parks / resorts:
+- The castle is the Walt Disney World Resort in Orlando, Florida
+- The mug of bear is my home-park; Busch Gardens in Williamsburg, Virginia
+- The crown represents Kings Dominion in Doswell, Virginia
