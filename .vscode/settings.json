@@ -1,0 +1,8 @@
+{
+  "files.autoSave": "onFocusChange",
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#ffca1afa",
+    "titleBar.activeForeground": "#000000"
+  },
+  "window.titleBarStyle": "custom"
+}
