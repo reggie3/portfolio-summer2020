@@ -18,16 +18,6 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return <ThemeProvider theme={MyCustomTheme}>{children}</ThemeProvider>
 }
 

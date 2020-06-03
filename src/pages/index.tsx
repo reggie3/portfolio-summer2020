@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, graphql } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
@@ -10,7 +10,7 @@ import ScrollToTopButton from "../components/ScrollToTopButton"
 import Header from "../components/Header"
 import BlogPostList from "../components/BlogPostList"
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
 
   const setHeaderVisibility = (isVisible: boolean) => {
@@ -25,16 +25,15 @@ const IndexPage = ({ data }) => {
     <Layout>
       <div id="indexPageRoot">
         <TrackVisibility partialVisibility>
-          <Header
-            setVisibility={setHeaderVisibility}
-            siteTitle={data.site.siteMetadata.title}
-          />
+          <Header setVisibility={setHeaderVisibility} />
         </TrackVisibility>
         <ScrollToTopButton
           isVisible={!isHeaderVisible}
           onClick={onScrollToTopClicked}
         />
-        <BlogPostList />
+        <div id="contentContainer">
+          <BlogPostList />
+        </div>
         <Footer />
       </div>
     </Layout>
@@ -42,13 +41,3 @@ const IndexPage = ({ data }) => {
 }
 
 export default IndexPage
-
-const pageQuery = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

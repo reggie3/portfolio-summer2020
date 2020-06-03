@@ -1,42 +1,87 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import {
+  Card,
+  CardMedia,
+  makeStyles,
+  CardContent,
+  Typography,
+} from "@material-ui/core"
+import Img from "gatsby-image"
+import defaultImage from "../images/ocean.jpg"
 
-const BlogPostList = ({ data }) => {
-  const { edges: posts } = data.allMdx
-  return (
-    <div>
-      <h1>Awesome MDX Blog</h1>
-      <ul>
-        {posts.map(({ node: post }) => (
-          <li key={post.id}>
-            <Link to={post.fields.slug}>
-              <h2>{post.frontmatter.title}</h2>
-            </Link>
-            <p>{post.excerpt}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-export default BlogPostList
-
-export const pageQuery = graphql`
-  query blogIndex {
-    allMdx {
-      edges {
-        node {
-          id
-          excerpt
-          frontmatter {
-            title
-          }
-          fields {
-            slug
+const BlogPostList = () => {
+  const data = useStaticQuery(graphql`
+    query blogIndex {
+      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+        edges {
+          node {
+            id
+            excerpt
+            frontmatter {
+              title
+              date
+              tags
+              description
+              featuredImage {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            fields {
+              slug
+            }
           }
         }
       }
     }
-  }
-`
+  `)
+
+  const { edges: posts } = data.allMdx
+
+  return (
+    <div id="postIndexContainer">
+      {posts.map(({ node: post }) => {
+        return (
+          <Card key={post.id} className="blogCard">
+            <Img
+              className="blogCardImage"
+              fluid={
+                post.frontmatter.featuredImage?.childImageSharp?.fluid ??
+                defaultImage
+              }
+              alt="A corgi smiling happily"
+            />
+            <CardContent className={"cardContent"}>
+              {/*               <div className="blogCardLinkContainer">*/}
+
+              <Link to={post.fields.slug} className="fancyLink">
+                {post.frontmatter.title}
+              </Link>
+              {/*               </div>  */}
+
+              <div className="blogCardPostDescription">
+                <Typography variant="body2" component="p">
+                  {post.frontmatter.description}
+                </Typography>
+              </div>
+            </CardContent>
+          </Card>
+        )
+      })}
+    </div>
+  )
+}
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+})
+export default BlogPostList

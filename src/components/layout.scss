@@ -9,7 +9,7 @@ $primary-color: #333;
 
 :root {
   --clr-icons: #929292;
-  --clr-text: #fff;
+  --clr-text: #eee;
   --clr-bg-dark: #242424;
   --clr-bg-light: #3b3b3b;
   --clr-accent: #ff7600;
@@ -24,7 +24,6 @@ html body {
   height: 100vh;
   display: grid;
   grid-template-rows: min-content 1fr;
-  grid-gap: 1em;
 }
 
 header {
@@ -72,9 +71,109 @@ footer {
   background-color: var(--clr-accent);
 }
 
-@media (min-width: 700px) {
-  /*   #indexPageRoot {
-    grid-template-columns: min-content 1fr;
-    grid-template-rows: 1fr;
+#contentContainer {
+  padding-bottom: 5rem;
+  background-color: var(--clr-bg-light);
+}
+
+#postIndexContainer {
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem; */
+
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 1rem;
+}
+@media (max-width: 700px) {
+  /*  #postIndexContainer {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
   } */
+}
+
+.cardContent {
+  color: var(--clr-text);
+}
+
+.fancyLink {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-accent);
+}
+a {
+  color: var(--clr-white);
+  /* transition-duration: 250ms !important;
+  transition-property: transform !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.17, 1.39) !important; */
+  text-decoration: none;
+  position: relative;
+}
+a:hover {
+  color: var(--clr-accent);
+}
+a::after {
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: right;
+  transform-origin: right;
+  transition: -webkit-transform 250ms ease-in;
+  transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in, -webkit-transform 250ms ease-in;
+}
+a:hover::after {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transform-origin: left;
+  transform-origin: left;
+}
+
+.blogCard:hover {
+  filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
+}
+
+.blogCardContainer {
+  max-width: 18rem;
+}
+
+.blogCardImage {
+  max-height: 10rem;
+}
+
+.blogCardPostDescription {
+  padding: 5px;
+  padding-top: 8px;
+}
+
+.blogCardLinkContainer {
+  padding-bottom: 5px;
+  position: relative;
+}
+.blogCardLinkContainer::after {
+  /* content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-accent); */
+}
+
+.blogCardLinkContainer:hover::after {
+  background: green;
+}
+
+a {
+  text-decoration: none;
 }
