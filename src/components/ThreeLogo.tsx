@@ -35,7 +35,7 @@ const ThreeLogo: React.FunctionComponent<ThreeLogoProps> = props => {
       <ambientLight />
       <pointLight ref={pointLight} position={[0, 10, 10]} />
       <Suspense fallback={<Fallback />}>
-        <Text
+        {/* <Text
           fontSize={2}
           color={LIGHT_BLUE} // default
           anchorX="center" // default
@@ -49,7 +49,7 @@ const ThreeLogo: React.FunctionComponent<ThreeLogoProps> = props => {
               flatShading: true,
             })
           }
-        >
+        > 
           Reginald Johnson
         </Text>
         <Text
@@ -69,7 +69,7 @@ const ThreeLogo: React.FunctionComponent<ThreeLogoProps> = props => {
           }
         >
           A place for my portfolio, blog posts, articles, and projects.
-        </Text>
+        </Text>*/}
         <StandardEffects bloom={{ luminanceThreshold: 0.99 }} />
       </Suspense>
       {/*       <OrbitControls />*/}

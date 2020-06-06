@@ -21,6 +21,12 @@ html body {
   padding: 0px;
 }
 
+p {
+  line-height: 1.35rem;
+}
+li {
+  line-height: 1.15rem;
+}
 #indexPageRoot {
   height: 100vh;
   display: grid;
@@ -48,7 +54,7 @@ footer {
   padding: 0.5rem 0.5rem;
   background-color: var(--clr-bg-dark);
   color: var(--clr-text);
-  line-height: 2rem;
+  line-height: 3rem;
 }
 
 #scrollToTopButtonContainer {
@@ -96,10 +102,6 @@ footer {
     gap: 1rem;
     grid-template-columns: 1fr 1fr;
   } */
-}
-
-.cardContent {
-  color: var(--clr-text);
 }
 
 .fancyLink {
@@ -157,9 +159,16 @@ canvas {
   max-height: 10rem;
 }
 
+.blogCardContent {
+  color: var(--clr-text);
+  display: flex;
+  flex-direction: column;
+}
+
 .blogCardPostDescription {
   padding: 5px;
   padding-top: 8px;
+  flex: 1;
 }
 
 .blogCardLinkContainer {
@@ -215,6 +224,7 @@ a {
 
 .blogPostContentRoot {
   padding: 1rem 3rem;
+  padding-bottom: 3rem;
 }
 
 .socialIconsRoot {
@@ -234,4 +244,32 @@ a {
 .socialIconButton:hover {
   background-color: #fff;
   filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
+}
+
+.postTagsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  /* '& > *': {
+        margin: theme.spacing(0.5);
+      }, */
+}
+
+.postTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--clr-accent);
+  font-size: 0.8rem;
+  height: 1.35rem;
+  border-radius: 1.25rem * 0.5;
+  padding: 4px 6px;
+  color: var(--clr-accent);
+  margin: 2px 2px;
+}
+.postTag:hover {
+  background-color: var(--clr-accent);
+  color: white;
 }
