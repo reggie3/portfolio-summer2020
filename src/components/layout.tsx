@@ -8,7 +8,7 @@
 import React, { ReactElement } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import "./layout.scss"
+import "../styles/layout.scss"
 
 import { ThemeProvider } from "@material-ui/core"
 import { MyCustomTheme } from "../styles/myCustomTheme"

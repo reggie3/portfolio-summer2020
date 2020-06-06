@@ -17,7 +17,6 @@ const BlogPostList = () => {
         edges {
           node {
             id
-            excerpt
             frontmatter {
               title
               date
@@ -56,13 +55,11 @@ const BlogPostList = () => {
               alt="A corgi smiling happily"
             />
             <CardContent className={"cardContent"}>
-              {/*               <div className="blogCardLinkContainer">*/}
-
-              <Link to={post.fields.slug} className="fancyLink">
-                {post.frontmatter.title}
-              </Link>
-              {/*               </div>  */}
-
+              <div className="blogCardLinkContainer">
+                <Link to={post.fields.slug} className="fancyLink">
+                  {post.frontmatter.title}
+                </Link>
+              </div>
               <div className="blogCardPostDescription">
                 <Typography variant="body2" component="p">
                   {post.frontmatter.description}

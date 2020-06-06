@@ -9,10 +9,11 @@ $primary-color: #333;
 
 :root {
   --clr-icons: #929292;
+  --clr-bg-very-light: #929292;
   --clr-text: #eee;
   --clr-bg-dark: #242424;
   --clr-bg-light: #3b3b3b;
-  --clr-accent: #ff7600;
+  --clr-accent: #00ccff;
 }
 
 html body {
@@ -31,8 +32,9 @@ header {
   background-color: var(--clr-bg-dark);
   color: var(--clr-text);
   font-size: 2rem;
-  padding: 0.25rem;
+  padding: 0;
   position: relative;
+  display: flex;
 }
 
 body {
@@ -82,7 +84,7 @@ footer {
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem; */
-
+  background-color: var(--clr-bg-very-light);
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -103,14 +105,14 @@ footer {
 .fancyLink {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
-  text-align: center;
+  /*   text-align: center;
   content: "";
   position: absolute;
   left: 0px;
   bottom: 0px;
   width: 100%;
   height: 2px;
-  background: var(--clr-accent);
+  background: var(--clr-accent); */
 }
 a {
   color: var(--clr-white);
@@ -139,6 +141,10 @@ a:hover::after {
   transform-origin: left;
 }
 
+canvas {
+  background-color: var(--clr-bg-dark);
+}
+
 .blogCard:hover {
   filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
 }
@@ -161,19 +167,71 @@ a:hover::after {
   position: relative;
 }
 .blogCardLinkContainer::after {
-  /* content: "";
+  content: "";
   position: absolute;
   left: 0px;
   bottom: 0px;
   width: 100%;
   height: 2px;
-  background: var(--clr-accent); */
+  background: var(--clr-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in;
 }
-
 .blogCardLinkContainer:hover::after {
-  background: green;
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 a {
   text-decoration: none;
+}
+
+.loading {
+  padding: 10px;
+  font-weight: 900;
+  font-size: 3em;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.blogPostHeaderRoot {
+  padding: 1rem;
+  background-color: var(--clr-bg-light);
+}
+.blogPostHeaderRoot-titleContainer {
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0 1rem;
+}
+.blogPostHeaderRoot-title {
+  text-align: center;
+  padding: 0;
+}
+
+.blogPostContentRoot {
+  padding: 1rem 3rem;
+}
+
+.socialIconsRoot {
+  display: flex;
+  flex-direction: row;
+}
+.socialIconButton {
+  padding: 0;
+  margin: 0 0.25rem;
+  height: 24px;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 0.1875rem;
+  text-align: center;
+  background: #ebebeb;
+}
+.socialIconButton:hover {
+  background-color: #fff;
+  filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
 }

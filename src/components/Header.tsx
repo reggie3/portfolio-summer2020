@@ -1,5 +1,6 @@
 import { Link, useStaticQuery, graphql } from "gatsby"
 import React, { useEffect } from "react"
+import ThreeLogo from "./ThreeLogo"
 
 interface HeaderProps {
   isVisible?: boolean
@@ -24,8 +25,7 @@ const Header = ({ isVisible, setVisibility }: HeaderProps) => {
 
   return (
     <header>
-      <p id="header-title">{data.site.siteMetadata.title}</p>
-      <Link>Test me link</Link>
+      <ThreeLogo />
     </header>
   )
 }
