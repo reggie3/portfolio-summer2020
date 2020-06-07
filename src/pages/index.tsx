@@ -9,6 +9,7 @@ import TrackVisibility from "react-on-screen"
 import ScrollToTopButton from "../components/ScrollToTopButton"
 import AnimatedHeader from "../components/AnimatedHeader"
 import BlogPostList from "../components/BlogPostList"
+import Header from "../components/Header"
 
 const IndexPage = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
@@ -25,7 +26,7 @@ const IndexPage = () => {
     <Layout>
       <div id="indexPageRoot">
         <TrackVisibility partialVisibility>
-          <AnimatedHeader />
+          <Header setVisibility={setHeaderVisibility} />
         </TrackVisibility>
         <ScrollToTopButton
           isVisible={!isHeaderVisible}
