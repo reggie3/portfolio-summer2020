@@ -14,6 +14,7 @@ $primary-color: #333;
   --clr-bg-dark: #242424;
   --clr-bg-light: #3b3b3b;
   --clr-accent: #00ccff;
+  --clr-accent-dark: #00708b;
 }
 
 html body {
@@ -107,6 +108,7 @@ footer {
 .fancyLink {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
+  letter-spacing: 0.01rem;
   /*   text-align: center;
   content: "";
   position: absolute;
@@ -147,6 +149,14 @@ canvas {
   background-color: var(--clr-bg-dark);
 }
 
+.blogCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: var(--clr-bg-dark);
+  max-width: 360px;
+}
+
 .blogCard:hover {
   filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
 }
@@ -156,6 +166,8 @@ canvas {
 }
 
 .blogCardImage {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   max-height: 10rem;
 }
 
@@ -163,6 +175,7 @@ canvas {
   color: var(--clr-text);
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .blogCardPostDescription {
@@ -252,9 +265,7 @@ a {
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  /* '& > *': {
-        margin: theme.spacing(0.5);
-      }, */
+  margin-bottom: 0.5rem;
 }
 
 .postTag {
@@ -264,12 +275,40 @@ a {
   border: 1px solid var(--clr-accent);
   font-size: 0.8rem;
   height: 1.35rem;
-  border-radius: 1.25rem * 0.5;
-  padding: 4px 6px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: 4px 4px;
+  transition: color background-color transform 1000ms ease-in;
   color: var(--clr-accent);
-  margin: 2px 2px;
+  cursor: pointer;
+  letter-spacing: 0.02rem;
 }
+
 .postTag:hover {
-  background-color: var(--clr-accent);
+  filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
+  transform: scale(1.01);
+}
+
+.postTag:active {
+  background-color: var(--clr-accent-dark);
+  color: white;
+}
+
+.selectedPostTag {
+  background-color: var(--clr-accent-dark);
+  color: white;
+}
+
+#tagCloud {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#selectAllTagsButton {
+  width: 10rem;
+  background-color: var(--clr-accent-dark);
   color: white;
 }

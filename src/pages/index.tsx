@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 import Footer from "../components/Footer"
 import TrackVisibility from "react-on-screen"
 import ScrollToTopButton from "../components/ScrollToTopButton"
-import Header from "../components/Header"
+import AnimatedHeader from "../components/AnimatedHeader"
 import BlogPostList from "../components/BlogPostList"
 
 const IndexPage = () => {
@@ -25,7 +25,7 @@ const IndexPage = () => {
     <Layout>
       <div id="indexPageRoot">
         <TrackVisibility partialVisibility>
-          <Header setVisibility={setHeaderVisibility} />
+          <AnimatedHeader />
         </TrackVisibility>
         <ScrollToTopButton
           isVisible={!isHeaderVisible}

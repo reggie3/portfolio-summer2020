@@ -9,7 +9,7 @@ import {
   StandardEffects,
   Text,
 } from "drei"
-import { LIGHT_BLUE } from "../styles/colors"
+import { clr_accent_dark } from "../styles/colors"
 
 interface ThreeLogoProps {}
 
@@ -37,7 +37,7 @@ const ThreeLogo: React.FunctionComponent<ThreeLogoProps> = props => {
       <Suspense fallback={<Fallback />}>
         {/* <Text
           fontSize={2}
-          color={LIGHT_BLUE} // default
+          color={clr_accent_dark} // default
           anchorX="center" // default
           anchorY="150%" // default
           material={
@@ -54,7 +54,7 @@ const ThreeLogo: React.FunctionComponent<ThreeLogoProps> = props => {
         </Text>
         <Text
           fontSize={1}
-          color={LIGHT_BLUE} // default
+          color={clr_accent_dark} // default
           anchorX="center" // default
           anchorY="-150%" // default
           font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"

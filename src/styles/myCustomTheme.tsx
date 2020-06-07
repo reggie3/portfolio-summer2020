@@ -1,11 +1,11 @@
 import { createMuiTheme } from "@material-ui/core/styles"
 import green from "@material-ui/core/colors/green"
-import { LIGHT_BLUE } from "./colors"
+import { clr_accent_dark } from "./colors"
 
 export const MyCustomTheme = createMuiTheme({
   palette: {
     primary: {
-      main: LIGHT_BLUE,
+      main: clr_accent_dark,
     },
     secondary: green,
     background: {

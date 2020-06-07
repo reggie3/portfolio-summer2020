@@ -10,6 +10,8 @@ import {
 import Img from "gatsby-image"
 import defaultImage from "../images/ocean.jpg"
 import PostTags from "./PostTags"
+import BlogCard from "./BlogCard"
+import TagCloud from "./TagCloud"
 
 const BlogPostList = () => {
   const data = useStaticQuery(graphql`
@@ -39,6 +41,7 @@ const BlogPostList = () => {
       }
     }
   `)
+  const [allTags, setAllTags] = useState<string[]>([])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const { edges: posts } = data.allMdx
 
@@ -50,52 +53,84 @@ const BlogPostList = () => {
           return post.node.frontmatter.tags
         }),
       ]
-      setSelectedTags(tagsArraysWithDupes.flat())
+      const tags: string[] = ([
+        ...new Set(tagsArraysWithDupes.flat()),
+      ].sort() as unknown) as string[]
+      setSelectedTags(tags)
+      setAllTags(tags)
     }
   })
   useEffect(() => {
     console.log("selectedTags", selectedTags)
   }, [selectedTags])
 
-  const onTagClicked = (label: string) => {}
-  return (
-    <div id="postIndexContainer">
-      {posts.map(({ node: post }) => {
-        return (
-          <Card
-            key={`${post.id}-${Date.now().toString()}`}
-            className="blogCard"
-          >
-            <Img
-              key={Date.now().toString()}
-              className="blogCardImage"
-              fluid={
-                post.frontmatter.featuredImage?.childImageSharp?.fluid ??
-                defaultImage
-              }
-              alt="A corgi smiling happily"
-            />
+  const onTagClicked = (label: string) => {
+    if (selectedTags.length === allTags.length) {
+      setSelectedTags([label])
+    } else {
+      if (selectedTags.includes(label)) {
+        setSelectedTags(selectedTags.filter(tag => tag !== label))
+      } else {
+        setSelectedTags([...selectedTags, label])
+      }
+    }
+  }
 
-            <CardContent className={"blogCardContent"}>
-              <div className="blogCardLinkContainer">
-                <Link to={post.fields.slug} className="fancyLink">
-                  {post.frontmatter.title}
-                </Link>
-              </div>
-              <div className="blogCardPostDescription">
-                <Typography variant="body2" component="p">
-                  {post.frontmatter.description}
-                </Typography>
-              </div>
+  const onSelectAllTagsClicked = () => {
+    setSelectedTags([...allTags])
+  }
+
+  const shouldShowPost = (postTags: string[]) => {
+    return !!selectedTags.some(tag => postTags.includes(tag))
+  }
+
+  return (
+    <>
+      <TagCloud
+        allTags={allTags}
+        selectedTags={selectedTags}
+        onSelectAllTagsClicked={onSelectAllTagsClicked}
+        onTagClicked={onTagClicked}
+      />
+      <div id="postIndexContainer">
+        {posts.map(({ node: post }) => {
+          return (
+            <BlogCard
+              key={`${post.id}-${Date.now().toString()}`}
+              isShown={shouldShowPost(post.frontmatter.tags)}
+            >
+              <Img
+                key={Date.now().toString()}
+                className="blogCardImage"
+                fluid={
+                  post.frontmatter.featuredImage?.childImageSharp?.fluid ??
+                  defaultImage
+                }
+                alt="A corgi smiling happily"
+              />
+
+              <CardContent className={"blogCardContent"}>
+                <div className="blogCardLinkContainer">
+                  <Link to={post.fields.slug} className="fancyLink">
+                    {post.frontmatter.title}
+                  </Link>
+                </div>
+                <div className="blogCardPostDescription">
+                  <Typography variant="body2" component="p">
+                    {post.frontmatter.description}
+                  </Typography>
+                </div>
+              </CardContent>
               <PostTags
                 tags={post.frontmatter.tags}
+                selectedTags={selectedTags}
                 onTagClicked={onTagClicked}
               />
-            </CardContent>
-          </Card>
-        )
-      })}
-    </div>
+            </BlogCard>
+          )
+        })}
+      </div>
+    </>
   )
 }
 

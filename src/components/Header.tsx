@@ -1,6 +1,7 @@
 import { Link, useStaticQuery, graphql } from "gatsby"
 import React, { useEffect } from "react"
 import ThreeLogo from "./ThreeLogo"
+import AnimatedHeader from "./AnimatedHeader"
 
 interface HeaderProps {
   isVisible?: boolean
@@ -25,7 +26,7 @@ const Header = ({ isVisible, setVisibility }: HeaderProps) => {
 
   return (
     <header>
-      <ThreeLogo />
+      <AnimatedHeader />
     </header>
   )
 }
