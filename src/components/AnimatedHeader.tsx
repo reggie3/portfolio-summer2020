@@ -1,26 +1,21 @@
 import * as React from "react"
 import styled from "styled-components"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import MyName from "../headerText/myName"
 import { clr_accent_dark, clr_accent } from "../styles/colors"
+import { useEffect, useState } from "react"
 
-interface AnimatedHeaderProps {}
-const WIDTH = 1000
-const HEIGHT = 100
-const BLOCK_CONTAINER_WIDTH = WIDTH / 10
-const BLOCK_CONTAINER_PADDING = 2
-const BLOCK_SIZE = BLOCK_CONTAINER_WIDTH
-const BOTTOM_PADDING = 20
-
-const LEFT_PADDING = 12
+interface AnimatedHeaderProps {
+  width: number
+}
 
 function convertRemToPixels(rem) {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
 }
 const PIXEL_SIZE = convertRemToPixels(1) * 0.75
 
-const pixelsVariant = {
-  visible: (index: number) => ({
+const pixelsVariant: Variants = {
+  visible: ({ index, total, x, y }) => ({
     /* opacity: 1, */
     scale: 0.85,
     x: 0,
@@ -29,46 +24,67 @@ const pixelsVariant = {
       delay: index * 0.02,
     },
   }),
-  hidden: () => {
-    const sign = Math.random() > 0.5 ? 1 : -1
-    const direction =
-      Math.random() > 0.5 ? { y: sign * 100 } : { x: sign * 100 }
+  // @ts-ignore
+  hidden: ({ index, total, x, y }) => {
+    // const sign = Math.random() > 0.5 ? 1 : -1
+    /* const direction =
+      Math.random() > 0.5 ? { y: sign * 100 } : { x: sign * 100 } */
+    const sign = x < total / 2 ? 1 : -1
     return {
       /* opacity: 0, */
       scale: 0,
-      // x: sign * 100,
-      ...{ direction },
+      x: sign * 100,
     }
   },
 }
 
-const Blocks = () => {
+const Blocks = ({
+  blockSize,
+  headerWidth,
+}: {
+  blockSize: number
+  headerWidth: number
+}) => {
+  const BOTTOM_PADDING = blockSize * 2
+  const LEFT_PADDING =
+    headerWidth / 2 - (MyName[MyName.length - 1][0] * blockSize) / 2
+
   const blocks: React.ReactElement[] = []
   MyName.forEach((pixel, index) => {
     const [x, y] = pixel
     blocks.push(
       <Pixel
         key={`Pixel-${x},${y}`}
-        custom={index}
+        custom={{ index, total: MyName.length, x, y }}
         variants={pixelsVariant}
         initial="hidden"
         animate="visible"
         style={{
-          bottom: y * PIXEL_SIZE + BOTTOM_PADDING,
-          left: x * PIXEL_SIZE + LEFT_PADDING,
-          height: PIXEL_SIZE,
-          width: PIXEL_SIZE,
+          bottom: y * blockSize + BOTTOM_PADDING,
+          left: x * blockSize + LEFT_PADDING,
+          height: blockSize,
+          width: blockSize,
         }}
       />
     )
   })
   return <motion.div>{blocks}</motion.div>
 }
-const AnimatedHeader: React.FunctionComponent<AnimatedHeaderProps> = props => {
+
+const AnimatedHeader: React.FunctionComponent<AnimatedHeaderProps> = ({
+  width,
+}) => {
+  const [blockSize, setBlockSize] = useState<number>(10)
+
+  useEffect(() => {
+    console.log(width)
+    setBlockSize(Math.min(10, width * 0.012))
+  }, [width])
+
   return (
-    <RootContainer>
+    <RootContainer style={{ height: blockSize * 5 + blockSize * 4 }}>
       <PixelContainer id="pixelContainer">
-        <Blocks />
+        <Blocks blockSize={blockSize} headerWidth={width} />
       </PixelContainer>
     </RootContainer>
   )
@@ -77,7 +93,7 @@ const AnimatedHeader: React.FunctionComponent<AnimatedHeaderProps> = props => {
 export default AnimatedHeader
 
 const RootContainer = styled.div`
-  height: 100px;
+  height: 2rem;
   background-color: black;
   position: relative;
   display: flex;

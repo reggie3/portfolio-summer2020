@@ -15,7 +15,7 @@ const IndexPage = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
 
   const setHeaderVisibility = (isVisible: boolean) => {
-    setIsHeaderVisible(isVisible)
+    // setIsHeaderVisible(isVisible)
   }
 
   const onScrollToTopClicked = () => {
@@ -28,10 +28,10 @@ const IndexPage = () => {
         <TrackVisibility partialVisibility>
           <Header setVisibility={setHeaderVisibility} />
         </TrackVisibility>
-        <ScrollToTopButton
+        {/*  <ScrollToTopButton
           isVisible={!isHeaderVisible}
           onClick={onScrollToTopClicked}
-        />
+        /> */}
         <div id="contentContainer">
           <BlogPostList />
         </div>
