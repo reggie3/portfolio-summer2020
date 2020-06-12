@@ -164,24 +164,6 @@ a {
   transform: translate3d(-50%, -50%, 0);
 }
 
-.blogPostHeaderRoot {
-  padding: 1rem;
-  background-color: var(--clr-bg-light);
-}
-.blogPostHeaderRoot-titleContainer {
-  background-color: var(--clr-bg-dark);
-  color: var(--clr-text);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  padding: 0 1rem;
-}
-.blogPostHeaderRoot-title {
-  text-align: center;
-  padding: 0;
-}
-
 .socialIconsRoot {
   display: flex;
   flex-direction: row;

@@ -9,6 +9,8 @@ import BlogPostContent from "./BlogPostContent";
 import Footer from "./Footer";
 import styled from "styled-components";
 import TagCloud from "./TagCloud";
+import ReturnHomeButton from "./ReturnHomeButton";
+import { bg_dark } from "../styles/colors";
 const shortcodes = { Link, Img }; // Provide common components here
 
 export default function PageTemplate({ data: { mdx } }) {
@@ -22,11 +24,23 @@ export default function PageTemplate({ data: { mdx } }) {
         onScrollToTopClicked={onScrollToTopClicked}
         title={mdx.frontmatter.title}
       />
-      <TagCloud
-        allTags={mdx.frontmatter.tags}
-        alwaysShowTags={true}
-        selectedTags={mdx.frontmatter.tags}
-      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          backgroundColor: bg_dark,
+          alignItems: "center",
+        }}
+      >
+        <ReturnHomeButton />
+        <div style={{ flex: 1 }}>
+          <TagCloud
+            allTags={mdx.frontmatter.tags}
+            alwaysShowTags={true}
+            selectedTags={mdx.frontmatter.tags}
+          />
+        </div>
+      </div>
       <BlogPostContent>
         <MDXProvider components={shortcodes}>
           <MDXRenderer>{mdx.body}</MDXRenderer>

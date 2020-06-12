@@ -2,7 +2,7 @@ import * as React from "react";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import { clr_accent_dark, clr_accent } from "../styles/colors";
+import { clr_accent_dark, clr_accent, buttonTapScale } from "../styles/colors";
 
 const scrollToTopButtonVariant = {
   initial: { opacity: 0, bottom: "-4rem" },
@@ -14,6 +14,7 @@ const scrollToTopButtonVariant = {
     opacity: 0,
     bottom: "-4rem",
   },
+  whileTap: { scale: buttonTapScale },
 };
 
 interface ScrollToTopButtonProps {
@@ -35,6 +36,7 @@ const ScrollToTopButton: React.FunctionComponent<ScrollToTopButtonProps> = ({
           initial="initial"
           animate="visible"
           exit="hidden"
+          whileTap={"whileTap"}
         >
           <ArrowUpward style={{ color: "white" }} />
         </RootContainer>

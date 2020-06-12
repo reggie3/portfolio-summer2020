@@ -1,44 +1,40 @@
 import * as React from "react";
-import Cloud from "@material-ui/icons/Cloud";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { clr_accent_dark, clr_accent, buttonTapScale } from "../styles/colors";
+import Home from "@material-ui/icons/Home";
+import { navigate } from "gatsby";
 
-interface ShowTagCloudButtonProps {
-  isTagCloudVisible: boolean;
-  onClick: () => void;
-}
+interface ReturnHomeButtonProps {}
 
-const showTagCloudButtonVariants = {
+const returnHomeButtonVariants = {
   initial: {
-    opacity: 0.5,
+    opacity: 0,
   },
-  open: { opacity: 1 },
-  closed: {
-    opacity: 0.5,
-  },
+  visible: { opacity: 1 },
   whileTap: { scale: buttonTapScale },
 };
 
-const ShowTagCloudButton: React.FunctionComponent<ShowTagCloudButtonProps> = ({
-  isTagCloudVisible,
-  onClick,
-}) => {
+const ReturnHomeButton: React.FunctionComponent<ReturnHomeButtonProps> = props => {
+  const onClick = () => {
+    navigate("/");
+  };
+
   return (
     <RootContainer
       role="button"
       onClick={onClick}
-      animate={isTagCloudVisible ? "open" : "closed"}
-      variants={showTagCloudButtonVariants}
+      variants={returnHomeButtonVariants}
       initial={"initial"}
+      animate={"visible"}
       whileTap={"whileTap"}
     >
-      <Cloud style={{ color: "white" }} />
+      <Home style={{ color: "white" }} />
     </RootContainer>
   );
 };
 
-export default ShowTagCloudButton;
+export default ReturnHomeButton;
 
 const RootContainer = styled(motion.div)`
   background-color: ${clr_accent_dark};
@@ -53,4 +49,5 @@ const RootContainer = styled(motion.div)`
   right: 1rem;
   z-index: 100;
   filter: drop-shadow(0em 0em 0.5em ${clr_accent});
+  backface-visibility: hidden;
 `;
