@@ -2,22 +2,12 @@ import * as React from "react";
 import styled from "styled-components";
 import { motion, Variants } from "framer-motion";
 import MyName from "../headerText/myName";
-import {
-  clr_accent_dark,
-  clr_accent,
-  pixel_background,
-  pixel_border,
-} from "../styles/colors";
+import { clr_accent, pixel_background, pixel_border } from "../styles/colors";
 import { useEffect, useState } from "react";
 
 interface AnimatedHeaderProps {
   width: number;
 }
-
-function convertRemToPixels(rem) {
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-}
-const PIXEL_SIZE = convertRemToPixels(1) * 0.75;
 
 const pixelsVariant: Variants = {
   visible: ({ index, total, x, y }) => ({
