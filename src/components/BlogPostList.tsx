@@ -13,7 +13,7 @@ import BlogCard from "./BlogCard";
 import TagCloud from "./TagCloud";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import defaultImage from "../images/ocean.jpg";
+// import defaultImage from "../images/ocean.jpg";
 
 const BlogPostList = () => {
   const data = useStaticQuery(graphql`
