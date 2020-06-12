@@ -5,20 +5,17 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { ReactElement } from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { ReactElement } from "react";
+import { useStaticQuery, graphql } from "gatsby";
 
-import "../styles/layout.scss"
-
-import { ThemeProvider } from "@material-ui/core"
-import { MyCustomTheme } from "../styles/myCustomTheme"
+import "../styles/layout.scss";
 
 interface LayoutProps {
-  children: ReactElement
+  children: ReactElement;
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  return <ThemeProvider theme={MyCustomTheme}>{children}</ThemeProvider>
-}
+  return <>{children}</>;
+};
 
-export default Layout
+export default Layout;

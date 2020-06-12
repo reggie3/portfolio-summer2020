@@ -33,7 +33,6 @@ module.exports = {
         path: `${__dirname}/src/content/blogPosts/`,
       },
     },
-    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -77,4 +76,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

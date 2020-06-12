@@ -1,8 +1,8 @@
 import * as React from "react";
-import Cloud from "@material-ui/icons/Cloud";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { clr_accent_dark, clr_accent, buttonTapScale } from "../styles/colors";
+import Cloud from "react-ionicons/lib/MdCloudOutline";
 
 interface ShowTagCloudButtonProps {
   isTagCloudVisible: boolean;
@@ -12,10 +12,13 @@ interface ShowTagCloudButtonProps {
 const showTagCloudButtonVariants = {
   initial: {
     opacity: 0.5,
+    bottom: "0rem",
   },
-  open: { opacity: 1 },
+  open: { opacity: 1, bottom: "1rem" },
+
   closed: {
     opacity: 0.5,
+    bottom: "0rem",
   },
   whileTap: { scale: buttonTapScale },
 };
@@ -33,7 +36,7 @@ const ShowTagCloudButton: React.FunctionComponent<ShowTagCloudButtonProps> = ({
       initial={"initial"}
       whileTap={"whileTap"}
     >
-      <Cloud style={{ color: "white" }} />
+      <Cloud color={clr_accent} />
     </RootContainer>
   );
 };

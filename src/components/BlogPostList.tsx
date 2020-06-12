@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
-import {
-  Card,
-  CardMedia,
-  makeStyles,
-  CardContent,
-  Typography,
-} from "@material-ui/core";
 import Img from "gatsby-image";
 import PostTags from "./PostTags";
 import BlogCard from "./BlogCard";
@@ -109,18 +102,18 @@ const BlogPostList = () => {
                 }
               />
 
-              <CardContent className={"blogCardContent"}>
+              <div className={"blogCardContent"}>
                 <div className="blogCardLinkContainer">
                   <Link to={post.fields.slug} className="fancyLink">
                     {post.frontmatter.title}
                   </Link>
                 </div>
                 <div className="blogCardPostDescription">
-                  <Typography variant="body2" component="p">
+                  <p variant="body2" component="p">
                     {post.frontmatter.description}
-                  </Typography>
+                  </p>
                 </div>
-              </CardContent>
+              </div>
               <PostTags
                 tags={post.frontmatter.tags}
                 selectedTags={selectedTags}

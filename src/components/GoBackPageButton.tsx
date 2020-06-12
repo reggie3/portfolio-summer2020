@@ -1,8 +1,8 @@
 import * as React from "react";
-import ArrowBack from "@material-ui/icons/ArrowBack";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { clr_accent_dark, clr_accent } from "../styles/colors";
+import ArrowBack from "react-ionicons/lib/MdArrowBack";
 
 const goBackPageButtonVariant = {
   initial: { opacity: 0, left: "-4rem" },
@@ -30,7 +30,7 @@ const GoBackPageButton: React.FunctionComponent<GoBackPageButtonProps> = () => {
         animate="visible"
         exit="hidden"
       >
-        <ArrowBack style={{ color: "white" }} />
+        <ArrowBack color={clr_accent} fontSize="2rem" />
       </RootContainer>
     </AnimatePresence>
   );

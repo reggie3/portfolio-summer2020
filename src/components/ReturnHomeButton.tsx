@@ -2,8 +2,8 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { clr_accent_dark, clr_accent, buttonTapScale } from "../styles/colors";
-import Home from "@material-ui/icons/Home";
 import { navigate } from "gatsby";
+import Home from "react-ionicons/lib/MdHome";
 
 interface ReturnHomeButtonProps {}
 
@@ -29,7 +29,7 @@ const ReturnHomeButton: React.FunctionComponent<ReturnHomeButtonProps> = props =
       animate={"visible"}
       whileTap={"whileTap"}
     >
-      <Home style={{ color: "white" }} />
+      <Home color={clr_accent} fontSize="2rem" />
     </RootContainer>
   );
 };
