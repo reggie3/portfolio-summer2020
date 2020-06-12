@@ -9,9 +9,10 @@ import { bg_dark, header_light } from "../styles/colors";
 
 interface TagCloudProps {
   allTags: string[];
+  alwaysShowTags?: boolean;
   selectedTags: string[];
-  onSelectAllTagsClicked: () => void;
-  onTagClicked: (label: string) => void;
+  onSelectAllTagsClicked?: () => void;
+  onTagClicked?: (label: string) => void;
 }
 
 const tagCloudVariants = {
@@ -31,14 +32,17 @@ const tagCloudVariants = {
     height: "1px",
     opacity: 0,
     backgroundColor: bg_dark,
+    paddingTop: "2rem",
+    paddingBottom: "2rem",
   },
 };
 
 const TagCloud: React.FunctionComponent<TagCloudProps> = ({
   allTags,
+  alwaysShowTags = false,
   selectedTags,
-  onSelectAllTagsClicked,
-  onTagClicked,
+  onSelectAllTagsClicked = () => {},
+  onTagClicked = () => {},
 }) => {
   const [isTagCloudVisible, setIsTagCloudVisible] = useState<boolean>(false);
 
@@ -50,13 +54,15 @@ const TagCloud: React.FunctionComponent<TagCloudProps> = ({
         backgroundColor: header_light,
       }}
     >
-      <ShowTagCloudButton
-        isTagCloudVisible={isTagCloudVisible}
-        onClick={() => setIsTagCloudVisible(!isTagCloudVisible)}
-      />
+      {!alwaysShowTags && (
+        <ShowTagCloudButton
+          isTagCloudVisible={isTagCloudVisible}
+          onClick={() => setIsTagCloudVisible(!isTagCloudVisible)}
+        />
+      )}
 
       <AnimatePresence>
-        {isTagCloudVisible && (
+        {(isTagCloudVisible || alwaysShowTags) && (
           <TagCloudRootContainer
             id="tagCloud"
             variants={tagCloudVariants}
@@ -65,16 +71,17 @@ const TagCloud: React.FunctionComponent<TagCloudProps> = ({
             animate={"visible"}
           >
             <PostTags
-              isTagCloudVisible={isTagCloudVisible}
               onTagClicked={onTagClicked}
               selectedTags={selectedTags}
               tags={allTags}
             />
-            <PostTag
-              isSelectAll
-              tag={"Select All"}
-              onTagClicked={onSelectAllTagsClicked}
-            />
+            {!alwaysShowTags && (
+              <PostTag
+                isSelectAll
+                tag={"Select All"}
+                onTagClicked={onSelectAllTagsClicked}
+              />
+            )}
           </TagCloudRootContainer>
         )}
       </AnimatePresence>

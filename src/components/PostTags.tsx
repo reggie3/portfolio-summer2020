@@ -70,5 +70,4 @@ export const PostTagsRootContainer = styled(motion.div)`
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 0.5rem;
 `;
