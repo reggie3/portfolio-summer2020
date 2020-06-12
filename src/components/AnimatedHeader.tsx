@@ -76,13 +76,16 @@ const AnimatedHeader: React.FunctionComponent<AnimatedHeaderProps> = ({
     setBlockSize(Math.min(10, width * 0.012));
   }, [width]);
 
-  return (
-    <RootContainer style={{ height: blockSize * 5 + blockSize * 4 }}>
-      <PixelContainer id="pixelContainer">
-        <Blocks blockSize={blockSize} headerWidth={width} />
-      </PixelContainer>
-    </RootContainer>
-  );
+  if (width) {
+    return (
+      <RootContainer style={{ height: blockSize * 5 + blockSize * 4 }}>
+        <PixelContainer id="pixelContainer">
+          <Blocks blockSize={blockSize} headerWidth={width} />
+        </PixelContainer>
+      </RootContainer>
+    );
+  }
+  return null;
 };
 
 export default AnimatedHeader;
