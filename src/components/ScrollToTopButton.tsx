@@ -1,35 +1,24 @@
-import * as React from "react"
-import ArrowUpward from "@material-ui/icons/ArrowUpward"
-import { motion } from "framer-motion"
-import styled from "styled-components"
-import { clr_accent_dark, clr_accent } from "../styles/colors"
+import * as React from "react";
+import ArrowUpward from "@material-ui/icons/ArrowUpward";
+import { motion, AnimatePresence } from "framer-motion";
+import styled from "styled-components";
+import { clr_accent_dark, clr_accent } from "../styles/colors";
 
-const variant = {
-  visible: (index: number) => ({
-    /* opacity: 1, */
-    scale: 0.85,
-    x: 0,
-    y: 0,
-    transition: {
-      delay: index * 0.02,
-    },
-  }),
-  hidden: () => {
-    const sign = Math.random() > 0.5 ? 1 : -1
-    const direction =
-      Math.random() > 0.5 ? { y: sign * 100 } : { x: sign * 100 }
-    return {
-      /* opacity: 0, */
-      scale: 0,
-      // x: sign * 100,
-      ...{ direction },
-    }
+const scrollToTopButtonVariant = {
+  initial: { opacity: 0, bottom: "-4rem" },
+  visible: {
+    opacity: 1,
+    bottom: "2rem",
   },
-}
+  hidden: {
+    opacity: 0,
+    bottom: "-4rem",
+  },
+};
 
 interface ScrollToTopButtonProps {
-  isVisible: boolean
-  onClick: () => void
+  isVisible: boolean;
+  onClick: () => void;
 }
 
 const ScrollToTopButton: React.FunctionComponent<ScrollToTopButtonProps> = ({
@@ -37,21 +26,37 @@ const ScrollToTopButton: React.FunctionComponent<ScrollToTopButtonProps> = ({
   onClick,
 }) => {
   return (
-    <RootContainer role="button" onClick={onClick} variants={variant}>
-      <ArrowUpward />
-    </RootContainer>
-  )
-}
+    <AnimatePresence>
+      {isVisible && (
+        <RootContainer
+          role="button"
+          onClick={onClick}
+          variants={scrollToTopButtonVariant}
+          initial="initial"
+          animate="visible"
+          exit="hidden"
+        >
+          <ArrowUpward style={{ color: "white" }} />
+        </RootContainer>
+      )}
+    </AnimatePresence>
+  );
+};
 
-export default ScrollToTopButton
+export default ScrollToTopButton;
 
 const RootContainer = styled(motion.div)`
   background-color: ${clr_accent_dark};
-  position: absolute;
+  border-radius: 4px;
+  position: fixed;
   border: 1px solid ${clr_accent};
-  height: 2rem;
-  width: 2rem;
+  height: 2.5rem;
+  width: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-`
+  bottom: 2rem;
+  right: 1.5rem;
+  z-index: 100;
+  filter: drop-shadow(0em 0em 0.5em ${clr_accent});
+`;

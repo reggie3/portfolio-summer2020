@@ -1,29 +1,55 @@
-import React, { useEffect } from "react"
-import AnimatedHeader from "./AnimatedHeader"
+import React, { useEffect, useState } from "react";
+import AnimatedHeader from "./AnimatedHeader";
 import {
   useWindowSize,
   useWindowWidth,
   useWindowHeight,
-} from "@react-hook/window-size"
+} from "@react-hook/window-size";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { clr_accent_dark, header_dark, header_light } from "../styles/colors";
+import { useInView } from "react-intersection-observer";
+import ScrollToTopButton from "./ScrollToTopButton";
 
-interface HeaderProps {
-  isVisible?: boolean
-  setVisibility: (isVisible: boolean) => void
+interface HeaderProps extends React.ComponentPropsWithoutRef<any> {
+  onScrollToTopClicked: () => void;
 }
 
-const Header = ({ isVisible, setVisibility }: HeaderProps) => {
-  const [width, height] = useWindowSize()
+const Header = ({ onScrollToTopClicked }) => {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  const [width, height] = useWindowSize();
+  const [intersectionRef, inView, entry] = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
 
   useEffect(() => {
-    console.log({ isVisible })
-    setVisibility(isVisible)
-  }, [isVisible])
+    setIsHeaderVisible(inView);
+  }, [inView]);
 
   return (
-    <header>
-      <AnimatedHeader width={width} />
-    </header>
-  )
-}
+    <div ref={intersectionRef}>
+      <HeaderRootContainer>
+        <AnimatedHeader width={width} />
+      </HeaderRootContainer>
+      <ScrollToTopButton
+        isVisible={!isHeaderVisible}
+        onClick={onScrollToTopClicked}
+      />
+    </div>
+  );
+};
 
-export default Header
+export default Header;
+
+export const HeaderRootContainer = styled(motion.div)`
+  margin: 0px 0px;
+  background: linear-gradient(180deg, ${header_dark} 0%,${header_dark} 50%, ${header_light} 100%);
+  color: var(--clr-text);
+  font-size: 2rem;
+  padding: 0;
+  position: relative;
+  display: flex;
+  z-index: 10;
+}`;

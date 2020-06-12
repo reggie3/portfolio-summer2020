@@ -11,8 +11,8 @@ $primary-color: #333;
   --clr-icons: #929292;
   --clr-bg-very-light: #929292;
   --clr-text: #eee;
-  --clr-bg-dark: #242424;
-  --clr-bg-light: #3b3b3b;
+  --clr-bg-dark: #163042;
+  --clr-bg-light: #050505;
   --clr-accent: #00ccff;
   --clr-accent-dark: #00708b;
 }
@@ -34,28 +34,8 @@ li {
   grid-template-rows: min-content 1fr;
 }
 
-header {
-  margin: 0px 0px;
-  background-color: var(--clr-bg-dark);
-  color: var(--clr-text);
-  font-size: 2rem;
-  padding: 0;
-  position: relative;
-  display: flex;
-}
-
 body {
   font-family: sans-serif;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 0.5rem 0.5rem;
-  background-color: var(--clr-bg-dark);
-  color: var(--clr-text);
-  line-height: 3rem;
 }
 
 #scrollToTopButtonContainer {
@@ -78,31 +58,6 @@ footer {
 
 .actionButton {
   background-color: var(--clr-accent);
-}
-
-#contentContainer {
-  padding-bottom: 5rem;
-  background-color: var(--clr-bg-light);
-}
-
-#postIndexContainer {
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem; */
-  background-color: var(--clr-bg-very-light);
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  padding: 1rem;
-}
-@media (max-width: 700px) {
-  /*  #postIndexContainer {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr 1fr;
-  } */
 }
 
 .fancyLink {
@@ -149,17 +104,9 @@ canvas {
   background-color: var(--clr-bg-dark);
 }
 
-.blogCard {
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  background-color: var(--clr-bg-dark);
-  max-width: 360px;
-}
-
-.blogCard:hover {
+/* .blogCard:hover {
   filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
-}
+} */
 
 .blogCardContainer {
   max-width: 18rem;
@@ -259,15 +206,6 @@ a {
   filter: drop-shadow(0em 0em 0.5em var(--clr-accent));
 }
 
-.postTagsContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
 .postTag {
   display: flex;
   justify-content: center;
@@ -297,14 +235,6 @@ a {
 .selectedPostTag {
   background-color: var(--clr-accent-dark);
   color: white;
-}
-
-#tagCloud {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 2rem;
-  justify-content: center;
-  align-items: center;
 }
 
 #selectAllTagsButton {

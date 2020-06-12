@@ -1,44 +1,36 @@
-import React, { useState } from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import React, { useState, useEffect } from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
-import Footer from "../components/Footer"
-import TrackVisibility from "react-on-screen"
-import ScrollToTopButton from "../components/ScrollToTopButton"
-import AnimatedHeader from "../components/AnimatedHeader"
-import BlogPostList from "../components/BlogPostList"
-import Header from "../components/Header"
+import Layout from "../components/layout";
+import Image from "../components/image";
+import SEO from "../components/seo";
+import Footer from "../components/Footer";
+import ScrollToTopButton from "../components/ScrollToTopButton";
+import AnimatedHeader from "../components/AnimatedHeader";
+import BlogPostList from "../components/BlogPostList";
+import Header from "../components/Header";
+import styled from "styled-components";
 
 const IndexPage = () => {
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true)
-
-  const setHeaderVisibility = (isVisible: boolean) => {
-    // setIsHeaderVisible(isVisible)
-  }
-
   const onScrollToTopClicked = () => {
-    window.scrollTo(0, 0)
-  }
+    window.scrollTo(0, 0);
+  };
 
   return (
     <Layout>
       <div id="indexPageRoot">
-        <TrackVisibility partialVisibility>
-          <Header setVisibility={setHeaderVisibility} />
-        </TrackVisibility>
-        {/*  <ScrollToTopButton
-          isVisible={!isHeaderVisible}
-          onClick={onScrollToTopClicked}
-        /> */}
-        <div id="contentContainer">
+        <Header onScrollToTopClicked={onScrollToTopClicked} />
+        <ContentContainer id="contentContainer">
           <BlogPostList />
-        </div>
+        </ContentContainer>
         <Footer />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
+
+export const ContentContainer = styled.div`
+  background-color: var(--clr-bg-light);
+`;

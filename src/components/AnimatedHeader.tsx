@@ -1,18 +1,23 @@
-import * as React from "react"
-import styled from "styled-components"
-import { motion, Variants } from "framer-motion"
-import MyName from "../headerText/myName"
-import { clr_accent_dark, clr_accent } from "../styles/colors"
-import { useEffect, useState } from "react"
+import * as React from "react";
+import styled from "styled-components";
+import { motion, Variants } from "framer-motion";
+import MyName from "../headerText/myName";
+import {
+  clr_accent_dark,
+  clr_accent,
+  pixel_background,
+  pixel_border,
+} from "../styles/colors";
+import { useEffect, useState } from "react";
 
 interface AnimatedHeaderProps {
-  width: number
+  width: number;
 }
 
 function convertRemToPixels(rem) {
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
-const PIXEL_SIZE = convertRemToPixels(1) * 0.75
+const PIXEL_SIZE = convertRemToPixels(1) * 0.75;
 
 const pixelsVariant: Variants = {
   visible: ({ index, total, x, y }) => ({
@@ -29,29 +34,29 @@ const pixelsVariant: Variants = {
     // const sign = Math.random() > 0.5 ? 1 : -1
     /* const direction =
       Math.random() > 0.5 ? { y: sign * 100 } : { x: sign * 100 } */
-    const sign = x < total / 2 ? 1 : -1
+    const sign = x < total / 2 ? 1 : -1;
     return {
       /* opacity: 0, */
       scale: 0,
       x: sign * 100,
-    }
+    };
   },
-}
+};
 
 const Blocks = ({
   blockSize,
   headerWidth,
 }: {
-  blockSize: number
-  headerWidth: number
+  blockSize: number;
+  headerWidth: number;
 }) => {
-  const BOTTOM_PADDING = blockSize * 2
+  const BOTTOM_PADDING = blockSize * 2;
   const LEFT_PADDING =
-    headerWidth / 2 - (MyName[MyName.length - 1][0] * blockSize) / 2
+    headerWidth / 2 - (MyName[MyName.length - 1][0] * blockSize) / 2;
 
-  const blocks: React.ReactElement[] = []
+  const blocks: React.ReactElement[] = [];
   MyName.forEach((pixel, index) => {
-    const [x, y] = pixel
+    const [x, y] = pixel;
     blocks.push(
       <Pixel
         key={`Pixel-${x},${y}`}
@@ -66,20 +71,20 @@ const Blocks = ({
           width: blockSize,
         }}
       />
-    )
-  })
-  return <motion.div>{blocks}</motion.div>
-}
+    );
+  });
+  return <motion.div>{blocks}</motion.div>;
+};
 
 const AnimatedHeader: React.FunctionComponent<AnimatedHeaderProps> = ({
   width,
 }) => {
-  const [blockSize, setBlockSize] = useState<number>(10)
+  const [blockSize, setBlockSize] = useState<number>(10);
 
   useEffect(() => {
-    console.log(width)
-    setBlockSize(Math.min(10, width * 0.012))
-  }, [width])
+    console.log(width);
+    setBlockSize(Math.min(10, width * 0.012));
+  }, [width]);
 
   return (
     <RootContainer style={{ height: blockSize * 5 + blockSize * 4 }}>
@@ -87,10 +92,10 @@ const AnimatedHeader: React.FunctionComponent<AnimatedHeaderProps> = ({
         <Blocks blockSize={blockSize} headerWidth={width} />
       </PixelContainer>
     </RootContainer>
-  )
-}
+  );
+};
 
-export default AnimatedHeader
+export default AnimatedHeader;
 
 const RootContainer = styled.div`
   height: 2rem;
@@ -99,18 +104,18 @@ const RootContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 const PixelContainer = styled(motion.div)`
   position: relative;
   flex: 1;
   height: 100%;
-`
+`;
 
 const Pixel = styled(motion.div)`
   margin: 2px;
-  background-color: ${clr_accent_dark};
+  background-color: ${pixel_background};
   position: absolute;
-  border: 1px solid ${clr_accent};
+  border: 1px solid ${pixel_border};
   border-radius: 3px;
   filter: drop-shadow(0em 0em 0.5em ${clr_accent});
-`
+`;

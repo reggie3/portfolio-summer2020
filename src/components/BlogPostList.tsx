@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import React, { useState, useEffect } from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import {
   Card,
   CardMedia,
   makeStyles,
   CardContent,
   Typography,
-} from "@material-ui/core"
-import Img from "gatsby-image"
-import defaultImage from "../images/ocean.jpg"
-import PostTags from "./PostTags"
-import BlogCard from "./BlogCard"
-import TagCloud from "./TagCloud"
+} from "@material-ui/core";
+import Img from "gatsby-image";
+import PostTags from "./PostTags";
+import BlogCard from "./BlogCard";
+import TagCloud from "./TagCloud";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import defaultImage from "../images/ocean.jpg";
 
 const BlogPostList = () => {
   const data = useStaticQuery(graphql`
@@ -40,59 +42,57 @@ const BlogPostList = () => {
         }
       }
     }
-  `)
-  const [allTags, setAllTags] = useState<string[]>([])
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
-  const { edges: posts } = data.allMdx
+  `);
+  const [allTags, setAllTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const { edges: posts } = data.allMdx;
 
   useEffect(() => {
     if (posts && !selectedTags.length) {
       const tagsArraysWithDupes: any = [
         ...posts.map((post: string[]) => {
           // @ts-ignore Property 'node' does not exist on type 'string[]'
-          return post.node.frontmatter.tags
+          return post.node.frontmatter.tags;
         }),
-      ]
+      ];
       const tags: string[] = ([
         ...new Set(tagsArraysWithDupes.flat()),
-      ].sort() as unknown) as string[]
-      setSelectedTags(tags)
-      setAllTags(tags)
+      ].sort() as unknown) as string[];
+      setSelectedTags(tags);
+      setAllTags(tags);
     }
-  })
-  useEffect(() => {
-    console.log("selectedTags", selectedTags)
-  }, [selectedTags])
+  });
 
   const onTagClicked = (label: string) => {
+    // if all the tags are currently selected, then only select the passed tag
     if (selectedTags.length === allTags.length) {
-      setSelectedTags([label])
+      setSelectedTags([label]);
     } else {
       if (selectedTags.includes(label)) {
-        setSelectedTags(selectedTags.filter(tag => tag !== label))
+        setSelectedTags(selectedTags.filter(tag => tag !== label));
       } else {
-        setSelectedTags([...selectedTags, label])
+        setSelectedTags([...selectedTags, label]);
       }
     }
-  }
+  };
 
   const onSelectAllTagsClicked = () => {
-    setSelectedTags([...allTags])
-  }
+    setSelectedTags([...allTags]);
+  };
 
   const shouldShowPost = (postTags: string[]) => {
-    return !!selectedTags.some(tag => postTags.includes(tag))
-  }
+    return !!selectedTags.some(tag => postTags.includes(tag));
+  };
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <TagCloud
         allTags={allTags}
         selectedTags={selectedTags}
         onSelectAllTagsClicked={onSelectAllTagsClicked}
         onTagClicked={onTagClicked}
       />
-      <div id="postIndexContainer">
+      <PostIndexContainer>
         {posts.map(({ node: post }) => {
           return (
             <BlogCard
@@ -106,7 +106,6 @@ const BlogPostList = () => {
                   post.frontmatter.featuredImage?.childImageSharp?.fluid ??
                   defaultImage
                 }
-                alt="A corgi smiling happily"
               />
 
               <CardContent className={"blogCardContent"}>
@@ -127,19 +126,20 @@ const BlogPostList = () => {
                 onTagClicked={onTagClicked}
               />
             </BlogCard>
-          )
+          );
         })}
-      </div>
-    </>
-  )
-}
+      </PostIndexContainer>
+    </div>
+  );
+};
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-})
-export default BlogPostList
+export default BlogPostList;
+
+export const PostIndexContainer = styled(motion.div)`
+background-color: var(--clr-bg-very-light);
+display: grid;
+gap: 1rem;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+padding: 1rem;
+padding-bottom: 5rem;
+}`;
