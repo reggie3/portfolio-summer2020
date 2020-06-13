@@ -93,14 +93,13 @@ const BlogPostList = () => {
               key={`${post.id}-${Date.now().toString()}`}
               isShown={shouldShowPost(post.frontmatter.tags)}
             >
-              <Img
-                key={Date.now().toString()}
-                className="blogCardImage"
-                fluid={
-                  post.frontmatter.featuredImage?.childImageSharp?.fluid ??
-                  defaultImage
-                }
-              />
+              {post.frontmatter.featuredImage?.childImageSharp?.fluid && (
+                <Img
+                  key={Date.now().toString()}
+                  className="blogCardImage"
+                  fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
+                />
+              )}
 
               <div className={"blogCardContent"}>
                 <div className="blogCardLinkContainer">
@@ -109,9 +108,7 @@ const BlogPostList = () => {
                   </Link>
                 </div>
                 <div className="blogCardPostDescription">
-                  <p variant="body2" component="p">
-                    {post.frontmatter.description}
-                  </p>
+                  <p>{post.frontmatter.description}</p>
                 </div>
               </div>
               <PostTags

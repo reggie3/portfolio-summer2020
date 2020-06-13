@@ -72,7 +72,6 @@ const AnimatedHeader: React.FunctionComponent<AnimatedHeaderProps> = ({
   const [blockSize, setBlockSize] = useState<number>(10);
 
   useEffect(() => {
-    console.log(width);
     setBlockSize(Math.min(10, width * 0.012));
   }, [width]);
 
