@@ -36,21 +36,9 @@ export const pageQuery = graphql`
   query IndexQuery {
     site {
       siteMetadata {
+        author
+        description
         title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        author {
-          name
-          email
-          linkedin
-          medium
-          twitter
-          github
-        }
       }
     }
   }
