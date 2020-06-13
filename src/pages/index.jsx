@@ -41,5 +41,21 @@ export const pageQuery = graphql`
         title
       }
     }
+    allMdx {
+      edges {
+        node {
+          id
+          rawBody
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            tags
+          }
+          body
+        }
+      }
+    }
   }
 `;
