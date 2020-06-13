@@ -2,7 +2,11 @@ import * as React from "react";
 import styled from "styled-components";
 import { motion, Variants } from "framer-motion";
 import MyName from "../headerText/myName";
-import { clr_accent, pixel_background, pixel_border } from "../styles/colors";
+import {
+  clr_accent,
+  pixel_background,
+  pixel_border,
+} from "../styles/siteGlobals";
 import { useEffect, useState } from "react";
 
 interface AnimatedHeaderProps {

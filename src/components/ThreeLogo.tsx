@@ -1,15 +1,15 @@
-import * as React from "react"
-import { Canvas, useFrame } from "react-three-fiber"
-import { useMemo, Suspense, useRef } from "react"
-import * as THREE from "three"
+import * as React from "react";
+import { Canvas, useFrame } from "react-three-fiber";
+import { useMemo, Suspense, useRef } from "react";
+import * as THREE from "three";
 import {
   HTML,
   OrbitControls,
   OrthographicCamera,
   StandardEffects,
   Text,
-} from "drei"
-import { clr_accent_dark } from "../styles/colors"
+} from "drei";
+import { clr_accent_dark } from "../styles/siteGlobals";
 
 interface ThreeLogoProps {}
 
@@ -17,11 +17,11 @@ const Fallback = () => (
   <HTML>
     <div className="loading">Loading...</div>
   </HTML>
-)
+);
 
 const ThreeLogo: React.FunctionComponent<ThreeLogoProps> = props => {
-  const cam = useRef()
-  const pointLight = useRef()
+  const cam = useRef();
+  const pointLight = useRef();
   /* useFrame(() => {
     if (pointLight) {
       debugger
@@ -74,7 +74,7 @@ const ThreeLogo: React.FunctionComponent<ThreeLogoProps> = props => {
       </Suspense>
       {/*       <OrbitControls />*/}
     </Canvas>
-  )
-}
+  );
+};
 
-export default ThreeLogo
+export default ThreeLogo;

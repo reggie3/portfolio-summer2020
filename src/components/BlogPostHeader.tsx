@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ScrollToTopButton from "./ScrollToTopButton";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import { header_dark, header_light } from "../styles/colors";
+import { header_dark, header_light } from "../styles/siteGlobals";
 import { motion } from "framer-motion";
 
 interface BlogPostHeaderProps {

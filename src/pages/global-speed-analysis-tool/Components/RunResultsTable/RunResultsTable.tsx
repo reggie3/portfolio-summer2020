@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { AnalysisResult, MarkerTypes } from '../../models';
+import * as React from "react";
+import { AnalysisResult, MarkerTypes } from "../../models";
 import {
   TableContainer,
   Paper,
@@ -9,9 +9,9 @@ import {
   TableCell,
   TableBody,
   makeStyles,
-} from '@material-ui/core';
-import { formatPercent } from '../../utilities';
-import { AppColors } from '../../colors';
+} from "@material-ui/core";
+import { formatPercent } from "../../utilities";
+import { AppColors } from "../../colors";
 
 interface RunResultsTableProps {
   analysisAreaId: string;

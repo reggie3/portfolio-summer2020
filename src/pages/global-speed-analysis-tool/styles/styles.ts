@@ -1,18 +1,18 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export const centered = {
-  top: '50%',
-  left: '50%',
+  top: "50%",
+  left: "50%",
   transform: `translate(-50%, -50%)`,
 };
 
-const globalStyles = makeStyles((theme) => ({
+const globalStyles = makeStyles(theme => ({
   centered,
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -21,6 +21,6 @@ const globalStyles = makeStyles((theme) => ({
 export default globalStyles;
 
 export const globalColors = {
-  selectedToggleButtonIcon: 'green',
-  unSelectedToggleButtonIcon: 'gray',
+  selectedToggleButtonIcon: "limegreen",
+  unSelectedToggleButtonIcon: "lightgray",
 };

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import { clr_accent_dark, clr_accent } from "../styles/colors";
+import { clr_accent_dark, clr_accent } from "../styles/siteGlobals";
 import ArrowBack from "react-ionicons/lib/MdArrowBack";
 
 const goBackPageButtonVariant = {

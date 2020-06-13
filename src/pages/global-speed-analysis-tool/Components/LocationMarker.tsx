@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   GeometryTypes,
   MarkerTypes,
   GsatLocation,
   LocationIcon,
-} from '../models';
-import { AppColors } from '../colors';
-import { useState } from 'react';
-import * as THREE from 'three';
+} from "../models";
+import { AppColors } from "../colors";
+import { useState } from "react";
+import * as THREE from "three";
 
 export interface LocationMarkerProps {
   location: GsatLocation;
@@ -41,8 +41,8 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
         position={position}
         name={locationMarkerID}
         onClick={onLocationMarkerClicked}
-        onPointerOver={(e) => setHover(true)}
-        onPointerOut={(e) => setHover(false)}
+        onPointerOver={e => setHover(true)}
+        onPointerOut={e => setHover(false)}
         scale={hovered ? [1.5, 1.5, 1.5] : [1, 1, 1]}
       >
         <sphereBufferGeometry

@@ -1,14 +1,14 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   makeStyles,
   AppBar,
   Button,
   TextField,
   LinearProgress,
-} from '@material-ui/core';
-import { useState, useEffect } from 'react';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+} from "@material-ui/core";
+import { useState, useEffect } from "react";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import {
   GlobeClickStates,
   AnalysisArea,
@@ -16,23 +16,23 @@ import {
   GsatLocation,
   AnalysisResult,
   WorkerProgressMessage,
-} from '../../models';
+} from "../../models";
 import {
   AppContext,
   ActionTypes,
   ApplicationState,
   GlobalAppState,
   DispatchActions,
-} from '../../Context';
-import ClickStateControls from './ClickStateControls';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import performCalculationsWorker from '../../webWorkers/performCalculationsWorker';
-import BootstrapInput from '../Common/BootstrapInput';
+} from "../../Context";
+import ClickStateControls from "./ClickStateControls";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import performCalculationsWorker from "../../webWorkers/performCalculationsWorker";
+import BootstrapInput from "../Common/BootstrapInput";
 import {
   WorkerAnalysisArea,
   WorkerLocation,
-} from '../../webWorkers/performCalculations.worker';
-import { colorizeAnalysisAreas } from '../../colorizeAnalysisAreas';
+} from "../../webWorkers/performCalculations.worker";
+import { colorizeAnalysisAreas } from "../../colorizeAnalysisAreas";
 
 export interface ControlsMenuProps {
   analysisAreas: AnalysisArea[];
@@ -93,7 +93,7 @@ const isRunButtonDisabled = (
   numberOfRuns: number
 ): boolean => {
   return (
-    !analysisAreas.filter((area) => area.id !== Constants.TEMP).length ||
+    !analysisAreas.filter(area => area.id !== Constants.TEMP).length ||
     !locations.length ||
     !numberOfRuns
   );
@@ -113,15 +113,17 @@ const ControlsMenu = ({
     numberOfRuns,
     numberOfCompletedRuns,
   } = appState;
-  let completeRuns = 0;
 
   React.useEffect(() => {
     const progress = numberOfCompletedRuns / numberOfRuns;
     console.log({ progress });
-    console.log('+++++++++++++++++++');
+    console.log("+++++++++++++++++++");
     setProgress(progress);
-  }, [numberOfCompletedRuns]);
+  }, [numberOfCompletedRuns, numberOfRuns]);
 
+  useEffect(() => {
+    console.log("==============", progress);
+  }, [progress]);
   const onClickStateChange = (
     event: React.MouseEvent<HTMLElement>,
     newValue: GlobeClickStates
@@ -169,7 +171,7 @@ const ControlsMenu = ({
   const getLocationsDataForWorker = (
     locations: GsatLocation[]
   ): WorkerLocation[] => {
-    return locations.map((location) => {
+    return locations.map(location => {
       let workerLocation: WorkerLocation = {
         ...location,
         type: location.icon.type,
@@ -189,20 +191,33 @@ const ControlsMenu = ({
     try {
       const message: WorkerProgressMessage = JSON.parse(event.data[2]);
       console.log(message.completedRuns);
-      console.log('HERE', numberOfCompletedRuns);
+      console.log("HERE", numberOfCompletedRuns);
       dispatch({
         type: ActionTypes.SET_NUMBER_OF_COMPLETED_RUNS,
         payload: { numberOfCompletedRuns: numberOfCompletedRuns + 1 },
       });
+      setProgress(previousProgress => previousProgress + 1);
     } catch (error) {
       // don't really care if we can't parse the message
+      console.warn("onWorkerMessage error: ", error);
     }
   };
 
+  const resetProgress = () => {
+    dispatch({
+      type: ActionTypes.SET_NUMBER_OF_COMPLETED_RUNS,
+      payload: { numberOfCompletedRuns: 0 },
+    });
+    setProgress(0);
+    debugger;
+  };
+
   const runSimulation = async () => {
+    resetProgress();
+
     const locationsWorkerData = getLocationsDataForWorker(locations);
 
-    const workerPromises = analysisAreas.map((analysisArea) => {
+    const workerPromises = analysisAreas.map(analysisArea => {
       const analysisAreaWorkerData = getAnalysisAreaDataForWorker(analysisArea);
 
       performCalculationsWorker.onmessage = onWorkerMessage;
@@ -261,7 +276,7 @@ const ControlsMenu = ({
                 numberOfRuns
               )}
             >
-              <FontAwesomeIcon icon={'running'} size="2x" />
+              <FontAwesomeIcon icon={"running"} size="2x" />
             </Button>
           </div>
           <Button
@@ -272,8 +287,8 @@ const ControlsMenu = ({
             <FontAwesomeIcon
               icon={
                 isLocationDrawerVisible
-                  ? 'chevron-circle-right'
-                  : 'chevron-circle-left'
+                  ? "chevron-circle-right"
+                  : "chevron-circle-left"
               }
               size="2x"
             />
@@ -289,35 +304,35 @@ export default ControlsMenu;
 const useStyles = makeStyles({
   progressBarContainer: {},
   appBarBottomRow: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: '#1E90FFaa',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#1E90FFaa",
+    justifyContent: "space-between",
     padding: 5,
     marginTop: 0,
   },
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    top: 'auto',
+    display: "flex",
+    flexDirection: "column",
+    top: "auto",
     bottom: 0,
-    backgroundColor: '#1E90FFaa',
-    justifyContent: 'space-between',
+    backgroundColor: "#1E90FFaa",
+    justifyContent: "space-between",
   },
   runControlContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   runControls: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   runTextInput: {
-    marginRight: '5px',
-    padding: '0px',
-    width: '4rem',
-    textAlign: 'right',
+    marginRight: "5px",
+    padding: "0px",
+    width: "4rem",
+    textAlign: "right",
   },
 });

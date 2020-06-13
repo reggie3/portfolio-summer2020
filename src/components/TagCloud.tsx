@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import ShowTagCloudButton from "./ShowTagCloudButton";
 import { useState } from "react";
-import { bg_dark, header_light } from "../styles/colors";
+import { bg_dark, header_light } from "../styles/siteGlobals";
 
 interface TagCloudProps {
   allTags: string[];

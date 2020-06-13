@@ -7,7 +7,11 @@ import {
 } from "@react-hook/window-size";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { clr_accent_dark, header_dark, header_light } from "../styles/colors";
+import {
+  clr_accent_dark,
+  header_dark,
+  header_light,
+} from "../styles/siteGlobals";
 import { useInView } from "react-intersection-observer";
 import ScrollToTopButton from "./ScrollToTopButton";
 

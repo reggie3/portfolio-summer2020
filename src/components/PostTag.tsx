@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { clr_accent, clr_accent_dark } from "../styles/colors";
+import { clr_accent, clr_accent_dark } from "../styles/siteGlobals";
 
 interface PostTagProps {
   isSelectAll?: boolean;

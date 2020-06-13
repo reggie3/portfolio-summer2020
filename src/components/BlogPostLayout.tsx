@@ -10,7 +10,7 @@ import Footer from "./Footer";
 import styled from "styled-components";
 import TagCloud from "./TagCloud";
 import ReturnHomeButton from "./ReturnHomeButton";
-import { bg_dark } from "../styles/colors";
+import { bg_dark } from "../styles/siteGlobals";
 const shortcodes = { Link, Img }; // Provide common components here
 
 export default function PageTemplate({ data: { mdx } }) {

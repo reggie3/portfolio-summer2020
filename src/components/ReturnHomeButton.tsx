@@ -1,7 +1,11 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { clr_accent_dark, clr_accent, buttonTapScale } from "../styles/colors";
+import {
+  clr_accent_dark,
+  clr_accent,
+  buttonTapScale,
+} from "../styles/siteGlobals";
 import { navigate } from "gatsby";
 import Home from "react-ionicons/lib/MdHome";
 
