@@ -1,5 +1,5 @@
 import React from "react";
-
+import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Footer from "../components/Footer";
@@ -30,4 +30,28 @@ export default IndexPage;
 
 export const ContentContainer = styled.div`
   background-color: var(--clr-bg-light);
+`;
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        title
+        subtitle
+        copyright
+        menu {
+          label
+          path
+        }
+        author {
+          name
+          email
+          linkedin
+          medium
+          twitter
+          github
+        }
+      }
+    }
+  }
 `;
