@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Layout from "../components/layout";
-// import SEO from "../components/seo";
+import SEO from "../components/seo";
 import Footer from "../components/Footer";
 import BlogPostList from "../components/BlogPostList";
 import Header from "../components/Header";
@@ -14,6 +14,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
+      <SEO title="Home" />
       <div id="indexPageRoot">
         <Header onScrollToTopClicked={onScrollToTopClicked} />
         <ContentContainer id="contentContainer">
