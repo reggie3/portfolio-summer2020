@@ -6,15 +6,25 @@
  */
 
 import React, { ReactElement } from "react";
-import { useStaticQuery, graphql } from "gatsby";
 
 import "../styles/layout.scss";
+import { useStaticQuery, graphql } from "gatsby";
 
 interface LayoutProps {
   children: ReactElement;
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
+
   return <>{children}</>;
 };
 
