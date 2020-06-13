@@ -33,7 +33,6 @@ export interface ControlsMenuState {}
 const isInProgressAnalysisAreaValid = (
   analysisAreas: AnalysisArea[]
 ): boolean => {
-  let isAreaValid: boolean = false;
   const inProgressAnalysisArea: AnalysisArea = analysisAreas.find(
     (analysisArea: AnalysisArea) => {
       return analysisArea.id === Constants.TEMP;
@@ -268,20 +267,15 @@ const ControlsMenu = ({
               <FontAwesomeIcon icon={"running"} size="2x" />
             </Button>
           </div>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={onToggleLocationListClicked}
-          >
-            <FontAwesomeIcon
-              icon={
-                isLocationDrawerVisible
-                  ? "chevron-circle-right"
-                  : "chevron-circle-left"
-              }
-              size="2x"
-            />
-          </Button>
+          {!isLocationDrawerVisible && (
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={onToggleLocationListClicked}
+            >
+              <FontAwesomeIcon icon="chevron-circle-left" size="2x" />
+            </Button>
+          )}
         </div>
       </AppBar>
     </>

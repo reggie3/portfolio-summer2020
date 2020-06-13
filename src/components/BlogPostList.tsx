@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 // @ts-ignore importing JPG
 import defaultImage from "../images/ocean.jpg";
+import { clr_accent } from "../styles/siteGlobals";
 
 const BlogPostList = () => {
   const data = useStaticQuery(graphql`
@@ -107,9 +108,11 @@ const BlogPostList = () => {
                     {post.frontmatter.title}
                   </Link>
                 </div>
-                <div className="blogCardPostDescription">
-                  <p>{post.frontmatter.description}</p>
-                </div>
+                <BlogCardPostDescription whileHover={{ color: clr_accent }}>
+                  <Link to={post.fields.slug}>
+                    <p>{post.frontmatter.description}</p>
+                  </Link>
+                </BlogCardPostDescription>
               </div>
               <PostTags
                 tags={post.frontmatter.tags}
@@ -134,3 +137,9 @@ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 padding: 1rem;
 padding-bottom: 5rem;
 }`;
+
+const BlogCardPostDescription = styled(motion.div)`
+  padding: 5px;
+  padding-top: 8px;
+  flex: 1;
+`;

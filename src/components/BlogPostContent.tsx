@@ -20,7 +20,6 @@ const BlogPostContent: React.FunctionComponent<BlogPostContentProps> = ({
 }) => {
   return (
     <BlogPostContentRoot
-      className="blogPostContentRoot"
       variants={blogPostContentVariant}
       initial={"initial"}
       animate={"visible"}
@@ -35,4 +34,5 @@ export default BlogPostContent;
 const BlogPostContentRoot = styled(motion.div)`
   padding: 1rem 3rem;
   padding-bottom: 3rem;
+  background-color: ghostwhite;
 `;

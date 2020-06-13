@@ -125,14 +125,8 @@ canvas {
   flex: 1;
 }
 
-.blogCardPostDescription {
-  padding: 5px;
-  padding-top: 8px;
-  flex: 1;
-}
-
 .blogCardLinkContainer {
-  padding-bottom: 5px;
+  padding: 1rem 0;
   position: relative;
 }
 .blogCardLinkContainer::after {
@@ -148,7 +142,24 @@ canvas {
   transition: transform 250ms ease-in;
   transition: transform 250ms ease-in;
 }
+.blogCardLinkContainer::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in;
+}
 .blogCardLinkContainer:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.blogCardLinkContainer:hover::before {
   transform: scaleX(1);
   transform-origin: left;
 }

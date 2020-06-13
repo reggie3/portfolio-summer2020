@@ -1,14 +1,9 @@
-import * as React from 'react';
-import { Drawer, makeStyles } from '@material-ui/core';
-import LocationList from './LocationList';
-import {
-  GlobalAppState,
-  AppContext,
-  ActionTypes,
-  DispatchActions,
-} from '../../Context';
-import AnalysisAreaList from './AnalysisAreasList';
-import HorizontalRule from '../Common/HorizontalRule';
+import * as React from "react";
+import { Drawer, makeStyles, Button } from "@material-ui/core";
+import LocationList from "./LocationList";
+import { GlobalAppState, AppContext, DispatchActions } from "../../Context";
+import AnalysisAreaList from "./AnalysisAreasList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface LocatonListDrawerProps {
   isLocationDrawerVisible: boolean;
@@ -17,9 +12,12 @@ interface LocatonListDrawerProps {
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: 'rgba(255,255,255,.3)',
-    flexDirection: 'column',
+    backgroundColor: "rgba(255,255,255,.3)",
+    flexDirection: "column",
     padding: 10,
+    flex: 1,
+    display: "flex",
+    minWidth: 300,
   },
 });
 
@@ -37,17 +35,23 @@ const LocatonListDrawer: React.SFC<LocatonListDrawerProps> = ({
 
   return (
     <Drawer
-      anchor={'right'}
+      anchor={"right"}
       open={isLocationDrawerVisible}
       onClose={onCloseDrawer}
+      variant="persistent"
     >
       <div className={classes.root}>
-        <LocationList dispatch={dispatch} locations={locations} />
-        <AnalysisAreaList
-          dispatch={dispatch}
-          analysisAreas={analysisAreas}
-          analysisResults={analysisResults}
-        />
+        <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+          <LocationList dispatch={dispatch} locations={locations} />
+          <AnalysisAreaList
+            dispatch={dispatch}
+            analysisAreas={analysisAreas}
+            analysisResults={analysisResults}
+          />
+        </div>
+        <Button variant="contained" color="secondary" onClick={onCloseDrawer}>
+          <FontAwesomeIcon icon={"chevron-circle-right"} size="2x" />
+        </Button>
       </div>
     </Drawer>
   );
