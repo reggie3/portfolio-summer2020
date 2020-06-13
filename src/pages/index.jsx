@@ -14,7 +14,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      {/* <SEO title="Home" /> */}
       <div id="indexPageRoot">
         <Header onScrollToTopClicked={onScrollToTopClicked} />
         <ContentContainer id="contentContainer">
