@@ -1,32 +1,32 @@
-import { Vector3 } from 'three';
+import { Vector3 } from "three";
 import {
   AnalyisAreaStats,
   FaceStats,
-} from './webWorkers/performCalculations.worker';
+} from "./webWorkers/performCalculations.worker";
 
 export enum Constants {
-  TEMP = 'TEMP',
+  TEMP = "TEMP",
 }
 export enum GlobeClickStates {
-  NONE = 'NONE',
-  PLACE_MARKER = 'PLACE_MARKER',
-  PLACE_POLYGON_POINT = 'PLACE_POLYGON_POINT',
+  NONE = "NONE",
+  PLACE_MARKER = "PLACE_MARKER",
+  PLACE_POLYGON_POINT = "PLACE_POLYGON_POINT",
 }
 
 export enum GeometryTypes {
-  GLOBE = 'GLOBE',
-  LOCATION_MARKER = 'LOCATION_MARKER',
+  GLOBE = "GLOBE",
+  LOCATION_MARKER = "LOCATION_MARKER",
 }
 
 export enum MarkerTypes {
-  FRIENDLY = 'FRIENDLY',
-  ENEMY = 'ENEMY',
-  NEUTRAL = 'NEUTRAL',
+  FRIENDLY = "FRIENDLY",
+  ENEMY = "ENEMY",
+  NEUTRAL = "NEUTRAL",
 }
 
 export enum Modals {
-  ABOUT = 'ABOUT',
-  LOCATION_MARKER = 'LOCATION_MARKER',
+  ABOUT = "ABOUT",
+  LOCATION_MARKER = "LOCATION_MARKER",
 }
 
 export type LocationIcon = {
@@ -82,11 +82,14 @@ export type SamplePoint = {
 
 export type AnalysisResult = {
   id: string;
-  analysisAreaStatsMap: Map<string, AnalyisAreaStats>;
+  analysisAreaStatsMap?: Map<string, AnalyisAreaStats>;
   elapsedRunTimeMillis: number;
   timeRanMillis: number;
-  faceStatsMap: Map<string, FaceStats>;
+  faceStatsMap?: Map<string, FaceStats>;
   // TODO: add math va
+  friendlyWinPercentage: number;
+  enemyWinPercentage: number;
+  neutralWinPercentage: number;
 };
 
 export type WorkerProgressMessage = {

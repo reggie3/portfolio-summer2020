@@ -378,13 +378,18 @@ export async function performCalculations(
         });
       });
 
+      const { friendly, enemy, neutral } = calculateWinPercentages(
+        totalFaceWinTally,
+        totalNumberOfFaces
+      );
       return {
-        analysisAreaStatsMap,
+        id: analysisArea.id,
         elapsedRunTimeMillis: Date.now() - runStartTime,
         faceStatsMap,
-        id: analysisArea.id,
+        friendlyWinPercentage: friendly,
+        enemyWinPercentage: enemy,
+        neutralWinPercentage: neutral,
         timeRanMillis: Date.now(),
-        ...calculateWinPercentages(totalFaceWinTally, totalNumberOfFaces),
       };
     }
   }

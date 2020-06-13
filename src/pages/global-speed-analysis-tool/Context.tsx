@@ -8,34 +8,34 @@ import {
   Constants,
   AnalysisResult,
   SamplePoint,
-} from './models';
-import { v4 as uuidv4 } from 'uuid';
-import React, { useReducer } from 'react';
-import logger from 'use-reducer-logger';
-import { Vector3 } from 'three';
+} from "./models";
+import { v4 as uuidv4 } from "uuid";
+import React, { useReducer } from "react";
+import logger from "use-reducer-logger";
+import { Vector3 } from "three";
 
 export enum ActionTypes {
-  ADD_LOCATION = 'ADD_LOCATION',
-  DELETE_LOCATION = 'DELETE_LOCATION',
-  UPDATE_LOCATION = 'UPDATE_LOCATION',
-  TOGGLE_LOCATION_VISIBILTY = 'TOGGLE_LOCATION_VISIBILTY',
-  UPDATE_SCENARIO_INFORMATION = 'UPDATE_SCENARIO_INFORMATION',
-  OPEN_MODAL = 'OPEN_MODAL',
-  CLOSE_ALL_MODALS = 'CLOSE_ALL_MODALS',
-  CLOSE_MODAL = 'CLOSE_MODAL',
-  UPDATE_MODAL = 'UPDATE_MODAL',
-  UPDATE_DIMENSIONS = 'UPDATE_DIMENSIONS',
-  SET_GLOBE_CLICK_STATE = 'SET_GLOBE_CLICK_STATE',
-  TOGGLE_LOCATION_LIST = 'TOGGLE_LOCATION_LIST',
-  UPDATE_ANALYSIS_AREA = 'UPDATE_ANALYSIS_AREA',
-  DELETE_ANALYSIS_AREA = 'DELETE_ANALYSIS_AREA',
-  SAVE_ANALYSIS_AREA = 'SAVE_ANALYSIS_AREA',
-  TOGGLE_ANALYSIS_AREA_VISIBILTY = 'TOGGLE_ANALYSIS_AREA_VISIBILTY',
-  ADD_POINT_TO_TEMP_ANALYSIS_AREA = 'ADD_POINT_TO_TEMP_ANALYSIS_AREA',
-  SET_ANALYSIS_AREA_MESH = 'SET_ANALYSIS_AREA_MESH',
-  SET_LAST_ANALYSIS_RESULTS = 'SET_LAST_ANALYSIS_RESULTS',
-  SET_NUMBER_OF_RUNS = 'SET_NUMBER_OF_RUNS',
-  SET_NUMBER_OF_COMPLETED_RUNS = 'SET_NUMBER_OF_COMPLETED_RUNS',
+  ADD_LOCATION = "ADD_LOCATION",
+  DELETE_LOCATION = "DELETE_LOCATION",
+  UPDATE_LOCATION = "UPDATE_LOCATION",
+  TOGGLE_LOCATION_VISIBILTY = "TOGGLE_LOCATION_VISIBILTY",
+  UPDATE_SCENARIO_INFORMATION = "UPDATE_SCENARIO_INFORMATION",
+  OPEN_MODAL = "OPEN_MODAL",
+  CLOSE_ALL_MODALS = "CLOSE_ALL_MODALS",
+  CLOSE_MODAL = "CLOSE_MODAL",
+  UPDATE_MODAL = "UPDATE_MODAL",
+  UPDATE_DIMENSIONS = "UPDATE_DIMENSIONS",
+  SET_GLOBE_CLICK_STATE = "SET_GLOBE_CLICK_STATE",
+  TOGGLE_LOCATION_LIST = "TOGGLE_LOCATION_LIST",
+  UPDATE_ANALYSIS_AREA = "UPDATE_ANALYSIS_AREA",
+  DELETE_ANALYSIS_AREA = "DELETE_ANALYSIS_AREA",
+  SAVE_ANALYSIS_AREA = "SAVE_ANALYSIS_AREA",
+  TOGGLE_ANALYSIS_AREA_VISIBILTY = "TOGGLE_ANALYSIS_AREA_VISIBILTY",
+  ADD_POINT_TO_TEMP_ANALYSIS_AREA = "ADD_POINT_TO_TEMP_ANALYSIS_AREA",
+  SET_ANALYSIS_AREA_MESH = "SET_ANALYSIS_AREA_MESH",
+  ADD_ANALYSIS_AREA_RESULTS = "ADD_ANALYSIS_AREA_RESULTS",
+  SET_NUMBER_OF_RUNS = "SET_NUMBER_OF_RUNS",
+  SET_NUMBER_OF_COMPLETED_RUNS = "SET_NUMBER_OF_COMPLETED_RUNS",
 }
 
 export interface GlobalAppState {
@@ -65,6 +65,7 @@ export const applicationState: ApplicationState = {
 export type ApplicationStateAction = {
   payload?: {
     analysisResult?: AnalysisResult;
+    analysisResults?: AnalysisResult[];
     dimensions?: Point;
     globeClickState?: GlobeClickStates;
     numberOfRuns?: number;
@@ -98,12 +99,12 @@ export const applicationReducer = (
         ...applicationState,
         isLocationDrawerVisible: !applicationState.isLocationDrawerVisible,
       };
-    case ActionTypes.SET_LAST_ANALYSIS_RESULTS:
+    case ActionTypes.ADD_ANALYSIS_AREA_RESULTS:
       return {
         ...applicationState,
         analysisResults: [
           ...applicationState.analysisResults,
-          action.payload.analysisResult,
+          ...action.payload.analysisResults,
         ],
       };
     case ActionTypes.SET_NUMBER_OF_RUNS:
@@ -164,7 +165,7 @@ export const analysisAreaReducer = (
       });
     case ActionTypes.ADD_POINT_TO_TEMP_ANALYSIS_AREA:
       const doesTempAnalysisAreaExist: boolean = !!analysisAreasState.find(
-        (analysisArea) => analysisArea.id === Constants.TEMP
+        analysisArea => analysisArea.id === Constants.TEMP
       );
       if (doesTempAnalysisAreaExist) {
         return analysisAreasState.map((analysisArea: AnalysisArea) => {
@@ -314,7 +315,7 @@ export const modalsReducer = (
   }
 };
 
-const combineReducers = (slices) => (prevState, action) =>
+const combineReducers = slices => (prevState, action) =>
   // I like to use array.reduce, you can also just write a for..in loop
   Object.keys(slices).reduce(
     (nextState, nextProp) => ({

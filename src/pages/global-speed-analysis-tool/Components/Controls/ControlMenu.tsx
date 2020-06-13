@@ -1,14 +1,7 @@
 import * as React from "react";
-import {
-  makeStyles,
-  AppBar,
-  Button,
-  TextField,
-  LinearProgress,
-} from "@material-ui/core";
+import { makeStyles, AppBar, Button, LinearProgress } from "@material-ui/core";
 import { useState, useEffect } from "react";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+
 import {
   GlobeClickStates,
   AnalysisArea,
@@ -17,13 +10,7 @@ import {
   AnalysisResult,
   WorkerProgressMessage,
 } from "../../models";
-import {
-  AppContext,
-  ActionTypes,
-  ApplicationState,
-  GlobalAppState,
-  DispatchActions,
-} from "../../Context";
+import { ActionTypes, ApplicationState, DispatchActions } from "../../Context";
 import ClickStateControls from "./ClickStateControls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import performCalculationsWorker from "../../webWorkers/performCalculationsWorker";
@@ -116,14 +103,9 @@ const ControlsMenu = ({
 
   React.useEffect(() => {
     const progress = numberOfCompletedRuns / numberOfRuns;
-    console.log({ progress });
-    console.log("+++++++++++++++++++");
-    setProgress(progress);
+    setProgress(Math.min(progress, 100));
   }, [numberOfCompletedRuns, numberOfRuns]);
 
-  useEffect(() => {
-    console.log("==============", progress);
-  }, [progress]);
   const onClickStateChange = (
     event: React.MouseEvent<HTMLElement>,
     newValue: GlobeClickStates
@@ -199,7 +181,7 @@ const ControlsMenu = ({
       setProgress(previousProgress => previousProgress + 1);
     } catch (error) {
       // don't really care if we can't parse the message
-      console.warn("onWorkerMessage error: ", error);
+      // console.warn("onWorkerMessage error: ", error);
     }
   };
 
@@ -209,7 +191,6 @@ const ControlsMenu = ({
       payload: { numberOfCompletedRuns: 0 },
     });
     setProgress(0);
-    debugger;
   };
 
   const runSimulation = async () => {
@@ -233,15 +214,23 @@ const ControlsMenu = ({
 
     const analysisResults = await Promise.all(workerPromises);
     colorizeAnalysisAreas(analysisAreas, analysisResults as AnalysisResult[]);
+    saveAnalysisResults(analysisResults);
+  };
 
-    console.log({ analysisResults });
-
-    /* dispatch({
-      type: ActionTypes.SET_LAST_ANALYSIS_RESULTS,
+  const saveAnalysisResults = (analysisResults: AnalysisResult[]) => {
+    const analysisResultsWithoutFaceStats: AnalysisResult[] = analysisResults.map(
+      result => {
+        const newResult: AnalysisResult = { ...result };
+        delete newResult.faceStatsMap;
+        return newResult;
+      }
+    );
+    dispatch({
+      type: ActionTypes.ADD_ANALYSIS_AREA_RESULTS,
       payload: {
-        analysisResults: [] as AnalysisResult[],
+        analysisResults: analysisResultsWithoutFaceStats,
       },
-    }); */
+    });
   };
 
   return (

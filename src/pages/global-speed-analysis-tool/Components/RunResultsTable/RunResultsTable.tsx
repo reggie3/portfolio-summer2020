@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { formatPercent } from "../../utilities";
 import { AppColors } from "../../colors";
+import { useState } from "react";
 
 interface RunResultsTableProps {
   analysisAreaId: string;
@@ -23,6 +24,18 @@ const RunResultsTable: React.FunctionComponent<RunResultsTableProps> = ({
   analysisResults,
 }) => {
   const classes = useStyles();
+  const [thisAreasResults, setThisAreasResults] = useState<AnalysisResult[]>(
+    []
+  );
+
+  React.useEffect(() => {
+    setThisAreasResults(
+      analysisResults
+        .filter(result => result.id === analysisAreaId)
+        .sort((a, b) => a.timeRanMillis - b.timeRanMillis)
+    );
+  }, [analysisAreaId, analysisResults]);
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
@@ -47,23 +60,20 @@ const RunResultsTable: React.FunctionComponent<RunResultsTableProps> = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {analysisResults.map((analysisResult, index) => {
-            const runResults = analysisResult.analysisAreaStatsMap.get(
-              analysisAreaId
-            );
+          {thisAreasResults.map((analysisResult, index) => {
             return (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
-                  {index}
+                  {index + 1}
                 </TableCell>
                 <TableCell align="right">
-                  {formatPercent(runResults.wins[MarkerTypes.FRIENDLY])}
+                  {formatPercent(analysisResult.friendlyWinPercentage)}
                 </TableCell>
                 <TableCell align="right">
-                  {formatPercent(runResults.wins[MarkerTypes.ENEMY])}
+                  {formatPercent(analysisResult.enemyWinPercentage)}
                 </TableCell>
                 <TableCell align="right">
-                  {formatPercent(runResults.wins[MarkerTypes.NEUTRAL])}
+                  {formatPercent(analysisResult.neutralWinPercentage)}
                 </TableCell>
               </TableRow>
             );

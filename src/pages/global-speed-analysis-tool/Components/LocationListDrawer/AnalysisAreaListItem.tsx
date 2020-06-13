@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { AnalysisArea, AnalysisResult } from '../../models';
+import * as React from "react";
+import { AnalysisArea, AnalysisResult } from "../../models";
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -8,9 +8,9 @@ import {
   createStyles,
   Theme,
   makeStyles,
-} from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import RunResultsTable from '../RunResultsTable/RunResultsTable';
+} from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RunResultsTable from "../RunResultsTable/RunResultsTable";
 
 interface AnalysiAreaListItemProps {
   analysisArea: AnalysisArea;
@@ -26,7 +26,7 @@ const AnalysiAreaListItem: React.FunctionComponent<AnalysiAreaListItemProps> = (
   return (
     <ExpansionPanel>
       <ExpansionPanelSummary
-        expandIcon={<FontAwesomeIcon icon={'chevron-circle-down'} />}
+        expandIcon={<FontAwesomeIcon icon={"chevron-circle-down"} />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
