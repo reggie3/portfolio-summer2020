@@ -22,6 +22,12 @@ html body {
   padding: 0px;
 }
 
+body {
+  background-color: ghostwhite;
+  font-family: sans-serif;
+  background: ghostwhite;
+}
+
 p {
   line-height: 1.35rem;
 }
@@ -32,10 +38,6 @@ li {
   height: 100vh;
   display: grid;
   grid-template-rows: min-content 1fr;
-}
-
-body {
-  font-family: sans-serif;
 }
 
 #scrollToTopButtonContainer {

@@ -20,6 +20,7 @@ import {
   WorkerLocation,
 } from "../../webWorkers/performCalculations.worker";
 import { colorizeAnalysisAreas } from "../../colorizeAnalysisAreas";
+import styled from "styled-components";
 
 export interface ControlsMenuProps {
   analysisAreas: AnalysisArea[];
@@ -247,7 +248,7 @@ const ControlsMenu = ({
             globeClickState={globeClickState}
             onClickStateChange={onClickStateChange}
           />
-          <div className={classes.runControlContainer}>
+          <RunControlContainer>
             <BootstrapInput
               className={classes.runTextInput}
               id="outlined-basic"
@@ -266,16 +267,15 @@ const ControlsMenu = ({
             >
               <FontAwesomeIcon icon={"running"} size="2x" />
             </Button>
-          </div>
-          {!isLocationDrawerVisible && (
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={onToggleLocationListClicked}
-            >
-              <FontAwesomeIcon icon="chevron-circle-left" size="2x" />
-            </Button>
-          )}
+          </RunControlContainer>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={onToggleLocationListClicked}
+          >
+            <FontAwesomeIcon icon="chevron-circle-left" size="2x" />
+          </Button>
         </div>
       </AppBar>
     </>
@@ -283,6 +283,13 @@ const ControlsMenu = ({
 };
 
 export default ControlsMenu;
+
+const RunControlContainer = styled.div`
+  display: flex;
+  flexdirection: row;
+  justifycontent: center;
+  alignitems: center;
+`;
 
 const useStyles = makeStyles({
   progressBarContainer: {},
@@ -302,12 +309,7 @@ const useStyles = makeStyles({
     backgroundColor: "#1E90FFaa",
     justifyContent: "space-between",
   },
-  runControlContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+
   runControls: {
     display: "flex",
     alignItems: "center",

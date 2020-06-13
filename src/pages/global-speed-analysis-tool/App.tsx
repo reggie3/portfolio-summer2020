@@ -113,7 +113,18 @@ const App = () => {
 
   console.log(state);
   return (
-    <div ref={rootRef} id="rootContainer" style={{ display: "flex" }}>
+    <div
+      ref={rootRef}
+      style={{
+        display: "flex",
+        backgroundColor: "black",
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
+    >
       <div style={{ flex: 1 }}>
         <div
           style={{
