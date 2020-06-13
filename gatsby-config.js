@@ -6,6 +6,9 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: "gatsby-plugin-workerize-loader",
+    },
+    {
       resolve: `gatsby-plugin-styled-components`,
     },
     `gatsby-plugin-react-helmet`,
