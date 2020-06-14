@@ -46,56 +46,36 @@ export function LocationListItem({
       <div className={classes.locationDetailsContainer}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <SwitchableLabelInput
-            inputLabel="speed"
-            label={
-              <div className={classes.detailItem}>
-                {`${location.speed} kph`}
-                <p className={classes.detailLabel}>speed</p>
-              </div>
-            }
+            label="speed"
             onChangeValue={event => onChangeValue(ValueTypes.SPEED, event)}
             value={location.speed}
+            suffix="kph"
           />
           <SwitchableLabelInput
-            inputLabel="speed variation"
-            label={
-              <div className={classes.detailItem}>
-                {`${location.speedDeviation ?? 0} kph`}
-                <p className={classes.detailLabel}>speed variation</p>
-              </div>
-            }
+            label="speed variation"
             onChangeValue={event =>
               onChangeValue(ValueTypes.SPEED_DEVIATION, event)
             }
-            value={location.speedDeviation}
+            suffix="kph"
+            value={location.speedDeviation ?? 0}
           />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <SwitchableLabelInput
-            inputLabel="range"
-            label={
-              <div className={classes.detailItem}>
-                {`${
-                  !location.maxRange ? "Infinite" : location.maxRange + "  km"
-                }`}
-                <p className={classes.detailLabel}>Max Range</p>
-              </div>
-            }
+            label="range"
+            value={`${
+              !location.maxRange ? "Infinite" : location.maxRange + "  km"
+            }`}
             onChangeValue={event => onChangeValue(ValueTypes.MAX_RANGE, event)}
-            value={location.maxRange}
+            suffix="km"
           />
           <SwitchableLabelInput
-            inputLabel="range variation"
-            label={
-              <div className={classes.detailItem}>
-                {`${location.maxRangeDeviation ?? 0} km`}
-                <p className={classes.detailLabel}>range variation</p>
-              </div>
-            }
+            label="range variation"
             onChangeValue={event =>
               onChangeValue(ValueTypes.MAX_RANGE_DEVIATION, event)
             }
-            value={location.maxRangeDeviation}
+            value={location.maxRangeDeviation ?? 0}
+            suffix="km"
           />
         </div>
       </div>

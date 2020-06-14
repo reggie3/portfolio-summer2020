@@ -7,11 +7,13 @@ import { detailColor } from "../pages/global-speed-analysis-tool/colors";
 interface TextInputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: any;
-  value: string;
+  value: string | number;
   label: string;
   size?: number;
+  shouldFocus: boolean;
   suffix?: string;
   prefix?: string;
+  width: number;
 }
 
 const bottomBorderHoverVariants = {
@@ -35,7 +37,10 @@ const bottomBorderActiveVariants = {
   },
 };
 
-const placeHolderTextVariants = {};
+const DetailLabelVariants = {
+  show: { scaleX: 1, opacity: 1 },
+  hide: { scaleX: 0, opacity: 0 },
+};
 
 const TextInput: React.FunctionComponent<TextInputProps> = ({
   label,
@@ -43,8 +48,10 @@ const TextInput: React.FunctionComponent<TextInputProps> = ({
   prefix,
   size,
   ref,
+  shouldFocus,
   suffix,
-  value,
+  value = "",
+  width,
 }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -55,57 +62,80 @@ const TextInput: React.FunctionComponent<TextInputProps> = ({
     inputRef.current.focus();
   };
 
-  return (
-    <TextInputRootContainer
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      onClick={onClick}
-    >
-      <TextContainer>
-        {prefix && <PrefixSuffixText>{prefix}</PrefixSuffixText>}
-        <InputContainer>
-          <Input
-            onChange={onChange}
-            type="text"
-            value={value}
-            ref={inputRef}
-            size={size}
-            onFocus={() => setIsActive(true)}
-            onBlur={() => setIsActive(false)}
-          />
-          {label && (
-            <PlaceHolderText
-              variants={placeHolderTextVariants}
+  React.useEffect(() => {
+    if (shouldFocus) {
+      inputRef.current.focus();
+      setIsActive(true);
+    }
+  }, [shouldFocus]);
+
+  if (width) {
+    return (
+      <RootContainer style={{ width: width }}>
+        {label && (
+          <DetailLabel
+            variants={DetailLabelVariants}
+            initial={value || value == 0 || isActive ? "show" : "hide"}
+            animate={value || value == 0 || isActive ? "show" : "hide"}
+          >
+            {label}
+          </DetailLabel>
+        )}
+        <TextInputRootContainer
+          onHoverStart={() => setIsHovered(true)}
+          onHoverEnd={() => setIsHovered(false)}
+          onClick={onClick}
+        >
+          <TextContainer>
+            {prefix && <PrefixText>{prefix}</PrefixText>}
+            <InputContainer>
+              <Input
+                onChange={onChange}
+                type="text"
+                value={value}
+                ref={inputRef}
+                size={size}
+                onFocus={() => setIsActive(true)}
+                onBlur={() => setIsActive(false)}
+                placeholder={!isActive ? label : ""}
+              />
+
+              {suffix && <SuffixText>{suffix}</SuffixText>}
+            </InputContainer>
+          </TextContainer>
+          <BottomBorderContainer>
+            <BottomBorder style={{ background: "gray" }} />
+            <BottomBorderHover
+              variants={bottomBorderHoverVariants}
+              initial="hide"
               animate={isHovered ? "show" : "hide"}
-            >
-              {label}
-            </PlaceHolderText>
-          )}
-        </InputContainer>
-        {suffix && <PrefixSuffixText>{suffix}</PrefixSuffixText>}
-      </TextContainer>
-      <BottomBorderContainer>
-        <BottomBorder style={{ background: "gray" }} />
-        <BottomBorderHover
-          variants={bottomBorderHoverVariants}
-          initial="hide"
-          animate={isHovered ? "show" : "hide"}
-          onClick={onClick}
-        />
-        <BottomBorderActive
-          variants={bottomBorderActiveVariants}
-          initial="hide"
-          animate={isActive ? "show" : "hide"}
-          onClick={onClick}
-        />
-      </BottomBorderContainer>
-    </TextInputRootContainer>
-  );
+              onClick={onClick}
+            />
+            <BottomBorderActive
+              variants={bottomBorderActiveVariants}
+              initial="hide"
+              animate={isActive ? "show" : "hide"}
+              onClick={onClick}
+            />
+          </BottomBorderContainer>
+        </TextInputRootContainer>
+      </RootContainer>
+    );
+  }
+  return null;
 };
 
 export default TextInput;
 
-const fontSize = `font-size: 1.25em;`;
+// const fontSize = `font-size: 1.25em;`;
+const PrefixSuffixText = `  font-weight: lighter;
+color: gray;`;
+
+const RootContainer = styled(motion.div)`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
 
 const borderPositioning = `
 position:absolute;
@@ -118,15 +148,15 @@ const TextInputRootContainer = styled(motion.div)`
   align-items: center;
   display: flex;
   flex-direction: column;
-  ${fontSize}
 `;
 const Input = styled(motion.input)`
   border: 0px;
   border: none;
   line-height: 2.5rem;
-  padding: 0 1rem;
   flex: 1;
-  font-size: 1rem;
+  min-width: 0px;
+  width: 100%;
+  outline: none;
 `;
 const BottomBorderContainer = styled.div`
   width: 100%;
@@ -155,17 +185,25 @@ const TextContainer = styled.div`
   flex-direction: row;
 `;
 
-const PrefixSuffixText = styled.p`
-  font-weight: lighter;
-  color: gray;
+const PrefixText = styled.p`
+  ${PrefixSuffixText}
+  padding-right: 5px;
+`;
+const SuffixText = styled.p`
+  ${PrefixSuffixText}
+  padding-left: 5px;
 `;
 
 const InputContainer = styled.div`
   position: relative;
+  display: flex;
 `;
 
-const PlaceHolderText = styled(motion.div)`
-  color: gray;
+const DetailLabel = styled(motion.div)`
   position: absolute;
-  font-size: 1em;
+  top: 0;
+  font-size: 12px;
+  color: ${detailColor};
+  transform-origin: left;
+  z-index: 101;
 `;
