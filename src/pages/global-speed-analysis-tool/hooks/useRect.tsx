@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import { useState } from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 export const useBbox = () => {
   const ref = useRef();
@@ -11,8 +11,8 @@ export const useBbox = () => {
 
   useEffect(() => {
     set();
-    window.addEventListener('resize', set);
-    return () => window.removeEventListener('resize', set);
+    window.addEventListener("resize", set);
+    return () => window.removeEventListener("resize", set);
   }, []);
 
   return [bbox, ref];

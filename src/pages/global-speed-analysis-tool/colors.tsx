@@ -1,10 +1,10 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 export const AppColors = {
-  AnalysisAreaMarker: 'white',
-  friendlyLocation: 'blue',
-  enemyLocation: 'red',
-  neutralLocation: 'green',
+  AnalysisAreaMarker: "white",
+  friendlyLocation: "blue",
+  enemyLocation: "red",
+  neutralLocation: "green",
 };
 
 export const MyThreeColors = {
@@ -12,3 +12,5 @@ export const MyThreeColors = {
   enemyLocation: new THREE.Color(AppColors.enemyLocation),
   neutralLocation: new THREE.Color(AppColors.neutralLocation),
 };
+
+export const detailColor = "#7f89ff";

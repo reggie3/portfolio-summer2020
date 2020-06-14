@@ -1,29 +1,11 @@
 import * as React from "react";
-import Modal from "@material-ui/core/Modal";
-import {
-  ModalInfo,
-  Modals,
-  MarkerTypes,
-  ModalParams,
-  GsatLocation,
-} from "../../models";
+import { ModalInfo, Modals, MarkerTypes, GsatLocation } from "../../models";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  ModalAction,
-  ActionTypes,
-  AppContext,
-  GlobalAppState,
-} from "../../Context";
-import globalStyles from "../../styles/styles";
+import { ActionTypes, AppContext, GlobalAppState } from "../../Context";
 import ModalWrapper from "./ModalWrapper";
-import {
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-  InputAdornment,
-} from "@material-ui/core";
+import { MenuItem, TextField, InputAdornment } from "@material-ui/core";
 import { useContext } from "react";
+import TextInput from "../../../../components/TextInput";
 
 export interface LocationModalProps {}
 
@@ -45,13 +27,13 @@ const useStyles = makeStyles({
 });
 
 const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
-  const [state, dispatch]: [GlobalAppState, React.Dispatch<any>] = useContext(
+  const [, dispatch]: [GlobalAppState, React.Dispatch<any>] = useContext(
     AppContext
   );
 
   let classes = useStyles();
   const currentParams = locationModal.params;
-  const { icon, name } = currentParams.location;
+  const { icon } = currentParams.location;
 
   const onChangeMarkerType = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
@@ -90,7 +72,7 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
       <h3 id="configureLocationHeader">Configure Location</h3>
       <div className={classes.formBodyContainer}>
         <div className={classes.formRow}>
-          <TextField
+          {/*  <TextField
             className={classes.textInput}
             id="outlined-basic"
             label="Location Name"
@@ -101,6 +83,19 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
               )
             }
             value={locationModal.params.location?.name ?? ""}
+          /> */}
+          <TextInput
+            label="Location Name"
+            onChange={event =>
+              onChangeValue(
+                "name",
+                event as React.ChangeEvent<HTMLInputElement>
+              )
+            }
+            size={5}
+            value={locationModal.params.location?.name ?? ""}
+            prefix="pre"
+            suffix="suf"
           />
 
           <TextField

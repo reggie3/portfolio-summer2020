@@ -13,8 +13,8 @@ interface LocationListDrawerProps {
 }
 
 const drawerComponentVariants = {
-  hidden: { scaleX: 0 },
-  visible: { scaleX: 1 },
+  hidden: { opacity: 0, scaleX: 0 },
+  visible: { opacity: 1, scaleX: 1 },
 };
 
 const contentVariants = {
