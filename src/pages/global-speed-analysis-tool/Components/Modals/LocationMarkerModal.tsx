@@ -1,46 +1,46 @@
-import * as React from 'react';
-import Modal from '@material-ui/core/Modal';
+import * as React from "react";
+import Modal from "@material-ui/core/Modal";
 import {
   ModalInfo,
   Modals,
   MarkerTypes,
   ModalParams,
   GsatLocation,
-} from '../../models';
-import { makeStyles } from '@material-ui/core/styles';
+} from "../../models";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   ModalAction,
   ActionTypes,
   AppContext,
   GlobalAppState,
-} from '../../Context';
-import globalStyles from '../../styles/styles';
-import ModalWrapper from './ModalWrapper';
+} from "../../Context";
+import globalStyles from "../../styles/styles";
+import ModalWrapper from "./ModalWrapper";
 import {
   InputLabel,
   Select,
   MenuItem,
   TextField,
   InputAdornment,
-} from '@material-ui/core';
-import { useContext } from 'react';
+} from "@material-ui/core";
+import { useContext } from "react";
 
 export interface LocationModalProps {}
 
 const useStyles = makeStyles({
   formBodyContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   formRow: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: '5px',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: "5px",
   },
   textInput: {
-    width: '11em',
+    width: "11em",
   },
 });
 
@@ -94,13 +94,13 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             className={classes.textInput}
             id="outlined-basic"
             label="Location Name"
-            onChange={(event) =>
+            onChange={event =>
               onChangeValue(
-                'name',
+                "name",
                 event as React.ChangeEvent<HTMLInputElement>
               )
             }
-            value={locationModal.params.location?.name ?? ''}
+            value={locationModal.params.location?.name ?? ""}
           />
 
           <TextField
@@ -120,9 +120,9 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             className={classes.textInput}
             id="outlined-basic"
             label="Travel Speed"
-            onChange={(event) =>
+            onChange={event =>
               onChangeValue(
-                'speed',
+                "speed",
                 event as React.ChangeEvent<HTMLInputElement>
               )
             }
@@ -135,9 +135,9 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             className={classes.textInput}
             id="outlined-basic"
             label="Speed Deviation"
-            onChange={(event) =>
+            onChange={event =>
               onChangeValue(
-                'speedDeviation',
+                "speedDeviation",
                 event as React.ChangeEvent<HTMLInputElement>
               )
             }
@@ -152,14 +152,14 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             className={classes.textInput}
             id="outlined-basic"
             label="Max Range"
-            onChange={(event) =>
+            onChange={event =>
               onChangeValue(
-                'maxRange',
+                "maxRange",
                 event as React.ChangeEvent<HTMLInputElement>
               )
             }
             value={
-              locationModal.params.location?.maxRange ?? '0 (infinite range)'
+              locationModal.params.location?.maxRange ?? "0 (infinite range)"
             }
             InputProps={{
               endAdornment: <InputAdornment position="end">km</InputAdornment>,
@@ -169,9 +169,9 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             className={classes.textInput}
             id="outlined-basic"
             label="Range Deviation"
-            onChange={(event) =>
+            onChange={event =>
               onChangeValue(
-                'maxRangeDeviation',
+                "maxRangeDeviation",
                 event as React.ChangeEvent<HTMLInputElement>
               )
             }

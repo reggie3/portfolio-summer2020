@@ -1,10 +1,10 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   GlobalAppState,
   AppContext,
   ActionTypes,
   DispatchActions,
-} from '../../Context';
+} from "../../Context";
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -13,12 +13,12 @@ import {
   makeStyles,
   createStyles,
   Typography,
-} from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { GsatLocation, Modals } from '../../models';
-import { HideOrDisplayToggle } from '../Common/HideOrDisplayToggle';
-import { MapItemControl } from '../Common/MapItemControl';
-import { LocationListItem } from './LocationListItem';
+} from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { GsatLocation, Modals } from "../../models";
+import { HideOrDisplayToggle } from "../Common/HideOrDisplayToggle";
+import { MapItemControl } from "../Common/MapItemControl";
+import { LocationListItem } from "./LocationListItem";
 
 export interface LocationListProps {
   dispatch: React.Dispatch<DispatchActions>;
@@ -28,12 +28,12 @@ export interface LocationListProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
+      width: "100%",
       marginTop: 10,
-      borderBottomStyle: 'solid',
+      borderBottomStyle: "solid",
       borderBottomWidth: 1,
       paddingBottom: 10,
-      borderBottomColor: 'goldenrod',
+      borderBottomColor: "goldenrod",
       marginBottom: 10,
     },
     heading: {
@@ -57,7 +57,7 @@ const LocationList: React.SFC<LocationListProps> = ({
 
   return (
     <div className={classes.root}>
-      {locations.map((location) => (
+      {locations.map(location => (
         <LocationListItem
           key={location.id}
           dispatch={dispatch}
