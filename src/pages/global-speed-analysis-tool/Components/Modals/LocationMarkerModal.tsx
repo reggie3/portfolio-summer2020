@@ -65,7 +65,7 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
           update: {
             location: {
               ...currentParams.location,
-              [key]: event.target.value,
+              [key]: value,
             },
           },
         },
