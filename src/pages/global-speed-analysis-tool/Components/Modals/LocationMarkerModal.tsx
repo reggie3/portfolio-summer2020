@@ -3,9 +3,10 @@ import { ModalInfo, Modals, MarkerTypes, GsatLocation } from "../../models";
 import { makeStyles } from "@material-ui/core/styles";
 import { ActionTypes, AppContext, GlobalAppState } from "../../Context";
 import ModalWrapper from "./ModalWrapper";
-import { MenuItem, TextField, InputAdornment } from "@material-ui/core";
+import { MenuItem, TextField } from "@material-ui/core";
 import { useContext } from "react";
-import TextInput from "../../../../components/TextInput";
+import LocationItemDataEntry from "../Common/LocationItemDataEntry";
+import { isNumber } from "lodash";
 
 export interface LocationModalProps {}
 
@@ -49,22 +50,27 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
       },
     });
   };
+
   const onChangeValue = (
     key: string,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch({
-      type: ActionTypes.UPDATE_MODAL,
-      payload: {
-        name: Modals.LOCATION_MARKER,
-        update: {
-          location: {
-            ...currentParams.location,
-            [key]: event.target.value,
+    const value = parseInt(event.target.value, 10);
+
+    if (isNumber(value)) {
+      dispatch({
+        type: ActionTypes.UPDATE_MODAL,
+        payload: {
+          name: Modals.LOCATION_MARKER,
+          update: {
+            location: {
+              ...currentParams.location,
+              [key]: event.target.value,
+            },
           },
         },
-      },
-    });
+      });
+    }
   };
 
   return (
@@ -72,9 +78,8 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
       <h3 id="configureLocationHeader">Configure Location</h3>
       <div className={classes.formBodyContainer}>
         <div className={classes.formRow}>
-          {/*  <TextField
+          <TextField
             className={classes.textInput}
-            id="outlined-basic"
             label="Location Name"
             onChange={event =>
               onChangeValue(
@@ -83,21 +88,7 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
               )
             }
             value={locationModal.params.location?.name ?? ""}
-          /> */}
-          <TextInput
-            label="Location Name"
-            onChange={event =>
-              onChangeValue(
-                "name",
-                event as React.ChangeEvent<HTMLInputElement>
-              )
-            }
-            size={5}
-            value={locationModal.params.location?.name ?? ""}
-            prefix="pre"
-            suffix="suf"
           />
-
           <TextField
             label="Type"
             id="markerTypeSelect"
@@ -110,78 +101,16 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             <MenuItem value={MarkerTypes.NEUTRAL}>Neutral</MenuItem>
           </TextField>
         </div>
-        <div className={classes.formRow}>
-          <TextField
-            className={classes.textInput}
-            id="outlined-basic"
-            label="Travel Speed"
-            onChange={event =>
-              onChangeValue(
-                "speed",
-                event as React.ChangeEvent<HTMLInputElement>
-              )
-            }
-            value={locationModal.params.location?.speed}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">kph</InputAdornment>,
-            }}
-          />
-          <TextField
-            className={classes.textInput}
-            id="outlined-basic"
-            label="Speed Deviation"
-            onChange={event =>
-              onChangeValue(
-                "speedDeviation",
-                event as React.ChangeEvent<HTMLInputElement>
-              )
-            }
-            value={locationModal.params.location?.speedDeviation}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">kph</InputAdornment>,
-            }}
-          />
-        </div>
-        <div className={classes.formRow}>
-          <TextField
-            className={classes.textInput}
-            id="outlined-basic"
-            label="Max Range"
-            onChange={event =>
-              onChangeValue(
-                "maxRange",
-                event as React.ChangeEvent<HTMLInputElement>
-              )
-            }
-            value={
-              locationModal.params.location?.maxRange ?? "0 (infinite range)"
-            }
-            InputProps={{
-              endAdornment: <InputAdornment position="end">km</InputAdornment>,
-            }}
-          />
-          <TextField
-            className={classes.textInput}
-            id="outlined-basic"
-            label="Range Deviation"
-            onChange={event =>
-              onChangeValue(
-                "maxRangeDeviation",
-                event as React.ChangeEvent<HTMLInputElement>
-              )
-            }
-            value={locationModal.params.location?.maxRangeDeviation}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">km</InputAdornment>,
-            }}
-          />
-        </div>
+        <LocationItemDataEntry
+          location={locationModal.params.location}
+          onChangeValue={onChangeValue}
+        />
       </div>
     </>
   );
 };
 
-const LocationMarkerModal = ({}: LocationModalProps) => {
+const LocationMarkerModal = () => {
   const [state, dispatch]: [GlobalAppState, any] = useContext(AppContext);
 
   const locationModal = state.modals.find(

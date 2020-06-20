@@ -13,15 +13,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapItemControl } from "../Common/MapItemControl";
 import { ActionTypes, DispatchActions } from "../../Context";
 import { ReactElement } from "react";
-import SwitchableLabelInput from "../SwitchableLabelInput";
 import { detailColor } from "../../colors";
-
-enum ValueTypes {
-  SPEED = "SPEED",
-  SPEED_DEVIATION = "SPEED_DEVIATION",
-  MAX_RANGE = "MAX_RANGE",
-  MAX_RANGE_DEVIATION = "MAX_RANGE_DEVIATION",
-}
+import LocationItemDataEntry from "../Common/LocationItemDataEntry";
+import { isNumber } from "lodash";
 
 export interface LocationListItemProps {
   dispatch: React.Dispatch<DispatchActions>;
@@ -38,47 +32,27 @@ export function LocationListItem({
     valueType: string,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    console.log(valueType, event.currentTarget.value);
+    const value = parseInt(event.target.value, 10);
+
+    if (isNumber(value)) {
+      dispatch({
+        type: ActionTypes.UPDATE_LOCATION,
+        payload: {
+          location: {
+            id: location.id,
+            [valueType]: value,
+          },
+        },
+      });
+    }
   };
 
   const LocationDetails = (): React.ReactElement => {
     return (
-      <div className={classes.locationDetailsContainer}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <SwitchableLabelInput
-            label="speed"
-            onChangeValue={event => onChangeValue(ValueTypes.SPEED, event)}
-            value={location.speed}
-            suffix="kph"
-          />
-          <SwitchableLabelInput
-            label="speed variation"
-            onChangeValue={event =>
-              onChangeValue(ValueTypes.SPEED_DEVIATION, event)
-            }
-            suffix="kph"
-            value={location.speedDeviation ?? 0}
-          />
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <SwitchableLabelInput
-            label="range"
-            value={`${
-              !location.maxRange ? "Infinite" : location.maxRange + "  km"
-            }`}
-            onChangeValue={event => onChangeValue(ValueTypes.MAX_RANGE, event)}
-            suffix="km"
-          />
-          <SwitchableLabelInput
-            label="range variation"
-            onChangeValue={event =>
-              onChangeValue(ValueTypes.MAX_RANGE_DEVIATION, event)
-            }
-            value={location.maxRangeDeviation ?? 0}
-            suffix="km"
-          />
-        </div>
-      </div>
+      <LocationItemDataEntry
+        location={location}
+        onChangeValue={onChangeValue}
+      />
     );
   };
 
@@ -196,5 +170,19 @@ const useStyles = makeStyles((theme: Theme) =>
     enemyMarker: { ...basicMarker, backgroundColor: "red" },
     friendlyMarker: { ...basicMarker, backgroundColor: "blue" },
     neutralMarker: { ...basicMarker, backgroundColor: "yellow" },
+    formBodyContainer: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+    },
+    formRow: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginBottom: "5px",
+    },
+    textInput: {
+      width: "11em",
+    },
   })
 );

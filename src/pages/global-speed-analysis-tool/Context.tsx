@@ -218,7 +218,9 @@ export const analysisAreaReducer = (
 export const locationsState: GsatLocation[] = [];
 
 export type LocationAction = {
-  payload: { location: GsatLocation };
+  payload: {
+    location: GsatLocation;
+  };
   type: ActionTypes;
 };
 

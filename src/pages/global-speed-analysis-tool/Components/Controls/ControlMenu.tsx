@@ -94,12 +94,7 @@ const ControlsMenu = ({
 }: ControlsMenuProps) => {
   const [progress, setProgress] = useState<number>(0);
   const classes = useStyles();
-  const {
-    globeClickState,
-    isLocationDrawerVisible,
-    numberOfRuns,
-    numberOfCompletedRuns,
-  } = appState;
+  const { globeClickState, numberOfRuns, numberOfCompletedRuns } = appState;
 
   React.useEffect(() => {
     const progress = numberOfCompletedRuns / numberOfRuns;
@@ -251,7 +246,6 @@ const ControlsMenu = ({
           <RunControlContainer>
             <BootstrapInput
               className={classes.runTextInput}
-              id="outlined-basic"
               onChange={onChangeNumberOfRuns}
               placeholder="Placeholder"
               value={numberOfRuns}

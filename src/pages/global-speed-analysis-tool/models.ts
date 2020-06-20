@@ -37,7 +37,7 @@ export type LocationIcon = {
 
 export interface GsatLocation {
   id?: string;
-  isVisible: boolean;
+  isVisible?: boolean;
   name?: string;
   icon?: LocationIcon;
   maxRange?: number;

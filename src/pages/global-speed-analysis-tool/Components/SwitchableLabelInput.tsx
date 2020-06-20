@@ -7,6 +7,7 @@ import TextInput from "../../../components/TextInput";
 import { useSize } from "react-hook-size";
 
 interface SwitchableLabelInputProps {
+  componentKey: string;
   inputAdornment?: {
     startAdornment?: JSX.Element;
     endAdornment?: JSX.Element;
@@ -35,7 +36,7 @@ const variants = {
   },
 };
 const SwitchableLabelInput: React.FunctionComponent<SwitchableLabelInputProps> = ({
-  inputAdornment = {},
+  componentKey,
   label,
   onChangeValue,
   onSwitchMode = () => {},
@@ -49,9 +50,9 @@ const SwitchableLabelInput: React.FunctionComponent<SwitchableLabelInputProps> =
   let ref = useRef();
   let { width } = useSize(ref);
 
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     onSwitchMode(componentState);
-  }, [componentState, onSwitchMode]);
+  }, [componentState, onSwitchMode]); */
 
   const toggleComponentState = () => {
     componentState === ComponentStates.LABEL
@@ -60,10 +61,15 @@ const SwitchableLabelInput: React.FunctionComponent<SwitchableLabelInputProps> =
   };
 
   return (
-    <SwitchableLabelInputRoot ref={ref} onClick={toggleComponentState}>
-      <AnimatePresence>
+    <SwitchableLabelInputRoot
+      ref={ref}
+      onClick={toggleComponentState}
+      key={`${componentKey}-switchableLabelInputRoot`}
+    >
+      <AnimatePresence key={`${componentKey}-switchableLabelAnimatePresence`}>
         {componentState === ComponentStates.LABEL && (
           <SwitchableLabel
+            key={`${componentKey}-switchableLabel`}
             style={{
               transformOrigin:
                 componentState === ComponentStates.LABEL ? "left" : "right",
@@ -73,17 +79,18 @@ const SwitchableLabelInput: React.FunctionComponent<SwitchableLabelInputProps> =
             exit="hide"
             animate={componentState === ComponentStates.LABEL ? "show" : "hide"}
           >
+            <DetailText>{label}</DetailText>
             <ValueRow>
               <ValueText>{value}</ValueText>
               <ValueText>{suffix}</ValueText>
             </ValueRow>
-            <DetailText>{label}</DetailText>
           </SwitchableLabel>
         )}
       </AnimatePresence>
-      <AnimatePresence>
+      <AnimatePresence key={`${componentKey}-switchableInputAnimatePresence`}>
         {componentState === ComponentStates.INPUT && (
           <SwitchableInput
+            key={`${componentKey}-switchableInput`}
             style={{
               transformOrigin:
                 componentState === ComponentStates.INPUT ? "left" : "right",
@@ -92,9 +99,10 @@ const SwitchableLabelInput: React.FunctionComponent<SwitchableLabelInputProps> =
             initial="show"
             exit="hide"
             animate={componentState === ComponentStates.INPUT ? "show" : "hide"}
-            onBlur={() => setComponentState(ComponentStates.LABEL)}
+            /*  onBlur={() => setComponentState(ComponentStates.LABEL)} */
           >
             <TextInput
+              key={`${componentKey}-textInput`}
               label={label}
               onChange={onChangeValue}
               prefix={prefix}

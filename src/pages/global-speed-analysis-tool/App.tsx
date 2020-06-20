@@ -32,6 +32,7 @@ import ControlsMenu from "./Components/Controls/ControlMenu";
 import Polygon from "./Components/Polygon";
 import AnalysisAreaMarkers from "./Components/AnalysisAreaMarkers";
 import ReturnHomeButton from "../../components/ReturnHomeButton";
+import styled from "styled-components";
 
 // get rid of intrinsic elements TSX error
 declare global {
@@ -202,3 +203,5 @@ const App = () => {
 };
 
 export default App;
+
+const Viewport = styled.div``;
