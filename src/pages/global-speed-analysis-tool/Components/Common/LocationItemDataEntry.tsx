@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Grid, TextField, InputAdornment } from "@material-ui/core";
 import { GsatLocation } from "../../models";
-import { DispatchActions } from "../../Context";
 import styled from "styled-components";
 
 export enum ValueTypes {

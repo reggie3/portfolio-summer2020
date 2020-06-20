@@ -22,36 +22,40 @@ export interface LocationListItemProps {
   location: GsatLocation;
 }
 
+const onChangeValue = (
+  valueType: string,
+  event: React.ChangeEvent<HTMLInputElement>,
+  dispatch: React.Dispatch<DispatchActions>,
+  location: GsatLocation
+) => {
+  const value = parseInt(event.target.value, 10);
+
+  if (isNumber(value)) {
+    dispatch({
+      type: ActionTypes.UPDATE_LOCATION,
+      payload: {
+        location: {
+          id: location.id,
+          [valueType]: value,
+        },
+      },
+    });
+  }
+};
+
 export function LocationListItem({
   dispatch,
   location,
 }: LocationListItemProps) {
   const classes = useStyles();
 
-  const onChangeValue = (
-    valueType: string,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = parseInt(event.target.value, 10);
-
-    if (isNumber(value)) {
-      dispatch({
-        type: ActionTypes.UPDATE_LOCATION,
-        payload: {
-          location: {
-            id: location.id,
-            [valueType]: value,
-          },
-        },
-      });
-    }
-  };
-
   const LocationDetails = (): React.ReactElement => {
     return (
       <LocationItemDataEntry
         location={location}
-        onChangeValue={onChangeValue}
+        onChangeValue={(key, event) => {
+          onChangeValue(key, event, dispatch, location);
+        }}
       />
     );
   };
