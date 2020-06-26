@@ -1,13 +1,11 @@
-import * as React from 'react';
-import { AnalysisArea } from '../models';
-import { useState, useEffect, Suspense, useRef } from 'react';
-import * as THREE from 'three';
-import { Vector3 } from 'three';
-import { TessellateModifier } from 'three/examples/jsm/modifiers/TessellateModifier.js';
-import { DispatchActions, ActionTypes } from '../Context';
-import { getGeometryCentroid } from '../utilities';
-import { SpotLightHelper } from 'three';
-import { useHelper } from 'drei';
+import * as React from "react";
+import { AnalysisArea } from "../models";
+import { useState, useEffect, useRef } from "react";
+import * as THREE from "three";
+import { Vector3 } from "three";
+import { TessellateModifier } from "three/examples/jsm/modifiers/TessellateModifier.js";
+import { DispatchActions, ActionTypes } from "../Context";
+import { getGeometryCentroid } from "../utilities";
 
 const SURFACE_DISPLACEMENT = 1.0005;
 
@@ -48,7 +46,7 @@ const getTesselatedGeomtery = (geometry: THREE.Geometry): THREE.Geometry => {
 
   clonedGeometry.faces.forEach(function (face) {
     // @ts-ignore
-    var components = ['x', 'y', 'z'].sort((a, b) => {
+    var components = ["x", "y", "z"].sort((a, b) => {
       return Math.abs(face.normal[a]) > Math.abs(face.normal[b]);
     });
 
@@ -84,7 +82,7 @@ const getCurveGeometry = (geometry: THREE.Geometry): THREE.Geometry => {
 };
 
 const Polygon = ({ analysisArea, dispatch }: PolygonProps) => {
-  const { id, polygon } = analysisArea;
+  const { polygon } = analysisArea;
   const [geometry, setGeometry] = useState<THREE.Geometry>(null);
   const [tessellatedGeometry, setTessellatedGeometry] = useState<
     THREE.Geometry

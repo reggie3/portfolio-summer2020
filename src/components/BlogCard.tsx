@@ -38,7 +38,6 @@ const BlogCard: React.FunctionComponent<BlogCardProps> = ({
         <BlogCardRoot
           className="blogCard"
           variants={blogCardVariants}
-          whileHover={"whileHover"}
           initial={"initial"}
           exit={"hidden"}
           animate={"visible"}

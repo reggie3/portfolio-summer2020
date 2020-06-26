@@ -8,6 +8,10 @@ import {
 import { AppColors } from "../colors";
 import { useState } from "react";
 import * as THREE from "three";
+import { HTML } from "drei";
+import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
+import { mapLabelVariants, MapLabel } from "./mapLabelVariants";
 
 export interface LocationMarkerProps {
   location: GsatLocation;
@@ -51,6 +55,21 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
           name={GeometryTypes.LOCATION_MARKER}
         />
         <meshStandardMaterial attach="material" color={markerColor} />
+
+        <HTML>
+          <AnimatePresence>
+            {hovered && (
+              <MapLabel
+                variants={mapLabelVariants}
+                initial={"initial"}
+                exit={"hidden"}
+                animate={"visible"}
+              >
+                {location.name}
+              </MapLabel>
+            )}
+          </AnimatePresence>
+        </HTML>
       </mesh>
     </pointLight>
   ) : null;

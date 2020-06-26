@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AnimatedHeader from "./AnimatedHeader";
-import {
-  useWindowSize,
-  useWindowWidth,
-  useWindowHeight,
-} from "@react-hook/window-size";
+import { useWindowSize } from "@react-hook/window-size";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import {
-  clr_accent_dark,
-  header_dark,
-  header_light,
-} from "../styles/siteGlobals";
+import { header_dark, header_light } from "../styles/siteGlobals";
 import { useInView } from "react-intersection-observer";
 import ScrollToTopButton from "./ScrollToTopButton";
 
@@ -22,8 +14,8 @@ interface HeaderProps extends React.ComponentPropsWithoutRef<any> {
 const Header = ({ onScrollToTopClicked }) => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
-  const [width, height] = useWindowSize();
-  const [intersectionRef, inView, entry] = useInView({
+  const [width] = useWindowSize();
+  const [intersectionRef, inView] = useInView({
     /* Optional options */
     threshold: 0,
   });

@@ -1,23 +1,15 @@
-import * as React from 'react';
-import EarthView from './Earth.view';
-import { PointerEvent as RNFPointerEvent } from 'react-three-fiber';
+import * as React from "react";
+import EarthView from "./Earth.view";
+import { PointerEvent as RNFPointerEvent } from "react-three-fiber";
 import {
-  GeometryTypes,
   Point,
   MarkerTypes,
   GlobeClickStates,
   GsatLocation,
   AnalysisArea,
   Modals,
-} from '../models';
-import {
-  GlobalAppState,
-  AppContext,
-  DispatchActions,
-  AnalysisAreaAction,
-  ActionTypes,
-} from '../Context';
-import { useContext } from 'react';
+} from "../models";
+import { DispatchActions, ActionTypes } from "../Context";
 
 interface EarthProps {
   analysisAreas: AnalysisArea[];
@@ -38,7 +30,6 @@ const Earth = ({ analysisAreas, dispatch, globeClickState }: EarthProps) => {
 
   const onGlobeClicked = (event: RNFPointerEvent) => {
     // @ts-ignore Property 'geometry' does not exist on type 'Object3D'
-    const clickedItemName = event.object.geometry.name;
 
     const clickLocation: Point = [event.pageX, event.pageY];
     switch (globeClickState) {

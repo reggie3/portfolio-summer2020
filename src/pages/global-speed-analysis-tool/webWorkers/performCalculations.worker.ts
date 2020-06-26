@@ -147,13 +147,15 @@ const getTravelTime = (distance: number, location: WorkerLocation): number => {
             maxRange -
             maxRangeDeviation
         );
+
   let calculatedSpeed = Math.floor(
     Math.random() * (speed + speedDeviation - speed - speedDeviation) +
       speed -
       speedDeviation
   );
-
-  // console.log(calculatedMaxRange, calculatedSpeed);
+  console.log("location", location.type);
+  console.log("calculatedMaxRange", calculatedMaxRange);
+  console.log("calculatedSpeed", calculatedSpeed);
 
   if (distance > calculatedMaxRange) {
     return Infinity;

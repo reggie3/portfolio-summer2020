@@ -1,17 +1,11 @@
-import * as React from 'react';
-import {
-  Modal,
-  makeStyles,
-  isWidthDown,
-  Button,
-  ButtonProps,
-} from '@material-ui/core';
-import globalStyles, { centered } from '../../styles/styles';
-import { Point } from '../../models';
-import useDimensions from 'react-use-dimensions';
-import { useEffect, useState } from 'react';
-import { AppContext } from '../../Context';
-import HorizontalRule from '../Common/HorizontalRule';
+import * as React from "react";
+import { Modal, Button, ButtonProps } from "@material-ui/core";
+import { modalStyle } from "../../styles/styles";
+import { Point } from "../../models";
+import useDimensions from "react-use-dimensions";
+import { useEffect, useState } from "react";
+import { AppContext } from "../../Context";
+import HorizontalRule from "../Common/HorizontalRule";
 
 export interface ModalContainerProps {
   cancelButtonLabel?: string;
@@ -27,107 +21,55 @@ export interface ModalContainerProps {
   width?: string;
 }
 
-const useStyles = makeStyles({
-  buttonsContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  modal: ({ position, width }: { position: Point; width: string }) => {
-    const pos = position
-      ? {
-          left: position[0],
-          top: position[1],
-          transform: `translate(-50%, -10%)`,
-        }
-      : centered;
-    return {
-      ...pos,
-      width,
-    };
-  },
-});
-
 const ModalWrapper = ({
   children,
-  cancelButtonProps = { color: 'secondary' },
-  cancelButtonLabel = 'Cancel',
-  closeButtonProps = { color: 'primary' },
-  closeButtonLabel = 'Close',
+  cancelButtonProps = { color: "secondary" },
+  cancelButtonLabel = "Cancel",
+  closeButtonProps = { color: "primary" },
+  closeButtonLabel = "Close",
   isOpen,
   onClose,
   onCancelButtonClick,
   onCloseButtonClick,
   position,
-  width = '400px',
+  width = "400px",
 }: ModalContainerProps) => {
-  const [safeModalPosition, setSafeModalPosition] = useState<Point>(null);
-  let classes = useStyles({ position, width });
+  //const [safeModalPosition, setSafeModalPosition] = useState<Point>(null);
+  //let classes = useStyles({ position, width });
   const [ref, modalDimensions] = useDimensions();
-  const [{ appState }, dispatch] = React.useContext(AppContext);
-
-  /*  useEffect(() => {
-    const [screenWidth, screenHeight]: [number, number] = appState.dimensions;
-    const {
-      bottom,
-      height,
-      left,
-      right,
-      top,
-      width,
-      x,
-      y,
-    }: {
-      bottom: number;
-      height: number;
-      left: number;
-      right: number;
-      top: number;
-      width: number;
-      x: number;
-      y: number;
-    } = modalDimensions;
-    console.log('appState.dimensions', appState.dimensions);
-    console.log('*************');
-    console.log('modalDimensions', modalDimensions);
-    console.log('*************');
-
-    const newPosition: Point = position;
-    if (right > screenWidth) {
-      newPosition[0] = screenWidth - width;
-    }
-    if (x < 0) {
-      newPosition[0] = 0;
-    }
-
-    setSafeModalPosition(newPosition);
-  }, [appState?.dimensions, modalDimensions]);
- */
+  const [{ appState }] = React.useContext(AppContext);
+  const [safeModalStyle, setSafeModalStyle] = useState(modalStyle);
 
   useEffect(() => {
-    if (isOpen) {
-      const {
-        bottom,
-        height,
-        left,
-        right,
-        top,
-        width,
-        x,
-        y,
-      }: {
-        bottom: number;
-        height: number;
-        left: number;
-        right: number;
-        top: number;
-        width: number;
-        x: number;
-        y: number;
-      } = modalDimensions;
-      console.log({ modalDimensions });
+    /* console.log("appState.dimensions", appState.dimensions);
+    console.log("modalDimensions", modalDimensions);
+    console.log("position", position); */
+    const { dimensions } = appState;
+
+    if (position) {
+      let leftPos = position[0];
+      let topPos = position[1];
+      if (position[0] + modalDimensions.width > dimensions[0]) {
+        console.log("off the right of the screen");
+        const xExcess = position[0] + modalDimensions.width - dimensions[0];
+        leftPos = leftPos - xExcess - 10;
+      }
+      if (position[1] + modalDimensions.height > dimensions[1]) {
+        // if the modal is going to go off the edge of the screen, then
+        // make it appear further up on the screen than the click point
+        topPos = topPos - modalDimensions.height - 10;
+        console.log({ topPos });
+      }
+
+      setSafeModalStyle(safeModalStyle => {
+        return {
+          ...safeModalStyle,
+          left: leftPos + "px",
+          top: topPos + "px",
+        };
+      });
     }
-  }, [isOpen]);
+  }, [appState, modalDimensions, position]);
 
   return (
     <Modal
@@ -136,10 +78,16 @@ const ModalWrapper = ({
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
     >
-      <div className={`${globalStyles().paper} ${classes.modal}`} ref={ref}>
+      <div style={safeModalStyle} ref={ref}>
         {children}
         <HorizontalRule />
-        <div className={classes.buttonsContainer}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+          }}
+        >
           <Button
             onClick={onCloseButtonClick}
             variant="contained"

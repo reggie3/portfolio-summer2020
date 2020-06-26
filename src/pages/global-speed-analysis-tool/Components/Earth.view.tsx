@@ -1,10 +1,9 @@
-import * as THREE from 'three';
-import React, { useRef, useEffect, useState } from 'react';
-import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib';
-import { PointerEvent as RNFPointerEvent } from 'react-three-fiber';
-import { TextureLoader, Texture } from 'three';
-import { GeometryTypes } from '../models';
-import useDoubleClick from 'use-double-click';
+import * as THREE from "three";
+import React, { useEffect, useState } from "react";
+import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib";
+import { PointerEvent as RNFPointerEvent } from "react-three-fiber";
+import { TextureLoader, Texture } from "three";
+import { GeometryTypes } from "../models";
 
 interface EarthViewProps {
   onGlobeClicked: (e: RNFPointerEvent) => void;
@@ -13,20 +12,16 @@ interface EarthViewProps {
 RectAreaLightUniformsLib.init();
 
 const EarthView = ({ onGlobeClicked }: EarthViewProps) => {
-  const ref = useRef(null);
   const [earthTexture, setEarthTexture] = useState<Texture>(null);
-  const [moonTexture, setMoonTexture] = useState<Texture>(null);
   const [bumpTexture, setBumpTexture] = useState<Texture>(null);
 
   useEffect(() => {
     setEarthTexture(
-      new TextureLoader().load(require('../assets/earth.jpg'), setEarthTexture)
+      new TextureLoader().load(require("../assets/earth.jpg"), setEarthTexture)
     );
-    setMoonTexture(
-      new TextureLoader().load(require('../assets/moon.png'), setMoonTexture)
-    );
+
     setBumpTexture(
-      new TextureLoader().load(require('../assets/bump.jpg'), setBumpTexture)
+      new TextureLoader().load(require("../assets/bump.jpg"), setBumpTexture)
     );
   }, []);
 
@@ -38,14 +33,14 @@ const EarthView = ({ onGlobeClicked }: EarthViewProps) => {
           position={[10, 10, 10]}
           width={10}
           height={1000}
-          onUpdate={(self) => self.lookAt(new THREE.Vector3(0, 0, 0))}
+          onUpdate={self => self.lookAt(new THREE.Vector3(0, 0, 0))}
         />
         <rectAreaLight
           intensity={1}
           position={[-10, -10, -10]}
           width={1000}
           height={10}
-          onUpdate={(self) => self.lookAt(new THREE.Vector3(0, 0, 0))}
+          onUpdate={self => self.lookAt(new THREE.Vector3(0, 0, 0))}
         />
         <mesh onClick={onGlobeClicked}>
           <sphereBufferGeometry

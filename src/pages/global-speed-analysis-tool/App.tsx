@@ -7,18 +7,11 @@ import LocationMarker from "./Components/LocationMarker";
 import {
   Canvas,
   extend,
-  ReactThreeFiber,
   useThree,
   useFrame,
+  ReactThreeFiber,
 } from "react-three-fiber";
-import React, {
-  useRef,
-  useReducer,
-  useEffect,
-  useContext,
-  Dispatch,
-  useState,
-} from "react";
+import React, { useRef, useEffect, Dispatch, useContext } from "react";
 import {
   ActionTypes,
   AppContext,
@@ -32,7 +25,6 @@ import ControlsMenu from "./Components/Controls/ControlMenu";
 import Polygon from "./Components/Polygon";
 import AnalysisAreaMarkers from "./Components/AnalysisAreaMarkers";
 import ReturnHomeButton from "../../components/ReturnHomeButton";
-import styled from "styled-components";
 
 // get rid of intrinsic elements TSX error
 declare global {
@@ -58,19 +50,6 @@ const CameraControls = () => {
   return <orbitControls args={[camera, gl.domElement]} ref={orbitRef} />;
 };
 
-const isInProgressAnalysisAreaValid = (state: GlobalAppState): boolean => {
-  let isAreaValid: boolean = false;
-  const inProgressAnalysisArea: AnalysisArea = state.analysisAreas.find(
-    (analysisArea: AnalysisArea) => {
-      return analysisArea.id === Constants.TEMP;
-    }
-  );
-  if (inProgressAnalysisArea.polygon.length < 3) {
-    return false;
-  }
-  return true;
-};
-
 const App = () => {
   const rootRef = useRef();
   const getBoundingClientRect = useBoundingclientrect(rootRef);
@@ -80,11 +59,7 @@ const App = () => {
     Dispatch<DispatchActions>
   ] = useContext(AppContext);
   const { analysisAreas, locations } = state;
-  const {
-    dimensions,
-    globeClickState,
-    isLocationDrawerVisible,
-  } = state.appState;
+  const { dimensions, isLocationDrawerVisible } = state.appState;
 
   useEffect(() => {
     if (getBoundingClientRect) {
@@ -104,7 +79,7 @@ const App = () => {
         });
       }
     }
-  }, [getBoundingClientRect]);
+  }, [dimensions, getBoundingClientRect]);
 
   const onCloseDrawer = () => {
     dispatch({
@@ -112,7 +87,7 @@ const App = () => {
     });
   };
 
-  console.log(state);
+  // console.log(state);
   return (
     <>
       <div
@@ -203,5 +178,3 @@ const App = () => {
 };
 
 export default App;
-
-const Viewport = styled.div``;

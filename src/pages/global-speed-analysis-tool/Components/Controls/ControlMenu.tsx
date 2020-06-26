@@ -196,7 +196,7 @@ const ControlsMenu = ({
     const workerPromises = analysisAreas.map(analysisArea => {
       const analysisAreaWorkerData = getAnalysisAreaDataForWorker(analysisArea);
 
-      performCalculationsWorker.onmessage = onWorkerMessage;
+      // performCalculationsWorker.onmessage = onWorkerMessage;
 
       return performCalculationsWorker.performCalculations(
         JSON.stringify({
