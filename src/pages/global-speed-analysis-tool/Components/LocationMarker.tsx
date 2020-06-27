@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-  GeometryTypes,
-  MarkerTypes,
-  GsatLocation,
-  LocationIcon,
-} from "../models";
+import { GeometryTypes, MarkerTypes, GsatLocation } from "../models";
 import { AppColors } from "../colors";
 import { useState, useEffect } from "react";
 import * as THREE from "three";
@@ -38,12 +33,6 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
   const locationMarkerID = `${GeometryTypes.LOCATION_MARKER}-${id}`;
   const { position, size } = icon;
   const [hovered, setHover] = useState(false);
-  const [markerColor, setMarkerColor] = useState<string>("purple");
-
-  useEffect(() => {
-    console.log(getMarkerColor(type));
-    setMarkerColor(getMarkerColor(type));
-  }, [type]);
 
   return location.isVisible ? (
     <pointLight args={[new THREE.Color(markerColor), 2, 50]}>
@@ -61,9 +50,9 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
           args={[size]}
           name={GeometryTypes.LOCATION_MARKER}
         />
-        <meshStandardMaterial attach="material" color={markerColor} />
+        <meshStandardMaterial attach="material" color={getMarkerColor(type)} />
 
-        {/*  <HTML>
+        <HTML>
           <AnimatePresence>
             {hovered && (
               <MapLabel
@@ -78,7 +67,7 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
               </MapLabel>
             )}
           </AnimatePresence>
-        </HTML> */}
+        </HTML>
       </mesh>
     </pointLight>
   ) : null;
