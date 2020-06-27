@@ -37,7 +37,7 @@ const RunResultsTable: React.FunctionComponent<RunResultsTableProps> = ({
   }, [analysisAreaId, analysisResults]);
 
   if (!analysisResults.length) {
-    return;
+    return null;
   }
   return (
     <TableContainer component={Paper}>

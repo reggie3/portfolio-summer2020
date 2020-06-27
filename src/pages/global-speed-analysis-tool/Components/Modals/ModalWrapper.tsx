@@ -41,9 +41,9 @@ const ModalWrapper = ({
   const [safeModalStyle, setSafeModalStyle] = useState(modalStyle);
 
   useEffect(() => {
-    /* console.log("appState.dimensions", appState.dimensions);
+    console.log("appState.dimensions", appState.dimensions);
     console.log("modalDimensions", modalDimensions);
-    console.log("position", position); */
+    console.log("position", position);
     const { dimensions } = appState;
 
     if (position) {
@@ -59,6 +59,10 @@ const ModalWrapper = ({
         // make it appear further up on the screen than the click point
         topPos = topPos - modalDimensions.height - 10;
         console.log({ topPos });
+      }
+      if (topPos < 0) {
+        console.log(" too tall");
+        topPos = 5;
       }
 
       setSafeModalStyle(safeModalStyle => {

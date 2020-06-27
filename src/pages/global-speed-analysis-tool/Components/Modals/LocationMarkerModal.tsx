@@ -3,10 +3,9 @@ import { ModalInfo, Modals, MarkerTypes, GsatLocation } from "../../models";
 import { makeStyles } from "@material-ui/core/styles";
 import { ActionTypes, AppContext, GlobalAppState } from "../../Context";
 import ModalWrapper from "./ModalWrapper";
-import { MenuItem, TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { useContext } from "react";
 import LocationItemDataEntry from "../Common/LocationItemDataEntry";
-import { isNumber } from "lodash";
 
 export interface LocationModalProps {}
 
@@ -57,20 +56,32 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
   ) => {
     const value = parseInt(event.target.value, 10);
 
-    if (isNumber(value)) {
-      dispatch({
-        type: ActionTypes.UPDATE_MODAL,
-        payload: {
-          name: Modals.LOCATION_MARKER,
-          update: {
-            location: {
-              ...currentParams.location,
-              [key]: value,
-            },
+    dispatch({
+      type: ActionTypes.UPDATE_MODAL,
+      payload: {
+        name: Modals.LOCATION_MARKER,
+        update: {
+          location: {
+            ...currentParams.location,
+            [key]: isNaN(value) ? 0 : value,
           },
         },
-      });
-    }
+      },
+    });
+  };
+  const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: ActionTypes.UPDATE_MODAL,
+      payload: {
+        name: Modals.LOCATION_MARKER,
+        update: {
+          location: {
+            ...currentParams.location,
+            name: event.target.value,
+          },
+        },
+      },
+    });
   };
 
   return (
@@ -82,10 +93,7 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             className={classes.textInput}
             label="Location Name"
             onChange={event =>
-              onChangeValue(
-                "name",
-                event as React.ChangeEvent<HTMLInputElement>
-              )
+              onChangeName(event as React.ChangeEvent<HTMLInputElement>)
             }
             value={locationModal.params.location?.name ?? ""}
           />

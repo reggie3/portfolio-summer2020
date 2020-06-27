@@ -114,6 +114,7 @@ const App = () => {
             }}
           >
             <ReturnHomeButton />
+            <ReturnHomeButton />
           </div>
           <CssBaseline />
           <Canvas

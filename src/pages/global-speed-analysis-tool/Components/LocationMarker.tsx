@@ -35,7 +35,7 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
   const [hovered, setHover] = useState(false);
 
   return location.isVisible ? (
-    <pointLight args={[new THREE.Color(markerColor), 2, 50]}>
+    <pointLight args={[new THREE.Color(getMarkerColor(type)), 2, 50]}>
       <mesh
         key={locationMarkerID}
         position={position}

@@ -12,7 +12,6 @@ import { ActionTypes, DispatchActions } from "../../Context";
 import { ReactElement } from "react";
 import { detailColor } from "../../colors";
 import LocationItemDataEntry from "../Common/LocationItemDataEntry";
-import { isNumber } from "lodash";
 
 export interface LocationListItemProps {
   dispatch: React.Dispatch<DispatchActions>;
@@ -31,7 +30,7 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
       payload: {
         location: {
           id: this.props.location.id,
-          [valueType]: isNumber(value) ? value : 0,
+          [valueType]: isNaN(value) ? 0 : value,
         },
       },
     });

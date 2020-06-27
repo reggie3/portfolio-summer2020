@@ -33,6 +33,6 @@ export default BlogPostContent;
 
 const BlogPostContentRoot = styled(motion.div)`
   padding: 1rem 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 8rem;
   background-color: ghostwhite;
 `;
