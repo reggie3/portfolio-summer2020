@@ -138,24 +138,29 @@ const getTravelTime = (distance: number, location: WorkerLocation): number => {
     speed,
     speedDeviation = 0,
   } = location;
+
+  const randomIntFromInterval = (min, max) => {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
   let calculatedMaxRange =
     maxRange === 0
       ? Infinity
-      : Math.floor(
-          Math.random() *
-            (maxRange + maxRangeDeviation - maxRange - maxRangeDeviation) +
-            maxRange -
-            maxRangeDeviation
+      : randomIntFromInterval(
+          maxRange + maxRangeDeviation,
+          maxRange - maxRangeDeviation
         );
 
-  let calculatedSpeed = Math.floor(
-    Math.random() * (speed + speedDeviation - speed - speedDeviation) +
-      speed -
-      speedDeviation
+  let calculatedSpeed = randomIntFromInterval(
+    speed + speedDeviation,
+    speed - speedDeviation
   );
-  console.log("location", location.type);
+
+  /* console.log("location", location.type);
+  console.log("distance", distance);
   console.log("calculatedMaxRange", calculatedMaxRange);
-  console.log("calculatedSpeed", calculatedSpeed);
+  console.log("calculatedSpeed", calculatedSpeed); */
 
   if (distance > calculatedMaxRange) {
     return Infinity;

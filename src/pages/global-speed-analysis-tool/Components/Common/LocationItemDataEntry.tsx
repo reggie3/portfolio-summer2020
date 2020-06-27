@@ -58,7 +58,9 @@ const LocationItemDataEntry: React.FunctionComponent<LocationItemDataEntryProps>
             margin="dense"
             value={location.speedDeviation ?? 0}
             InputProps={{
-              endAdornment: <InputAdornment position="end">kph</InputAdornment>,
+              endAdornment: (
+                <InputAdornment position="end">+/- kph</InputAdornment>
+              ),
             }}
           />
         </Grid>
@@ -92,7 +94,9 @@ const LocationItemDataEntry: React.FunctionComponent<LocationItemDataEntryProps>
             margin="dense"
             value={location.maxRangeDeviation ?? 0}
             InputProps={{
-              endAdornment: <InputAdornment position="end">km</InputAdornment>,
+              endAdornment: (
+                <InputAdornment position="end">+/- km</InputAdornment>
+              ),
             }}
           />
         </Grid>

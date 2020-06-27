@@ -28,17 +28,15 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
   ) => {
     const value = parseInt(event.target.value, 10);
 
-    if (isNumber(value)) {
-      dispatch({
-        type: ActionTypes.UPDATE_LOCATION,
-        payload: {
-          location: {
-            id: location.id,
-            [valueType]: value,
-          },
+    dispatch({
+      type: ActionTypes.UPDATE_LOCATION,
+      payload: {
+        location: {
+          id: location.id,
+          [valueType]: isNumber(value) ? value : 0,
         },
-      });
-    }
+      },
+    });
   };
 
   LocationDetails = (): React.ReactElement => {
