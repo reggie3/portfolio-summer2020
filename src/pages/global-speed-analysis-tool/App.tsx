@@ -138,6 +138,7 @@ const App = () => {
             />
             <SkyDome />
             {state.locations.map((location: GsatLocation) => {
+              console.log("*** rendering location", location);
               return <LocationMarker key={location.id} location={location} />;
             })}
             {state.analysisAreas.map((analysisArea: AnalysisArea) => {

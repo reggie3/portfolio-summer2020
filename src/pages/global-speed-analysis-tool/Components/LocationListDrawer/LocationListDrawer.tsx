@@ -86,4 +86,5 @@ const ContentContainer = styled(motion.div)`
   margin-bottom: 100;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 `;

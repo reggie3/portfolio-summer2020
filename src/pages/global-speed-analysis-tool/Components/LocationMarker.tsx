@@ -6,7 +6,7 @@ import {
   LocationIcon,
 } from "../models";
 import { AppColors } from "../colors";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as THREE from "three";
 import { HTML } from "drei";
 import { AnimatePresence } from "framer-motion";
@@ -17,8 +17,8 @@ export interface LocationMarkerProps {
   location: GsatLocation;
 }
 
-const getMarkerColor = (icon: LocationIcon): string => {
-  switch (icon.type) {
+const getMarkerColor = (markerType: MarkerTypes): string => {
+  switch (markerType) {
     case MarkerTypes.FRIENDLY:
       return AppColors.friendlyLocation;
     case MarkerTypes.ENEMY:
@@ -34,10 +34,17 @@ const onLocationMarkerClicked = () => {};
 
 const LocationMarker = ({ location }: LocationMarkerProps) => {
   const { id, icon } = location;
+  const { type } = icon;
   const locationMarkerID = `${GeometryTypes.LOCATION_MARKER}-${id}`;
   const { position, size } = icon;
   const [hovered, setHover] = useState(false);
-  const markerColor = getMarkerColor(icon);
+  const [markerColor, setMarkerColor] = useState<string>("purple");
+
+  useEffect(() => {
+    console.log(getMarkerColor(type));
+    setMarkerColor(getMarkerColor(type));
+  }, [type]);
+
   return location.isVisible ? (
     <pointLight args={[new THREE.Color(markerColor), 2, 50]}>
       <mesh
@@ -54,12 +61,9 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
           args={[size]}
           name={GeometryTypes.LOCATION_MARKER}
         />
-        <meshStandardMaterial
-          attach="material"
-          color={hovered ? "hotpink" : "orange"}
-        />
+        <meshStandardMaterial attach="material" color={markerColor} />
 
-        <HTML>
+        {/*  <HTML>
           <AnimatePresence>
             {hovered && (
               <MapLabel
@@ -74,7 +78,7 @@ const LocationMarker = ({ location }: LocationMarkerProps) => {
               </MapLabel>
             )}
           </AnimatePresence>
-        </HTML>
+        </HTML> */}
       </mesh>
     </pointLight>
   ) : null;
