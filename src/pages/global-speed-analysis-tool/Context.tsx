@@ -143,7 +143,7 @@ export const analysisAreaReducer = (
         if (analysisArea.id === Constants.TEMP) {
           return {
             ...analysisArea,
-            id: analysisArea.id = uuidv4(),
+            id: uuidv4(),
             name: action.payload.name,
           };
         } else {
@@ -332,18 +332,18 @@ const combineReducers = slices => (prevState, action) =>
 export const AppContext = React.createContext(null);
 export const AppProvider = ({ children }) => {
   const [state, dispatch]: [GlobalAppState, React.Dispatch<any>] = useReducer(
-    /* combineReducers({
+    combineReducers({
       analysisAreas: logger(analysisAreaReducer),
       appState: logger(applicationReducer),
       locations: logger(locationReducer),
       modals: logger(modalsReducer),
-    }), */
-    combineReducers({
+    }),
+    /* combineReducers({
       analysisAreas: analysisAreaReducer,
       appState: applicationReducer,
       locations: locationReducer,
       modals: modalsReducer,
-    }),
+    }), */
     {
       analysisAreas: analysisAreasState,
       appState: applicationState,

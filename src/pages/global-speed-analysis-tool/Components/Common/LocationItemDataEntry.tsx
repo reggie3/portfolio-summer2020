@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Grid, TextField, InputAdornment } from "@material-ui/core";
-import { GsatLocation } from "../../models";
+import { Grid, TextField, InputAdornment, MenuItem } from "@material-ui/core";
+import { GsatLocation, MarkerTypes } from "../../models";
 import styled from "styled-components";
 
 export enum ValueTypes {
@@ -12,6 +12,8 @@ export enum ValueTypes {
 
 interface LocationItemDataEntryProps {
   location: GsatLocation;
+  markerTypeValue: MarkerTypes;
+  onChangeMarkerType: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeValue: (
     key: string,
     event: React.ChangeEvent<HTMLInputElement>
@@ -20,10 +22,23 @@ interface LocationItemDataEntryProps {
 
 const LocationItemDataEntry: React.FunctionComponent<LocationItemDataEntryProps> = ({
   location,
+  markerTypeValue,
+  onChangeMarkerType,
   onChangeValue,
 }) => {
   return (
     <LocationDetailsContainer>
+      <TextField
+        label="Type"
+        id="markerTypeSelect"
+        value={markerTypeValue}
+        onChange={onChangeMarkerType}
+        select
+      >
+        <MenuItem value={MarkerTypes.FRIENDLY}>Friendly</MenuItem>
+        <MenuItem value={MarkerTypes.ENEMY}>Enemy</MenuItem>
+        <MenuItem value={MarkerTypes.NEUTRAL}>Neutral</MenuItem>
+      </TextField>
       <Grid container justify="space-between">
         <Grid item>
           <TextField

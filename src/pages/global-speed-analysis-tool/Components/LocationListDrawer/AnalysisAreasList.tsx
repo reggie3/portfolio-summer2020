@@ -1,13 +1,9 @@
 import * as React from "react";
-import {
-  GlobalAppState,
-  AppContext,
-  ActionTypes,
-  DispatchActions,
-} from "../../Context";
-import { Theme, makeStyles, createStyles, Typography } from "@material-ui/core";
+import { DispatchActions } from "../../Context";
+import { Theme, makeStyles, createStyles } from "@material-ui/core";
 import { AnalysisArea, AnalysisResult } from "../../models";
-import AnalysiAreaListItem from "./AnalysisAreaListItem";
+import AnalysisAreaListItem from "./AnalysisAreaListItem";
+import { infoTextHeader } from "../../styles/styles";
 
 export interface AnalysisAreaListListProps {
   analysisAreas: AnalysisArea[];
@@ -40,17 +36,13 @@ const AnalysisAreaList: React.SFC<AnalysisAreaListListProps> = ({
   const classes = useStyles();
 
   if (!analysisAreas.length) {
-    return (
-      <Typography className={classes.heading}>
-        No Analysis Areas Defined{" "}
-      </Typography>
-    );
+    return <p style={infoTextHeader}>No Analysis Areas Defined</p>;
   }
 
   return (
     <div className={classes.root}>
       {analysisAreas.map(analysisArea => (
-        <AnalysiAreaListItem
+        <AnalysisAreaListItem
           key={analysisArea.id}
           analysisArea={analysisArea}
           analysisResults={analysisResults}

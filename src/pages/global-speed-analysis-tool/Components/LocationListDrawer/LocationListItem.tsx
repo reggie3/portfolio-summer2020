@@ -22,18 +22,31 @@ export interface LocationListItemProps {
 export class LocationListItem extends React.Component<LocationListItemProps> {
   onChangeValue = (
     valueType: string,
-    event: React.ChangeEvent<HTMLInputElement>,
-    dispatch: React.Dispatch<DispatchActions>,
-    location: GsatLocation
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const value = parseInt(event.target.value, 10);
 
-    dispatch({
+    this.props.dispatch({
       type: ActionTypes.UPDATE_LOCATION,
       payload: {
         location: {
-          id: location.id,
+          id: this.props.location.id,
           [valueType]: isNumber(value) ? value : 0,
+        },
+      },
+    });
+  };
+
+  onChangeMarkerType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.props.dispatch({
+      type: ActionTypes.UPDATE_LOCATION,
+      payload: {
+        location: {
+          ...this.props.location,
+          icon: {
+            ...this.props.location.icon,
+            type: MarkerTypes[event.target.value],
+          },
         },
       },
     });
@@ -43,13 +56,10 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
     return (
       <LocationItemDataEntry
         location={this.props.location}
+        onChangeMarkerType={this.onChangeMarkerType}
+        markerTypeValue={this.props.location.icon.type}
         onChangeValue={(key, event) => {
-          this.onChangeValue(
-            key,
-            event,
-            this.props.dispatch,
-            this.props.location
-          );
+          this.onChangeValue(key, event);
         }}
       />
     );
@@ -172,7 +182,7 @@ const styles = {
   },
   enemyMarker: { ...basicMarker, backgroundColor: "red" },
   friendlyMarker: { ...basicMarker, backgroundColor: "blue" },
-  neutralMarker: { ...basicMarker, backgroundColor: "yellow" },
+  neutralMarker: { ...basicMarker, backgroundColor: "green" },
   formBodyContainer: {
     display: "flex",
     flexDirection: "column",

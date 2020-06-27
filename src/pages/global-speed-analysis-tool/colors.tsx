@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 export const AppColors = {
   AnalysisAreaMarker: "white",
-  friendlyLocation: "blue",
+  friendlyLocation: "orange",
   enemyLocation: "red",
   neutralLocation: "green",
 };

@@ -36,3 +36,17 @@ export const modalStyle = {
   minWidth: "400px",
   maxWidth: "600px",
 };
+
+export const infoText = {
+  color: "darkblue",
+};
+export const infoTextHeader = {
+  ...infoText,
+  fontSize: "1.2rem",
+};
+
+export const infoTextSmall = {
+  ...infoText,
+  fontSize: ".8rem",
+  fontWeight: "bold",
+};

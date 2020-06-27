@@ -1,24 +1,10 @@
 import * as React from "react";
-import {
-  GlobalAppState,
-  AppContext,
-  ActionTypes,
-  DispatchActions,
-} from "../../Context";
-import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-  Theme,
-  makeStyles,
-  createStyles,
-  Typography,
-} from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { GsatLocation, Modals } from "../../models";
-import { HideOrDisplayToggle } from "../Common/HideOrDisplayToggle";
-import { MapItemControl } from "../Common/MapItemControl";
+import { DispatchActions } from "../../Context";
+import { Theme, makeStyles, createStyles } from "@material-ui/core";
+import { GsatLocation } from "../../models";
+
 import { LocationListItem } from "./LocationListItem";
+import { infoTextHeader } from "../../styles/styles";
 
 export interface LocationListProps {
   dispatch: React.Dispatch<DispatchActions>;
@@ -50,9 +36,7 @@ const LocationList: React.SFC<LocationListProps> = ({
   const classes = useStyles();
 
   if (!locations.length) {
-    return (
-      <Typography className={classes.heading}>No Locations Defined </Typography>
-    );
+    return <p style={infoTextHeader}>No Locations Defined </p>;
   }
 
   return (

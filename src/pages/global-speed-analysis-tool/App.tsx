@@ -87,7 +87,7 @@ const App = () => {
     });
   };
 
-  // console.log(state);
+  console.log(state);
   return (
     <>
       <div

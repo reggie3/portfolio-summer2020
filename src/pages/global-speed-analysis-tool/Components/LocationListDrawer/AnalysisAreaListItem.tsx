@@ -12,12 +12,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RunResultsTable from "../RunResultsTable/RunResultsTable";
 
-interface AnalysiAreaListItemProps {
+interface AnalysisAreaListItemProps {
   analysisArea: AnalysisArea;
   analysisResults: AnalysisResult[];
 }
 
-const AnalysiAreaListItem: React.FunctionComponent<AnalysiAreaListItemProps> = ({
+const AnalysisAreaListItem: React.FunctionComponent<AnalysisAreaListItemProps> = ({
   analysisArea,
   analysisResults,
 }) => {
@@ -44,7 +44,7 @@ const AnalysiAreaListItem: React.FunctionComponent<AnalysiAreaListItemProps> = (
   );
 };
 
-export default AnalysiAreaListItem;
+export default AnalysisAreaListItem;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

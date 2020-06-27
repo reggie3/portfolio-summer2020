@@ -89,7 +89,7 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             }
             value={locationModal.params.location?.name ?? ""}
           />
-          <TextField
+          {/*  <TextField
             label="Type"
             id="markerTypeSelect"
             value={icon.type}
@@ -99,10 +99,12 @@ const Body = ({ locationModal }: { locationModal: ModalInfo }) => {
             <MenuItem value={MarkerTypes.FRIENDLY}>Friendly</MenuItem>
             <MenuItem value={MarkerTypes.ENEMY}>Enemy</MenuItem>
             <MenuItem value={MarkerTypes.NEUTRAL}>Neutral</MenuItem>
-          </TextField>
+          </TextField> */}
         </div>
         <LocationItemDataEntry
           location={locationModal.params.location}
+          onChangeMarkerType={onChangeMarkerType}
+          markerTypeValue={icon.type}
           onChangeValue={onChangeValue}
         />
       </div>

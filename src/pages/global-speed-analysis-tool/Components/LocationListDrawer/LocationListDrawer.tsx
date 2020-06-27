@@ -70,7 +70,7 @@ const DrawerComponentRoot = styled(motion.div)`
   display: flex;
   flex-direction: column;
   z-index: 1200;
-  width: 33%;
+  width: 40%;
   min-width: 300px;
   position: absolute;
   top: 0px;
