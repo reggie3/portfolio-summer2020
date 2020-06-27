@@ -18,6 +18,7 @@ interface LocationItemDataEntryProps {
     key: string,
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
+  showMarkerTypeSelect?: boolean;
 }
 
 const LocationItemDataEntry: React.FunctionComponent<LocationItemDataEntryProps> = ({
@@ -25,20 +26,23 @@ const LocationItemDataEntry: React.FunctionComponent<LocationItemDataEntryProps>
   markerTypeValue,
   onChangeMarkerType,
   onChangeValue,
+  showMarkerTypeSelect = true,
 }) => {
   return (
     <LocationDetailsContainer>
-      <TextField
-        label="Type"
-        id="markerTypeSelect"
-        value={markerTypeValue}
-        onChange={onChangeMarkerType}
-        select
-      >
-        <MenuItem value={MarkerTypes.FRIENDLY}>Friendly</MenuItem>
-        <MenuItem value={MarkerTypes.ENEMY}>Enemy</MenuItem>
-        <MenuItem value={MarkerTypes.NEUTRAL}>Neutral</MenuItem>
-      </TextField>
+      {showMarkerTypeSelect && (
+        <TextField
+          label="Type"
+          id="markerTypeSelect"
+          value={markerTypeValue}
+          onChange={onChangeMarkerType}
+          select
+        >
+          <MenuItem value={MarkerTypes.FRIENDLY}>Friendly</MenuItem>
+          <MenuItem value={MarkerTypes.ENEMY}>Enemy</MenuItem>
+          <MenuItem value={MarkerTypes.NEUTRAL}>Neutral</MenuItem>
+        </TextField>
+      )}
       <Grid container justify="space-between">
         <Grid item>
           <TextField

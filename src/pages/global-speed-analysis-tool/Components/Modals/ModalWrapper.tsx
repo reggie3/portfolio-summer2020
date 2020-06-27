@@ -41,16 +41,15 @@ const ModalWrapper = ({
   const [safeModalStyle, setSafeModalStyle] = useState(modalStyle);
 
   useEffect(() => {
-    console.log("appState.dimensions", appState.dimensions);
+    /*  console.log("appState.dimensions", appState.dimensions);
     console.log("modalDimensions", modalDimensions);
-    console.log("position", position);
+    console.log("position", position); */
     const { dimensions } = appState;
 
     if (position) {
       let leftPos = position[0];
       let topPos = position[1];
       if (position[0] + modalDimensions.width > dimensions[0]) {
-        console.log("off the right of the screen");
         const xExcess = position[0] + modalDimensions.width - dimensions[0];
         leftPos = leftPos - xExcess - 10;
       }
@@ -58,10 +57,8 @@ const ModalWrapper = ({
         // if the modal is going to go off the edge of the screen, then
         // make it appear further up on the screen than the click point
         topPos = topPos - modalDimensions.height - 10;
-        console.log({ topPos });
       }
       if (topPos < 0) {
-        console.log(" too tall");
         topPos = 5;
       }
 

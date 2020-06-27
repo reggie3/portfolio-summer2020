@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { GlobeClickStates } from '../../models';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { makeStyles } from '@material-ui/core';
-import { globalColors } from '../../styles/styles';
+import * as React from "react";
+import { GlobeClickStates } from "../../models";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { makeStyles } from "@material-ui/core";
+import { globalColors } from "../../styles/styles";
 
 interface ClickStateContolsProps {
   globeClickState: GlobeClickStates;
@@ -16,7 +16,7 @@ interface ClickStateContolsProps {
 
 const useStyles = makeStyles({
   toggleButton: {
-    width: '3rem',
+    width: "3rem",
   },
 });
 
@@ -47,7 +47,7 @@ const ClickStateContols: React.SFC<ClickStateContolsProps> = ({
         className={classes.toggleButton}
       >
         <FontAwesomeIcon
-          icon={'times-circle'}
+          icon={"times-circle"}
           size="2x"
           color={getIconColor(GlobeClickStates.NONE, globeClickState)}
         />
@@ -58,7 +58,7 @@ const ClickStateContols: React.SFC<ClickStateContolsProps> = ({
         className={classes.toggleButton}
       >
         <FontAwesomeIcon
-          icon={'map-marker-alt'}
+          icon={"map-marker-alt"}
           size="2x"
           color={getIconColor(GlobeClickStates.PLACE_MARKER, globeClickState)}
         />
@@ -69,7 +69,7 @@ const ClickStateContols: React.SFC<ClickStateContolsProps> = ({
         className={classes.toggleButton}
       >
         <FontAwesomeIcon
-          icon={'draw-polygon'}
+          icon={"draw-polygon"}
           size="2x"
           color={getIconColor(
             GlobeClickStates.PLACE_POLYGON_POINT,

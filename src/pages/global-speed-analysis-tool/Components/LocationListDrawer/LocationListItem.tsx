@@ -60,6 +60,7 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
         onChangeValue={(key, event) => {
           this.onChangeValue(key, event);
         }}
+        showMarkerTypeSelect={false}
       />
     );
   };

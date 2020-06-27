@@ -60,6 +60,7 @@ const TitleContainer = styled(motion.div)`
     align-items: center;
     border-radius: 5px;
     padding: 0 1rem;
+    box-shadow: var(--clr-bg-very-light) 0px 4px 5px 1px;
   }
 `;
 
