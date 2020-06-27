@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Fab, makeStyles, Theme, createStyles } from '@material-ui/core';
-import { HideOrDisplayToggle } from './HideOrDisplayToggle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as React from "react";
+import { Fab, makeStyles, Theme, createStyles } from "@material-ui/core";
+import { HideOrDisplayToggle } from "./HideOrDisplayToggle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface MapItemControlProps {
   isItemVisible: boolean;
@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     mapMarkerControlContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      width: '100%',
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      width: "100%",
     },
   })
 );
@@ -37,14 +37,6 @@ export function MapItemControl({
 
   return (
     <div className={classes.mapMarkerControlContainer}>
-      <Fab
-        color="primary"
-        size="small"
-        onClick={onEditItem}
-        className={classes.margin}
-      >
-        <FontAwesomeIcon icon={'edit'} size="lg" />
-      </Fab>
       <HideOrDisplayToggle
         className={classes.margin}
         isVisible={isItemVisible}
@@ -56,7 +48,7 @@ export function MapItemControl({
         onClick={onDeleteItem}
         className={classes.margin}
       >
-        <FontAwesomeIcon icon={'trash'} size="lg" />
+        <FontAwesomeIcon icon={"trash"} size="lg" />
       </Fab>
     </div>
   );
