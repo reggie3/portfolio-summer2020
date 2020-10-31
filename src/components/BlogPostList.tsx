@@ -76,8 +76,8 @@ const BlogPostList = () => {
     setSelectedTags([...allTags]);
   };
 
-  const shouldShowPost = (postTags: string[]) => {
-    return !!selectedTags.some(tag => postTags.includes(tag));
+  const shouldShowPost = (postTags: string[], isDraft) => {
+    return !!selectedTags.some(tag => postTags.includes(tag)) && !isDraft;
   };
 
   return (
@@ -90,42 +90,41 @@ const BlogPostList = () => {
       />
       <PostIndexContainer>
         {posts.map(({ node: post }) => {
-          console.log(post.frontmatter.title, post.frontmatter.draft);
-          if (!post.frontmatter.draft) {
-            return (
-              <BlogCard
-                key={`${post.id}-${Date.now().toString()}`}
-                isShown={shouldShowPost(post.frontmatter.tags)}
-              >
-                {post.frontmatter.featuredImage?.childImageSharp?.fluid && (
-                  <Img
-                    key={Date.now().toString()}
-                    className="blogCardImage"
-                    fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
-                  />
-                )}
-
-                <div className={"blogCardContent"}>
-                  <div className="blogCardLinkContainer">
-                    <Link to={post.fields.slug} className="fancyLink">
-                      {post.frontmatter.title}
-                    </Link>
-                  </div>
-                  <BlogCardPostDescription whileHover={{ color: clr_accent }}>
-                    <Link to={post.fields.slug}>
-                      <p>{post.frontmatter.description}</p>
-                    </Link>
-                  </BlogCardPostDescription>
-                </div>
-                <PostTags
-                  tags={post.frontmatter.tags}
-                  selectedTags={selectedTags}
-                  onTagClicked={onTagClicked}
+          return (
+            <BlogCard
+              key={`${post.id}-${Date.now().toString()}`}
+              isShown={shouldShowPost(
+                post.frontmatter.tags,
+                post.frontmatter.draft
+              )}
+            >
+              {post.frontmatter.featuredImage?.childImageSharp?.fluid && (
+                <Img
+                  key={Date.now().toString()}
+                  className="blogCardImage"
+                  fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
                 />
-              </BlogCard>
-            );
-          }
-          return null;
+              )}
+
+              <div className={"blogCardContent"}>
+                <div className="blogCardLinkContainer">
+                  <Link to={post.fields.slug} className="fancyLink">
+                    {post.frontmatter.title}
+                  </Link>
+                </div>
+                <BlogCardPostDescription whileHover={{ color: clr_accent }}>
+                  <Link to={post.fields.slug}>
+                    <p>{post.frontmatter.description}</p>
+                  </Link>
+                </BlogCardPostDescription>
+              </div>
+              <PostTags
+                tags={post.frontmatter.tags}
+                selectedTags={selectedTags}
+                onTagClicked={onTagClicked}
+              />
+            </BlogCard>
+          );
         })}
       </PostIndexContainer>
     </div>

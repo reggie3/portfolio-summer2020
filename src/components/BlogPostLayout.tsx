@@ -11,7 +11,24 @@ import styled from "styled-components";
 import TagCloud from "./TagCloud";
 import ReturnHomeButton from "./ReturnHomeButton";
 import { bg_dark } from "../styles/siteGlobals";
+import { preToCodeBlock } from "mdx-utils";
+import "./language-tabs.css";
+import Code from "./Code";
+
 const shortcodes = { Link, Img }; // Provide common components here
+
+const components = {
+  pre: preProps => {
+    const props = preToCodeBlock(preProps);
+    // if there's a codeString and some props, we passed the test
+    if (props) {
+      return <Code {...props} />;
+    } else {
+      // it's possible to have a pre without a code in it
+      return <pre {...preProps} />;
+    }
+  },
+};
 
 export default function PageTemplate({ data: { mdx } }) {
   const onScrollToTopClicked = () => {
@@ -42,7 +59,7 @@ export default function PageTemplate({ data: { mdx } }) {
         </div>
       </div>
       <BlogPostContent>
-        <MDXProvider components={shortcodes}>
+        <MDXProvider components={{ ...shortcodes, ...components }}>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </MDXProvider>
       </BlogPostContent>

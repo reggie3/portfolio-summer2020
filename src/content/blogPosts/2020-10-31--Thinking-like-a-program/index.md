@@ -1,5 +1,5 @@
 ---
-title: Thinking Like a Program
+title: "For Newbies: How to Think Like a Program"
 date: "2020-10-31T13:00:00.121Z"
 layout: post
 draft: false
@@ -9,8 +9,10 @@ tags:
   - "Programming"
   - "Newbie"
 description: "To write a program, it helps to think like one.  This article introduces code newbies to that concept and some techniques to do so."
-featuredImage: "featureImage.png"
+featuredImage: "Picture1.png"
 ---
+
+![Google search results for how to think like a programmer](./Picture1.png)
 
 There are numerous of articles available on how to think like a programmer. A quick Google search of “how to think like a programmer” yields more than 95 million results:
 ![Google search results for how to think like a programmer](./thinkLikeAProgrammer.png)
@@ -39,7 +41,7 @@ All computers are good at four basic things:
 3. Consistently performing repetitive task: loops
 4. Conditional logic: if this thing happens, then do this other thing; else do something else
 
-   Note, this is not a comprehensive list of everything computers are good at, but it will do.
+   Note: this is not a comprehensive list of everything computers are good at, but it will do.
 
 A program arranges the execution of these four skills in a way to accomplish a given task. Figuring out the correct arrangement requires thinking like a program.
 
@@ -79,17 +81,24 @@ Computer Skill 4: Conditional logic: Is there any logic involved here?
 
 > - We keep digging until the hole is 10 feet deep, and we stop digging once it is.
 
-### Writing the Code
+As you can see, the example of digging a hole requires the use of all four computer skills. As humans, we internalize each of the skills. However, programmers write programs to explicitly do the steps required for the task.
+
+#### Let's turn that into code
 
 Given a little bit of prior coding knowledge we can connect what we just created to some common programming constructs such as variables, loops, and conditionals to create some code:
 
-```javascript
-var currentDepth = 0; // how deep are we now in feet
+```js
+// Skill 1, memorize some stuff
+var currentDepth = 0; // keep track of how deep are we now in feet as we dig
 var desiredDepth = 10; // how deep do we want to get in feet
 
-// create a loop that will keep going until we reach the desired depth
+// Skill 3 and Skill 4: create a loop that will keep going until we reach the desired depth
 while (currentDepth < desiredDepth) {
-  // dig some amount for example 1 foot
-  currentDepth += 1;
+  // dig some amount for example 1 foot and each time we dig, add 1 foot the tracked depth
+  currentDepth == currentDepth + 1; // Skill 2: count the depth
 }
 ```
+
+### Conclusion
+
+We have all heard something along the lines of "Computers only do what they are told". Programmers are the ones that tell the computer what to do, and they do this through programs.

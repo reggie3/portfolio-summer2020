@@ -5,6 +5,7 @@ module.exports = {
     author: `Reginald Johnson`,
   },
   plugins: [
+    "gatsby-plugin-mdx-prismjs",
     {
       resolve: "gatsby-plugin-workerize-loader",
       options: {
@@ -42,12 +43,6 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 960,
-            },
-          },
-          {
-            resolve: "gatsby-remark-prismjs",
-            options: {
-              showLineNumbers: true,
             },
           },
           "gatsby-remark-copy-linked-files",
