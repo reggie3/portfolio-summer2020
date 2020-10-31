@@ -1,5 +1,5 @@
 ---
-title: "For Newbies: How to Think Like a Program"
+title: "For Newbies: How to Think Like a Program in Order to Create Algorithms"
 date: "2020-10-31T13:00:00.121Z"
 layout: post
 draft: false
@@ -14,25 +14,27 @@ featuredImage: "Picture1.png"
 
 ![Google search results for how to think like a programmer](./Picture1.png)
 
-There are numerous of articles available on how to think like a programmer. A quick Google search of “how to think like a programmer” yields more than 95 million results:
+### Background
+
+There are numerous articles available on how to think like a programmer. A quick Google search of “how to think like a programmer” yields more than 95 million results:
 ![Google search results for how to think like a programmer](./thinkLikeAProgrammer.png)
 
-However, when I’m developing code that is meant to solve a problem, or just plain do something; I try to think the way the code would think when accomplishing the problem. While a search for “how to think like a program” yields even more results, those results are actually focused on “how to think like a programmer” which does not quick mean the same thing as “how to think like a program”
+However, when I’m developing code that is meant to solve a problem, or just plain do something; I try to think the way the code would think when accomplishing the problem. While a search for “how to think like a program” yields even more results, those results are actually focused on “how to think like a programmer” which does not quite mean the same thing as “how to think like a program”
 ![Google search results for how to think like a program](./thinkLikeAProgram.png)
 
-This article is my attempt to throw a pebble into that hole as a starting point to filling it. It will explain why you might want to think like a program, and how you can do it. This article won’t discuss design patterns, or any advanced programming concepts, and it will not teach you how to code. The primary audience is people who are beginning to learn how to code, commonly referred to as “Code Newbies” and are aware of concepts like variables, for loops, and if statements.
+This article is my attempt to throw a pebble into that hole as a starting point to filling it. It will explain why you might want to think like a program, how to do it, and how it results in creating an algorithm. This article won’t discuss design patterns, or any advanced programming concepts, and it will not teach you how to code. The primary audience is people who are beginning to learn how to code, commonly referred to as “Code Newbies” and are aware of concepts like variables, for loops, and if statements.
 
 ### Why Think Like a Program?
 
 When a person is given a task, they usually must think of a way to accomplish it or they already know how to do it based off intuition, education, experience, etc. For example, a person told to dig a 10-foot-deep hole knows they will need a shovel and some way to measure the depth of the hole. They also know they have a lot of work to do. Humans already understand the concepts of tools, dirt, digging, etc. In summary, when given a task, humans think like humans.
 
-Computers are not so fortunate. They just aren’t as smart as people are (yet). Not only do they not have a way to manipulate a shovel, but they also don’t even know what one is. Computers just don’t “think” the same way people do. They don’t have intuition, education, experience, etc. (usually, this article isn’t talking about Artificial Intelligence or Machine Learning).
+Computers are not so fortunate. They just aren’t as smart as people are (yet). Not only do they not have a way to manipulate a shovel, but they also don’t even know what one is. Computers just don’t “think” the same way people do. They don’t have intuition, education, experience, etc. (usually they don't; this article isn’t talking about Artificial Intelligence or Machine Learning).
 
 What computers do possess are a set of skills they are particularly good at, and a tireless ability to perform those skill the same way each time. As a programmer you connect those skills in a way that accomplishes a desired task.
 
-In summary, thinking like a program involves identifying applicable computer skills and arranging them in a way that accomplishes the desired task.
+In summary, thinking like a program involves identifying applicable computer skills and arranging them in a way that accomplishes the desired task. An algorithm is created when these skills are identified and arranged in order to accomplish a task.
 
-### The Four Computer Skills
+#### The Four Computer Skills
 
 All computers are good at four basic things:
 
@@ -41,11 +43,11 @@ All computers are good at four basic things:
 3. Consistently performing repetitive task: loops
 4. Conditional logic: if this thing happens, then do this other thing; else do something else
 
-   Note: this is not a comprehensive list of everything computers are good at, but it will do.
+   Note: this is not a comprehensive list of everything computers are good at.
 
-A program arranges the execution of these four skills in a way to accomplish a given task. Figuring out the correct arrangement requires thinking like a program.
+A program is the arrangement of the execution of these four skills in a way to accomplish a given task. Figuring out the correct arrangement requires thinking like a program.
 
-### Example
+#### Example
 
 To see this in action, let’s talk about digging that 10-foot hole I wrote about earlier:
 
@@ -81,9 +83,9 @@ Computer Skill 4: Conditional logic: Is there any logic involved here?
 
 > - We keep digging until the hole is 10 feet deep, and we stop digging once it is.
 
-As you can see, the example of digging a hole requires the use of all four computer skills. As humans, we internalize each of the skills. However, programmers write programs to explicitly do the steps required for the task.
+As you can see, the example of digging a hole requires the use of all four computer skills. As humans, we internalize each of the skills. However, programmers write programs to explicitly do the steps required for the task. This explicit identification and arrangement results in an algorithm.
 
-#### Let's turn that into code
+#### Let's Turn That Into Code
 
 Given a little bit of prior coding knowledge we can connect what we just created to some common programming constructs such as variables, loops, and conditionals to create some code:
 
@@ -99,6 +101,6 @@ while (currentDepth < desiredDepth) {
 }
 ```
 
-### Conclusion
+#### Conclusion
 
-We have all heard something along the lines of "Computers only do what they are told". Programmers are the ones that tell the computer what to do, and they do this through programs.
+We have all heard something along the lines of "Computers only do what they are told.". Programmers make computers do tasks by writing programs, and by telling the program "what to do" we make the computer "do the thing". In the computer world and in the real world; communication is made easier and more effective if you can think like the recipient of your message. In this case thinking like a program helps us achieve our final goal of making the computer do what we want it to do.
