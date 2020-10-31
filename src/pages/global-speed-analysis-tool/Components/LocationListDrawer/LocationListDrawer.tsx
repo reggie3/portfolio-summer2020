@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@material-ui/core";
-import { GlobalAppState, AppContext, DispatchActions } from "../../Context";
+import { GlobalAppState, AppContext, DispatchActions } from "../Context";
 import LocationList from "./LocationList";
 import AnalysisAreaList from "./AnalysisAreasList";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";

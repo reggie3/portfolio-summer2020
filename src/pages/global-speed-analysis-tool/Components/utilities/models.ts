@@ -2,7 +2,7 @@ import { Vector3 } from "three";
 import {
   AnalyisAreaStats,
   FaceStats,
-} from "./webWorkers/performCalculations.worker";
+} from "../../webWorkers/performCalculations.worker";
 
 export enum Constants {
   TEMP = "TEMP",

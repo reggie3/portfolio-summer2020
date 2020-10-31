@@ -10,7 +10,7 @@ import {
   AnalysisResult,
   WorkerProgressMessage,
 } from "../../models";
-import { ActionTypes, ApplicationState, DispatchActions } from "../../Context";
+import { ActionTypes, ApplicationState, DispatchActions } from "../Context";
 import ClickStateControls from "./ClickStateControls";
 import performCalculationsWorker from "../../webWorkers/performCalculationsWorker";
 import BootstrapInput from "../Common/BootstrapInput";
@@ -18,7 +18,7 @@ import {
   WorkerAnalysisArea,
   WorkerLocation,
 } from "../../webWorkers/performCalculations.worker";
-import { colorizeAnalysisAreas } from "../../colorizeAnalysisAreas";
+import { colorizeAnalysisAreas } from "../utilities/colorizeAnalysisAreas";
 import styled from "styled-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 export interface ControlsMenuProps {

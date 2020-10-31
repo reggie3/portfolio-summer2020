@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GeometryTypes, AnalysisArea } from "../models";
 import { Vector3 } from "three";
-import { AppColors } from "../colors";
+import { AppColors } from "./utilities/colors";
 
 const MARKER_SIZE = 0.01;
 

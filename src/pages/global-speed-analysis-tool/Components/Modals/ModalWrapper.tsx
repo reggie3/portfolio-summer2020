@@ -4,7 +4,7 @@ import { modalStyle } from "../../styles/styles";
 import { Point } from "../../models";
 import useDimensions from "react-use-dimensions";
 import { useEffect, useState } from "react";
-import { AppContext } from "../../Context";
+import { AppContext } from "../Context";
 import HorizontalRule from "../Common/HorizontalRule";
 
 export interface ModalContainerProps {

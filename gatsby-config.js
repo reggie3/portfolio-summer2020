@@ -18,6 +18,22 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-remark-images`,
     {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `${__dirname}/src/pages`,
+        ignore: [
+          `**/styles.js`,
+          `**/styles.tsx`,
+          `**.ts`,
+          `**.tsx`,
+          `**.js`,
+          `webWorkers/`,
+        ],
+        // See pattern syntax recognized by micromatch
+        // https://www.npmjs.com/package/micromatch#matching-features
+      },
+    },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],

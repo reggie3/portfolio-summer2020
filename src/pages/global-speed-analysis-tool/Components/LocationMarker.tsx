@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GeometryTypes, MarkerTypes, GsatLocation } from "../models";
-import { AppColors } from "../colors";
+import { AppColors } from "./utilities/colors";
 import { useState, useEffect } from "react";
 import * as THREE from "three";
 import { HTML, Sphere } from "drei";

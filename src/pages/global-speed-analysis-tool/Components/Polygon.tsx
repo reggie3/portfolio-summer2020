@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { Vector3 } from "three";
 import { TessellateModifier } from "three/examples/jsm/modifiers/TessellateModifier.js";
-import { DispatchActions, ActionTypes } from "../Context";
-import { getGeometryCentroid } from "../utilities";
+import { DispatchActions, ActionTypes } from "./Context";
+import { getGeometryCentroid } from "./utilities/utilities";
 
 const SURFACE_DISPLACEMENT = 1.0005;
 

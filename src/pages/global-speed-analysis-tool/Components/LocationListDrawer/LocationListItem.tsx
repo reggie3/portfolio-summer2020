@@ -7,9 +7,9 @@ import {
   ExpansionPanelDetails,
 } from "@material-ui/core";
 import { MapItemControl } from "../Common/MapItemControl";
-import { ActionTypes, DispatchActions } from "../../Context";
+import { ActionTypes, DispatchActions } from "../Context";
 import { ReactElement } from "react";
-import { detailColor } from "../../colors";
+import { detailColor } from "../utilities/colors";
 import LocationItemDataEntry from "../Common/LocationItemDataEntry";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 export interface LocationListItemProps {
@@ -91,7 +91,7 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
 
   onToggleVisibility = () => {
     this.props.dispatch({
-      type: ActionTypes.TOGGLE_LOCATION_VISIBILTY,
+      type: ActionTypes.TOGGLE_LOCATION_VISIBILITY,
       payload: {
         location: this.props.location,
       },

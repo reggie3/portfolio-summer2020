@@ -1,16 +1,16 @@
-import { AnalysisArea, AnalysisResult } from './models';
-import * as THREE from 'three';
-import { getFaceId } from './utilities';
+import { AnalysisArea, AnalysisResult } from "../../models";
+import * as THREE from "three";
+import { getFaceId } from "./utilities";
 
 export const colorizeAnalysisAreas = (
   analysisAreas: AnalysisArea[],
   analysisAreaResults: AnalysisResult[]
 ) => {
-  analysisAreas.forEach((analysisArea) => {
+  analysisAreas.forEach(analysisArea => {
     const geometry = analysisArea.polygonMesh.geometry as THREE.Geometry;
 
     const { faceStatsMap } = analysisAreaResults.find(
-      (analysisAreaResult) => analysisAreaResult.id === analysisArea.id
+      analysisAreaResult => analysisAreaResult.id === analysisArea.id
     );
 
     geometry.faces.forEach((face: THREE.Face3) => {

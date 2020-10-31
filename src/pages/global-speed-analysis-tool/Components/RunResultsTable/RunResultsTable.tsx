@@ -10,8 +10,8 @@ import {
   TableBody,
   makeStyles,
 } from "@material-ui/core";
-import { formatPercent } from "../../utilities";
-import { AppColors } from "../../colors";
+import { formatPercent } from "../utilities/utilities";
+import { AppColors } from "../utilities/colors";
 import { useState } from "react";
 
 interface RunResultsTableProps {

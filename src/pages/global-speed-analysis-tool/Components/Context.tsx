@@ -8,17 +8,16 @@ import {
   Constants,
   AnalysisResult,
   SamplePoint,
-} from "./models";
+} from "../models";
 import { v4 as uuidv4 } from "uuid";
 import React, { useReducer } from "react";
-import logger from "use-reducer-logger";
 import { Vector3 } from "three";
 
 export enum ActionTypes {
   ADD_LOCATION = "ADD_LOCATION",
   DELETE_LOCATION = "DELETE_LOCATION",
   UPDATE_LOCATION = "UPDATE_LOCATION",
-  TOGGLE_LOCATION_VISIBILTY = "TOGGLE_LOCATION_VISIBILTY",
+  TOGGLE_LOCATION_VISIBILITY = "TOGGLE_LOCATION_VISIBILITY",
   UPDATE_SCENARIO_INFORMATION = "UPDATE_SCENARIO_INFORMATION",
   OPEN_MODAL = "OPEN_MODAL",
   CLOSE_ALL_MODALS = "CLOSE_ALL_MODALS",
@@ -238,7 +237,7 @@ export const locationReducer = (
       return locationsState.filter((location: GsatLocation) => {
         return location !== action.payload.location;
       });
-    case ActionTypes.TOGGLE_LOCATION_VISIBILTY:
+    case ActionTypes.TOGGLE_LOCATION_VISIBILITY:
       return locationsState.map((location: GsatLocation) => {
         if (location.id !== action.payload.location.id) {
           return location;
@@ -330,7 +329,7 @@ const combineReducers = slices => (prevState, action) =>
 // Create the context so that the we can share the dispatch and state
 // across the components
 export const AppContext = React.createContext(null);
-export const AppProvider = ({ children }) => {
+const AppProvider = ({ children }) => {
   const [state, dispatch]: [GlobalAppState, React.Dispatch<any>] = useReducer(
     /* combineReducers({
       analysisAreas: logger(analysisAreaReducer),
@@ -358,6 +357,7 @@ export const AppProvider = ({ children }) => {
     </AppContext.Provider>
   );
 };
+export default AppProvider;
 
 export type DispatchActions =
   | AnalysisAreaAction

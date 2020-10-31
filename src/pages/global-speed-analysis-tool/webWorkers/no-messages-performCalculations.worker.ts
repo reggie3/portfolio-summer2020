@@ -8,7 +8,7 @@ import * as THREE from "three";
 import { OBJLoader2 } from "three/examples/jsm/loaders/OBJLoader2";
 // @ts-ignore
 import { Vector3, Object3D, Vector } from "three";
-import { getFaceId } from "../utilities";
+import { getFaceId } from "../Components/utilities/utilities";
 
 const EARTH_RADIUS = 6371;
 

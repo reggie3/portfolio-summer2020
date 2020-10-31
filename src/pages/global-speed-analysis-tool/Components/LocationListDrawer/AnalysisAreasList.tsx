@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DispatchActions } from "../../Context";
+import { DispatchActions } from "../Context";
 import { Theme, makeStyles, createStyles } from "@material-ui/core";
 import { AnalysisArea, AnalysisResult } from "../../models";
 import AnalysisAreaListItem from "./AnalysisAreaListItem";

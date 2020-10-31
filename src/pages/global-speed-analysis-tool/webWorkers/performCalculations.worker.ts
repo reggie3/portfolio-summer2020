@@ -9,7 +9,7 @@ import {
 import * as THREE from "three";
 // @ts-ignore can't find three
 import { Vector3, Vector } from "three";
-import { getFaceId } from "../utilities";
+import { getFaceId } from "../Components/utilities/utilities";
 // import { PWBWorker } from "promise-worker-bi";
 
 const EARTH_RADIUS = 6371;

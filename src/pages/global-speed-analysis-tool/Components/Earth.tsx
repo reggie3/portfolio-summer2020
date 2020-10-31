@@ -9,7 +9,7 @@ import {
   AnalysisArea,
   Modals,
 } from "../models";
-import { DispatchActions, ActionTypes } from "../Context";
+import { DispatchActions, ActionTypes } from "./Context";
 
 interface EarthProps {
   analysisAreas: AnalysisArea[];

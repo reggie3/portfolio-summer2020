@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ModalInfo, Modals, MarkerTypes, GsatLocation } from "../../models";
 import { makeStyles } from "@material-ui/core/styles";
-import { ActionTypes, AppContext, GlobalAppState } from "../../Context";
+import { ActionTypes, AppContext, GlobalAppState } from "../Context";
 import ModalWrapper from "./ModalWrapper";
 import { TextField } from "@material-ui/core";
 import { useContext } from "react";

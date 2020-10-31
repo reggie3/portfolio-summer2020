@@ -17,7 +17,7 @@ import {
   AppContext,
   GlobalAppState,
   DispatchActions,
-} from "./Context";
+} from "./Components/Context";
 import ModalsContainer from "./Components/Modals/ModalsContainer";
 import LocationListDrawer from "./Components/LocationListDrawer/LocationListDrawer";
 import { CssBaseline } from "@material-ui/core";
