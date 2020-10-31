@@ -28,7 +28,12 @@ module.exports = {
               maxWidth: 960,
             },
           },
-          "gatsby-remark-prismjs",
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              showLineNumbers: true,
+            },
+          },
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",
           `gatsby-remark-responsive-iframe`,
