@@ -42,12 +42,7 @@ export default BlogPostHeader;
 const BlogPostHeaderRootContainer = styled.div`
    {
     padding: 1rem;
-    background: linear-gradient(
-      180deg,
-      ${header_dark} 0%,
-      ${header_dark} 50%,
-      ${header_light} 100%
-    );
+    background: ${header_light};
   }
 `;
 

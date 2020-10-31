@@ -21,6 +21,7 @@ const BlogPostList = () => {
               title
               date
               tags
+              draft
               description
               featuredImage {
                 childImageSharp {
@@ -89,38 +90,42 @@ const BlogPostList = () => {
       />
       <PostIndexContainer>
         {posts.map(({ node: post }) => {
-          return (
-            <BlogCard
-              key={`${post.id}-${Date.now().toString()}`}
-              isShown={shouldShowPost(post.frontmatter.tags)}
-            >
-              {post.frontmatter.featuredImage?.childImageSharp?.fluid && (
-                <Img
-                  key={Date.now().toString()}
-                  className="blogCardImage"
-                  fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
-                />
-              )}
+          console.log(post.frontmatter.title, post.frontmatter.draft);
+          if (!post.frontmatter.draft) {
+            return (
+              <BlogCard
+                key={`${post.id}-${Date.now().toString()}`}
+                isShown={shouldShowPost(post.frontmatter.tags)}
+              >
+                {post.frontmatter.featuredImage?.childImageSharp?.fluid && (
+                  <Img
+                    key={Date.now().toString()}
+                    className="blogCardImage"
+                    fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
+                  />
+                )}
 
-              <div className={"blogCardContent"}>
-                <div className="blogCardLinkContainer">
-                  <Link to={post.fields.slug} className="fancyLink">
-                    {post.frontmatter.title}
-                  </Link>
+                <div className={"blogCardContent"}>
+                  <div className="blogCardLinkContainer">
+                    <Link to={post.fields.slug} className="fancyLink">
+                      {post.frontmatter.title}
+                    </Link>
+                  </div>
+                  <BlogCardPostDescription whileHover={{ color: clr_accent }}>
+                    <Link to={post.fields.slug}>
+                      <p>{post.frontmatter.description}</p>
+                    </Link>
+                  </BlogCardPostDescription>
                 </div>
-                <BlogCardPostDescription whileHover={{ color: clr_accent }}>
-                  <Link to={post.fields.slug}>
-                    <p>{post.frontmatter.description}</p>
-                  </Link>
-                </BlogCardPostDescription>
-              </div>
-              <PostTags
-                tags={post.frontmatter.tags}
-                selectedTags={selectedTags}
-                onTagClicked={onTagClicked}
-              />
-            </BlogCard>
-          );
+                <PostTags
+                  tags={post.frontmatter.tags}
+                  selectedTags={selectedTags}
+                  onTagClicked={onTagClicked}
+                />
+              </BlogCard>
+            );
+          }
+          return null;
         })}
       </PostIndexContainer>
     </div>
