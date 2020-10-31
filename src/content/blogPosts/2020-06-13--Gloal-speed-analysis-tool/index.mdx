@@ -1,48 +1,46 @@
 ---
 title: Three JS Data Visualization
-date: '2020-06-13T03:46:37.121Z'
+date: "2020-06-13T03:46:37.121Z"
 layout: post
 draft: false
-path: '/posts/global-speed-analysis-tool/'
-category: 'React'
+path: "/posts/global-speed-analysis-tool/"
+category: "React"
 tags:
-  - 'Programming'
-  - 'ThreeJS'
-  - 'React'
-  - 'Data Visualization'
-description: 'A React web application that uses Three JS and statistics to visualize a global time-disatnce problem related to sea control.'
-featuredImage: 'Picture1.png'
+  - "Programming"
+  - "ThreeJS"
+  - "React"
+  - "Data Visualization"
+description: "A React web application that uses Three JS and statistics to visualize a global time-distance problem related to sea control."
+featuredImage: "Picture1.png"
 ---
 
-import { Link as GatsbyLink } from "gatsby"
+import { Link as GatsbyLink } from "gatsby";
 
 <Pullquote>
-  Just show me the thing! <GatsbyLink to="/global-speed-analysis-tool/">
-     Speed Analysis Tool
-  </GatsbyLink>
+  Just show me the thing!{" "}
+  <GatsbyLink to="/global-speed-analysis-tool/">Speed Analysis Tool</GatsbyLink>
 </Pullquote>
 
 ### Background
+
 ![Image of completed analysis run](./Picture1.png)
 
 A long time ago I needed to find the answer to a problem that could be summarized as follows:
 
 > Given various starting locations for multiple competing entities, speed of travel for assets positioned at those starting locations, and a given area of interest, which portions of the area(s) of interest are reached first by which of the entities."
 
-This seemed like the perfect use case for a map-based data visualization that incorporated some statistics to model variations in asset speed.  Fortunately, I was taking classes on those subjects at the time.
-The code for the original data visualization is available in this Github repository: https://github.com/reggie3/Capstone-GetThereFirst 
+This seemed like the perfect use case for a map-based data visualization that incorporated some statistics to model variations in asset speed. Fortunately, I was taking classes on those subjects at the time.
+The code for the original data visualization is available in this Github repository: https://github.com/reggie3/Capstone-GetThereFirst
 
-The last commit to that repository was made over five years ago and uses the technologies available at that time.  A quick dive into that codebase reveals some jQuery, Bootstrap, and vanilla Three.js.
+The last commit to that repository was made over five years ago and uses the technologies available at that time. A quick dive into that codebase reveals some jQuery, Bootstrap, and vanilla Three.js.
 
-Fast forward a few years, and there are new tools available that justify updating the project.  In this updated version jQuery has been replaced with React, Bootstrap has given way to [Material-UI](https://material-ui.com/), and Three.js is augmented with [react-three-fiber](https://github.com/react-spring/react-three-fiber)
+Fast forward a few years, and there are new tools available that justify updating the project. In this updated version jQuery has been replaced with React, Bootstrap has given way to [Material-UI](https://material-ui.com/), and Three.js is augmented with [react-three-fiber](https://github.com/react-spring/react-three-fiber)
 
 ![Big picture view with an area of interest, a friendly base, and an enemy base](./Picture4.png)
 
-
 <Pullquote>
-  The updated visualization can be found here <GatsbyLink to="/global-speed-analysis-tool/">
-     Speed Analysis Tool
-  </GatsbyLink>
+  The updated visualization can be found here{" "}
+  <GatsbyLink to="/global-speed-analysis-tool/">Speed Analysis Tool</GatsbyLink>
 </Pullquote>
 
 A user can place a location marker and set several variables to be used in the process of calculating results.

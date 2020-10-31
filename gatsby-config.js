@@ -7,6 +7,9 @@ module.exports = {
   plugins: [
     {
       resolve: "gatsby-plugin-workerize-loader",
+      options: {
+        preloads: ["performCalculations"],
+      },
     },
     {
       resolve: `gatsby-plugin-styled-components`,

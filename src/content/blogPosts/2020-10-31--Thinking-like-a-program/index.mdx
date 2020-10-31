@@ -1,0 +1,56 @@
+---
+title: Thinking Like a Program
+date: "2020-10-31T13:00:00.121Z"
+layout: post
+draft: false
+path: "/posts/thinking-like-program/"
+category: "Programming"
+tags:
+  - "Programming"
+  - "Newbie"
+description: "To write a program, it helps to think like one.  This article introduces code newbies to that concept and some techniques to do so."
+featuredImage: "featureImage.png"
+---
+
+There are lots of articles available on how to think like a programmer. A quick Google search of “how to think like a programmer” yields more than 95 million results:
+
+However, when I’m developing code that is meant to solve a problem, or just plain do something; I try to think the way the code would think when accomplishing the problem. While a search for “how to think like a program” yields even more results, those results are actually focused on “how to think like a programmer” which does not quick mean the same thing as “how to think like a program”
+
+This article is my attempt to fill that hole. It will explain why you might want to think like a program, and how you can do it. This article won’t cover design patters, or any advanced programming concepts. The primary audience is people who are beginning to learn how to code, commonly referred to as “Code Newbies” and are aware of concepts like variables, for loops, and if statements.
+
+Why Think Like a Program?
+When a person is given a task, they usually must think of a way to accomplish it or they inherently know how to do it based off intuition, education, experience, etc. For example, a person told to dig a 10-foot-deep hole knows they will need a shovel and some way to measure the depth of the whole. Humans have built in concepts of tools, dirt, digging, etc. In summary, when given a task, humans think like humans.
+Computers are not so fortunate. They just aren’t as smart as people are (yet). Not only do they not have a way to manipulate a shovel, but they also don’t even know what one is. Computer just don’t “think” the same way people do. They don’t have intuition, education, experience, etc. (usually, this article isn’t talking about Artificial Intelligence or Machine Learning). What computers do have is a set of skills they are particularly good at, and a tireless perform to do those skill the same way each time. As a programmer you connect those skills in a way that accomplishes a desired task. On the other hand, thinking like a program lets you figure out how to connect those skills.
+Computers Skills
+In my mind, all computers are good at four basic things:
+
+1. Memorizing information: variables and their “contents”
+2. Basic math: counting, addition, subtraction, multiplication, division
+3. Consistently performing repetitive task: loops
+4. Conditional logic: if this thing happens, then do this other thing; else do something else
+   Note, this is not a comprehensive list of everything computers are good at, but it will do.  
+   A program arranges the execution of these four skills in a way to accomplish a given task. Figuring out the correct arrangement requires thinking like a program.
+
+Example
+To see this in action, let’s talk about digging that 10-foot hole I wrote about earlier. As a human, first I would obtain a tool to dig with; hopefully something powered. Then I would start digging. Initially, I would just dig as fast as possible to get the job done sooner. I would not even bother measuring the depth of the hole until I thought it was almost 10 feet deep. Once I judged that I was close to finish, I would start measuring the depth and dig based on the results of that measurement. Then, once I got to the desired depth, I would stop digging.
+Now, let us pretend we are a program, and our job is to dig a hole. As a program how do we do that?
+First, let’s start by making a list of what human me did to dig the hole.
+
+1. As a human, first I would obtain a tool to dig with; hopefully, something powered.
+2. Then I would start digging.
+3. Initially, I would just dig as fast as possible to get the job done sooner.
+4. I would not even bother measuring the depth of the hole until I thought it was almost 10 feet deep.
+5. Once I judged that I was close to finish, I would start measuring the depth and dig based on the results of that measurement.
+6. Then, once I got to the desired depth, I would stop digging
+   Then I try to think in terms of the four skills I identified above.
+   Computer Skill 1: Memorizing: What are some things we might want to memorize in order to accomplish this task?
+   • How deep the hole should be when we finish.
+   • How deep the hole is when we measure it while we are digging.
+   Computer Skill 2: Basic Math: Are we counting anything? What about adding, subtracting or other math?
+   • We are adding to the depth of the hole each time we shovel dirt from it.
+   Computer Skill 3: Consistently performing repetitive task: Are there repetitive actions?
+   • We repeatedly dig dirt from the hole.
+   Computer Skill 4: Conditional logic: Is there any logic involved here?
+   • We keep digging until the hole is 10 feet deep, and we stop digging once it is.
+   Given a little bit of prior coding knowledge we can connect what we just created to some common programming constructs such as variables, loops, and conditionals to create some code:
+   Insert code here

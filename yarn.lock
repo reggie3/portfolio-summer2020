@@ -1810,11 +1810,6 @@
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/0.2.28/fontawesome-common-types-0.2.28.tgz#1091bdfe63b3f139441e9cba27aa022bff97d8b2"
   integrity sha512-gtis2/5yLdfI6n0ia0jH7NJs5i/Z/8M/ZbQL6jXQhCthEOe5Cr5NcQPhgTvFxNOtURE03/ZqUcEskdn2M+QaBg==
 
-"@fortawesome/fontawesome-pro@^5.13.0":
-  version "5.13.0"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/5.13.0/fontawesome-pro-5.13.0.tgz#fde32ed4d9933c4c9b60b8a74a79c67eba58d984"
-  integrity sha512-97Su0vmIuCdxrklVbjTzY1i16nvyKaqFmFBgrTsgeCVmyIWXNydiS62jhKlkwH9sMb8Tw4wYQ+J1EKbRILowxw==
-
 "@fortawesome/fontawesome-svg-core@^1.2.28":
   version "1.2.28"
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-svg-core/-/1.2.28/fontawesome-svg-core-1.2.28.tgz#e5b8c8814ef375f01f5d7c132d3c3a2f83a3abf9"
@@ -15079,11 +15074,6 @@ react-use-measure@^2.0.0:
   integrity sha512-aYosukh38+eqjgNExd/OKEM0n5YSbl5niYYq3OAUWywf3deUjpnVfGMnwTmjF32+Owqr1sc3KKZku9n72lAaPA==
   dependencies:
     debounce "^1.2.0"
-
-react-webworker@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-webworker/-/react-webworker-2.1.0.tgz#6bfe5d74d3f3e5bae89f316b8760b3e8cc551420"
-  integrity sha512-Rl0LeJa7zAQHAZ5KpyWQ/7aHcdy6AKJcJI7UIGlFo2e2sJw7u87hg4ck1cWb70DO0PrW0NwNZrMCgTi23g09JQ==
 
 react@16.12.0:
   version "16.12.0"

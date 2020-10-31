@@ -8,7 +8,7 @@ import {
 import * as THREE from "three";
 import { Vector3, Vector } from "three";
 import { getFaceId } from "../utilities";
-import { PWBWorker } from "promise-worker-bi";
+// import { PWBWorker } from "promise-worker-bi";
 
 const EARTH_RADIUS = 6371;
 
@@ -279,7 +279,7 @@ export async function performCalculations(
   stringifiedParams: string
 ): Promise<AnalysisResult | string> {
   // create a method for sending posts back to the main thread
-  const messagePoster = new PWBWorker();
+  // const messagePoster = new PWBWorker();
 
   if (stringifiedParams) {
     const params = JSON.parse(stringifiedParams);
@@ -366,7 +366,7 @@ export async function performCalculations(
           completedRuns: i + 1,
           progress: (i + 1) / numberOfRuns,
         };
-        messagePoster.postMessage(JSON.stringify(workerProgressMessage), i);
+        // messagePoster.postMessage(JSON.stringify(workerProgressMessage), i);
       } // end run noop
 
       // should be able to calculate analsysis area results here
