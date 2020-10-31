@@ -4,23 +4,31 @@
 }
 .gatsby-highlight pre[class*="language-"] {
   -webkit-overflow-scrolling: touch;
+  border-radius: 0.25rem 0.25rem;
+}
+.gatsby-highlight .language-js::before {
+  content: "javascript";
+  background-color: #f7df1e;
+  color: black;
+}
+.gatsby-highlight .language-react::before {
+  content: "javascript";
+  background-color: #2fbdff;
+  color: black;
+}
+.gatsby-highlight .language-css::before {
+  content: "javascript";
+  background-color: #ff9e2f;
+  color: black;
 }
 .gatsby-highlight pre[class*="language-"]::before {
-  background: black;
-  border-radius: 0 0 0.25rem 0.25rem;
-  color: white;
+  border-radius: 0.25rem 0.25rem;
   font-size: 12px;
   letter-spacing: 0.025rem;
-  padding: 0.1rem 0.5rem;
+  padding: 0.5rem 1rem;
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   text-align: right;
-  text-transform: uppercase;
+  text-transform: lowercase;
   top: 0;
-}
-.gatsby-highlight pre[class="language-js"]::before,
-.gatsby-highlight pre[class="language-javascript"]::before {
-  content: "js";
-  background: #f7df1e;
-  color: black;
 }

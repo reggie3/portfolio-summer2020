@@ -5,10 +5,15 @@ import theme from "prism-react-renderer/themes/vsDark";
 const Code = ({ codeString, language, ...props }) => {
   console.log(props);
   return (
-    <Highlight {...defaultProps} code={codeString} language={language}>
+    <Highlight
+      {...defaultProps}
+      code={codeString}
+      language={language}
+      theme={theme}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div className="gatsby-highlight" data-language={language}>
-          <pre className={className} style={style}>
+          <pre className={className} style={{ ...style, padding: "10px" }}>
             {tokens.map((line, i) => (
               <div {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
