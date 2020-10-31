@@ -3,11 +3,12 @@ import {
   GsatLocation,
   MarkerTypes,
   AnalysisResult,
-} from '../models';
-import * as THREE from 'three';
-import { OBJLoader2 } from 'three/examples/jsm/loaders/OBJLoader2';
-import { Vector3, Object3D, Vector } from 'three';
-import { getFaceId } from '../utilities';
+} from "../models";
+import * as THREE from "three";
+import { OBJLoader2 } from "three/examples/jsm/loaders/OBJLoader2";
+// @ts-ignore
+import { Vector3, Object3D, Vector } from "three";
+import { getFaceId } from "../utilities";
 
 const EARTH_RADIUS = 6371;
 
@@ -39,6 +40,7 @@ export type WinTally = {
 };
 
 export type FaceStats = {
+  // @ts-ignore Namespace '"c:/Users/rej_i/Dropbox/development/portfolio-summer2020/node_modules/three/src/Three"' has no exported member 'Color'
   color: THREE.Color;
   wins: {
     [MarkerTypes.ENEMY]: number;
@@ -66,7 +68,7 @@ const getLocationsByMarkerType = (
   locations: WorkerLocation[],
   markerType: MarkerTypes
 ): WorkerLocation[] => {
-  return locations.filter((location) => location.type === markerType);
+  return locations.filter(location => location.type === markerType);
 };
 
 // get the shortest travel time to a sample point from all markers of a type
@@ -75,7 +77,7 @@ export const getShortestTravelTimeByMakerType = (
   position: Vector3
 ): number => {
   const travelTimes: number[] = [];
-  locations.forEach((location) => {
+  locations.forEach(location => {
     const distance = getDistanceFromLocationMarkerToSamplePoint(
       location,
       position
@@ -108,7 +110,9 @@ const getDistanceFromLocationMarkerToSamplePoint = (
 const getFaceColorBasedOnWins = (
   faceStats: FaceStats,
   numberOfRuns: number
+  // @ts-ignore Namespace has no exported member 'Color'
 ): THREE.Color => {
+  // @ts-ignore Namespace has no exported member 'Color'
   const color = new THREE.Color(
     faceStats.wins[MarkerTypes.ENEMY] / numberOfRuns,
     faceStats.wins[MarkerTypes.NEUTRAL] / numberOfRuns,
@@ -126,7 +130,8 @@ const getInitialFaceStats = (): FaceStats => {
       [MarkerTypes.FRIENDLY]: 0,
       [MarkerTypes.NEUTRAL]: 0,
     },
-    color: new THREE.Color('orange'),
+    // @ts-ignore Namespace '"c:/Users/rej_i/Dropbox/development/portfolio-summer2020/node_modules/three/src/Three"' has no exported member 'Color'
+    color: new THREE.Color("orange"),
   } as FaceStats;
 };
 
@@ -213,7 +218,10 @@ const getFaceTravelTimes = ({
   enemyLocations: WorkerLocation[];
   friendlyLocations: WorkerLocation[];
   neutralLocations: WorkerLocation[];
+  // @ts-ignore Namespace has no exported member 'Face3'
   face: THREE.Face3;
+  // @ts-ignore Namespace has no exported member 'Vector3'
+
   vertices: THREE.Vector3[];
 }) => {
   var v1 = vertices[face.a];
@@ -221,6 +229,8 @@ const getFaceTravelTimes = ({
   var v3 = vertices[face.c];
 
   // calculate the centroid
+  // @ts-ignore Namespace has no exported member 'Vector3'
+
   var position = new THREE.Vector3();
   position.x = (v1.x + v2.x + v3.x) / 3;
   position.y = (v1.y + v2.y + v3.y) / 3;
@@ -307,7 +317,7 @@ export async function performCalculations(
       for (let i = 0; i < numberOfRuns; i++) {
         const { faces, vertices } = analysisArea;
         totalNumberOfFaces += faces.length;
-
+        // @ts-ignore Namespace has no exported member 'Face3'
         faces.forEach((face: THREE.Face3) => {
           const faceId: string = getFaceId(face);
           const {
@@ -368,15 +378,15 @@ export async function performCalculations(
         });
       });
 
-      return {
+      return ({
         analysisAreaStatsMap,
         elapsedRunTimeMillis: Date.now() - runStartTime,
         faceStatsMap,
         id: analysisArea.id,
         timeRanMillis: Date.now(),
         ...calculateWinPercentages(totalFaceWinTally, totalNumberOfFaces),
-      };
+      } as unknown) as AnalysisResult;
     }
   }
-  return 'no params provided';
+  return "no params provided";
 }

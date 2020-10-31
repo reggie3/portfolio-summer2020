@@ -5,7 +5,9 @@ import {
   AnalysisResult,
   WorkerProgressMessage,
 } from "../models";
+// @ts-ignore can't find three
 import * as THREE from "three";
+// @ts-ignore can't find three
 import { Vector3, Vector } from "three";
 import { getFaceId } from "../utilities";
 // import { PWBWorker } from "promise-worker-bi";
