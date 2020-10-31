@@ -6,13 +6,12 @@ import {
   Typography,
   ExpansionPanelDetails,
 } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MapItemControl } from "../Common/MapItemControl";
 import { ActionTypes, DispatchActions } from "../../Context";
 import { ReactElement } from "react";
 import { detailColor } from "../../colors";
 import LocationItemDataEntry from "../Common/LocationItemDataEntry";
-
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 export interface LocationListItemProps {
   dispatch: React.Dispatch<DispatchActions>;
   location: GsatLocation;
@@ -90,7 +89,7 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
     });
   };
 
-  onToggleVisiblity = () => {
+  onToggleVisibility = () => {
     this.props.dispatch({
       type: ActionTypes.TOGGLE_LOCATION_VISIBILTY,
       payload: {
@@ -113,7 +112,7 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
     return (
       <ExpansionPanel>
         <ExpansionPanelSummary
-          expandIcon={<FontAwesomeIcon icon={"chevron-circle-down"} />}
+          expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
@@ -131,7 +130,7 @@ export class LocationListItem extends React.Component<LocationListItemProps> {
           isItemVisible={this.props.location.isVisible}
           onDeleteItem={this.onDeleteLocation}
           onEditItem={this.onEditLocation}
-          onToggleVisiblity={this.onToggleVisiblity}
+          onToggleVisibility={this.onToggleVisibility}
         />
       </ExpansionPanel>
     );

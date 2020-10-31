@@ -2,11 +2,12 @@ import * as React from "react";
 import { GlobeClickStates } from "../../models";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ToggleButton from "@material-ui/lab/ToggleButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { makeStyles } from "@material-ui/core";
 import { globalColors } from "../../styles/styles";
-
-interface ClickStateContolsProps {
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import RoomIcon from "@material-ui/icons/Room";
+import FormatShapesIcon from "@material-ui/icons/FormatShapes";
+interface ClickStateControlsProps {
   globeClickState: GlobeClickStates;
   onClickStateChange: (
     event: React.MouseEvent<HTMLElement>,
@@ -29,7 +30,7 @@ const getIconColor = (
     : globalColors.unSelectedToggleButtonIcon;
 };
 
-const ClickStateContols: React.SFC<ClickStateContolsProps> = ({
+const ClickStateControls: React.SFC<ClickStateControlsProps> = ({
   globeClickState,
   onClickStateChange,
 }) => {
@@ -46,10 +47,11 @@ const ClickStateContols: React.SFC<ClickStateContolsProps> = ({
         value={GlobeClickStates.NONE}
         className={classes.toggleButton}
       >
-        <FontAwesomeIcon
-          icon={"times-circle"}
-          size="2x"
-          color={getIconColor(GlobeClickStates.NONE, globeClickState)}
+        <HighlightOffIcon
+          size="large"
+          style={{
+            color: getIconColor(GlobeClickStates.NONE, globeClickState),
+          }}
         />
       </ToggleButton>
       <ToggleButton
@@ -57,10 +59,11 @@ const ClickStateContols: React.SFC<ClickStateContolsProps> = ({
         value={GlobeClickStates.PLACE_MARKER}
         className={classes.toggleButton}
       >
-        <FontAwesomeIcon
-          icon={"map-marker-alt"}
-          size="2x"
-          color={getIconColor(GlobeClickStates.PLACE_MARKER, globeClickState)}
+        <RoomIcon
+          size="large"
+          style={{
+            color: getIconColor(GlobeClickStates.PLACE_MARKER, globeClickState),
+          }}
         />
       </ToggleButton>
       <ToggleButton
@@ -68,17 +71,18 @@ const ClickStateContols: React.SFC<ClickStateContolsProps> = ({
         value={GlobeClickStates.PLACE_POLYGON_POINT}
         className={classes.toggleButton}
       >
-        <FontAwesomeIcon
-          icon={"draw-polygon"}
-          size="2x"
-          color={getIconColor(
-            GlobeClickStates.PLACE_POLYGON_POINT,
-            globeClickState
-          )}
+        <FormatShapesIcon
+          size="large"
+          style={{
+            color: getIconColor(
+              GlobeClickStates.PLACE_POLYGON_POINT,
+              globeClickState
+            ),
+          }}
         />
       </ToggleButton>
     </ToggleButtonGroup>
   );
 };
 
-export default ClickStateContols;
+export default ClickStateControls;

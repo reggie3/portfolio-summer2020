@@ -1,30 +1,27 @@
-import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Fab } from '@material-ui/core';
+import * as React from "react";
+import { Fab } from "@material-ui/core";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 export interface HideOrDisplayToggleProps {
   className: string;
   isVisible: boolean;
-  onToggleVisiblity: () => void;
+  onToggleVisibility: () => void;
 }
 
 export function HideOrDisplayToggle({
   className,
   isVisible,
-  onToggleVisiblity,
+  onToggleVisibility,
 }: HideOrDisplayToggleProps) {
   return (
     <Fab
       color="primary"
       size="small"
-      onClick={onToggleVisiblity}
+      onClick={onToggleVisibility}
       className={className}
     >
-      {isVisible ? (
-        <FontAwesomeIcon icon={'eye-slash'} />
-      ) : (
-        <FontAwesomeIcon icon={'eye'} />
-      )}
+      {isVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
     </Fab>
   );
 }

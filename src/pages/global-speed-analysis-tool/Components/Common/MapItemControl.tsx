@@ -1,13 +1,12 @@
 import * as React from "react";
 import { Fab, makeStyles, Theme, createStyles } from "@material-ui/core";
 import { HideOrDisplayToggle } from "./HideOrDisplayToggle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import DeleteIcon from "@material-ui/icons/Delete";
 export interface MapItemControlProps {
   isItemVisible: boolean;
   onDeleteItem: () => void;
   onEditItem: () => void;
-  onToggleVisiblity: () => void;
+  onToggleVisibility: () => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,7 +30,7 @@ export function MapItemControl({
   isItemVisible,
   onDeleteItem,
   onEditItem,
-  onToggleVisiblity,
+  onToggleVisibility,
 }: MapItemControlProps) {
   const classes = useStyles();
 
@@ -40,7 +39,7 @@ export function MapItemControl({
       <HideOrDisplayToggle
         className={classes.margin}
         isVisible={isItemVisible}
-        onToggleVisiblity={onToggleVisiblity}
+        onToggleVisibility={onToggleVisibility}
       />
       <Fab
         color="secondary"
@@ -48,7 +47,7 @@ export function MapItemControl({
         onClick={onDeleteItem}
         className={classes.margin}
       >
-        <FontAwesomeIcon icon={"trash"} size="lg" />
+        <DeleteIcon fontSize="large" />
       </Fab>
     </div>
   );

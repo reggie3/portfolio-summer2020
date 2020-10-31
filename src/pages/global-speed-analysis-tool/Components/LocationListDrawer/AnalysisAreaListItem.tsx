@@ -9,9 +9,8 @@ import {
   Theme,
   makeStyles,
 } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import RunResultsTable from "../RunResultsTable/RunResultsTable";
-
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 interface AnalysisAreaListItemProps {
   analysisArea: AnalysisArea;
   analysisResults: AnalysisResult[];
@@ -26,7 +25,7 @@ const AnalysisAreaListItem: React.FunctionComponent<AnalysisAreaListItemProps> =
   return (
     <ExpansionPanel>
       <ExpansionPanelSummary
-        expandIcon={<FontAwesomeIcon icon={"chevron-circle-down"} />}
+        expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >

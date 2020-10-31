@@ -1,7 +1,7 @@
 import * as React from "react";
 import { makeStyles, AppBar, Button, LinearProgress } from "@material-ui/core";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import {
   GlobeClickStates,
   AnalysisArea,
@@ -12,7 +12,6 @@ import {
 } from "../../models";
 import { ActionTypes, ApplicationState, DispatchActions } from "../../Context";
 import ClickStateControls from "./ClickStateControls";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import performCalculationsWorker from "../../webWorkers/performCalculationsWorker";
 import BootstrapInput from "../Common/BootstrapInput";
 import {
@@ -21,7 +20,7 @@ import {
 } from "../../webWorkers/performCalculations.worker";
 import { colorizeAnalysisAreas } from "../../colorizeAnalysisAreas";
 import styled from "styled-components";
-
+import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 export interface ControlsMenuProps {
   analysisAreas: AnalysisArea[];
   appState: ApplicationState;
@@ -259,7 +258,7 @@ const ControlsMenu = ({
                 numberOfRuns
               )}
             >
-              <FontAwesomeIcon icon={"running"} size="2x" />
+              <DirectionsRunIcon fontSize="large" />
             </Button>
           </RunControlContainer>
 
@@ -268,7 +267,7 @@ const ControlsMenu = ({
             color="secondary"
             onClick={onToggleLocationListClicked}
           >
-            <FontAwesomeIcon icon="chevron-circle-left" size="2x" />
+            <ArrowBackIosIcon fontSize="large" />
           </Button>
         </div>
       </AppBar>

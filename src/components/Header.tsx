@@ -41,7 +41,7 @@ export default Header;
 
 export const HeaderRootContainer = styled(motion.div)`
   margin: 0px 0px;
-  background: linear-gradient(180deg, ${header_dark} 0%,${header_dark} 50%, ${header_light} 100%);
+  background:  ${header_light};
   color: var(--clr-text);
   font-size: 2rem;
   padding: 0;

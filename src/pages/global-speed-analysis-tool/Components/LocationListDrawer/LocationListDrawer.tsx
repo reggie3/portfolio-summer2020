@@ -1,12 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@material-ui/core";
 import { GlobalAppState, AppContext, DispatchActions } from "../../Context";
 import LocationList from "./LocationList";
 import AnalysisAreaList from "./AnalysisAreasList";
-
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 interface LocationListDrawerProps {
   isLocationDrawerVisible: boolean;
   onCloseDrawer: () => void;
@@ -56,7 +55,7 @@ const LocationListDrawer: React.FunctionComponent<LocationListDrawerProps> = ({
             />
           </ContentContainer>
           <Button variant="contained" color="secondary" onClick={onCloseDrawer}>
-            <FontAwesomeIcon icon={"chevron-circle-right"} size="2x" />
+            <ChevronRightIcon fontSize="large" />
           </Button>
         </DrawerComponentRoot>
       )}
