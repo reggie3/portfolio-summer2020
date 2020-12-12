@@ -1,0 +1,85 @@
+---
+title: "Reversible State Update Techniques in React"
+date: "2020-12-12T13:00:00.121Z"
+layout: post
+draft: false
+path: "/posts/reversible-state-update-techniques-in-react/"
+category: "Programming"
+tags:
+  - "Programming"
+  - "React"
+description: "To write a program, it helps to think like one.  This article introduces code newbies to that concept and some techniques to do so."
+featuredImage: "Picture1.png"
+---
+
+## Purpose
+
+THe purpose of this post is to present two techniques for enabling reversible updates to data stored in a global state object.
+
+## Background
+
+<p>
+  It is common to build a React component that takes input from the user and
+  display that input somewhere in the UI. For example, a form that displays
+  previously entered information while allowing the user to edit and save new
+  information. In such a situation, it is often desirable to let the user undo
+  their changes.
+</p>
+<p>
+  For example, imagine we have a component with two child components. One child
+  component is an input box that displays a numerical value and lets the user
+  change that value. Another child component displays a graph based on that
+  numerical value.
+</p>
+<p>
+  How can you handle a situation where the user inadvertently the value? The
+  component should provide a way to revert back to the original value if the
+  user decides to not save or to cancel their changes
+</p>
+
+## Techniques
+
+In summary, the two techniques can be catagorized as "Immediate Update" and "Update on Save". Each technique has its own advantages and disadvantages.
+
+#### Immediate Update
+
+1. Make a copy of the state to be changed
+2. Place that copy in your global store
+3. Update original,
+4. Undo by replacing original with the copy
+
+##### Advantages:
+
+- The user can immediately see the effect of updates in the UI
+- No "Save" step required
+
+##### Disadvantage:
+
+- Requires a "Cancel" step that replaces the update
+  original with the copy
+- May require more and almost aggressive defensive
+  programming. For example, what should be done when a user deletes a value for a
+  piece of state. Can the UI handle receiving `undefined` for that value or will
+  something break?
+
+#### Update on Save
+
+1. Make a copy of the state to be changed
+2. Place the copy in the global store
+3. Update the copy
+4. Over-write original on save
+
+##### Advantages:
+
+- Simpler and does not create any unintended side-effects in the UI
+  #####Disadvantages:
+- User does not immediately see the effect of their changes
+
+### Why place the copy in a global store such as Redux or Context?
+
+Why not just keep it in local component state? Keeping the currently referenced data and a copy in a component's state has the advantage of not adding additional complexity, and is a valid technique for UIs that do not incorporate a large number of components. However, there are several reasons to use a global state if that option is available
+
+- Using a global store such as Redux and accessing it via `useSelector` and `useDispatch` hooks avoids prop drilling when working with data updated that can be updated by multiple components
+- Increased visibility into data updated by using a tool such as Redux along with one of its development tools such as Redux Logger or Redux Devtools
+
+Additionally, the option of only having a single copy of data in local state may not be available. For example, the original copy of the data may available and mutated via API calls. In that case, keeping multiple copies of the state in the local component could be counter-productive.
