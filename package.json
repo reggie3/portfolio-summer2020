@@ -82,7 +82,7 @@
     "reactstrap": "^8.4.1",
     "rehype-react": "^5.0.1",
     "styled-components": "^5.1.1",
-    "three": "^0.117.1",
+    "three": "^0.125.0",
     "three-subdivision-modifier": "^1.0.5",
     "topojson": "^3.0.2",
     "use-double-click": "^1.0.5",
